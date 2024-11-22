@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject LookItemGroup;
 
-    private static bool origional = true;
+    //private static bool origional = true;
 
 
     //protected virtual void Awake()

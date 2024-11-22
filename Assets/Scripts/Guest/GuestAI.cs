@@ -13,6 +13,9 @@ public class GuestAI : MonoBehaviour
     public GameObject GuestManager;
     public int num;
 
+    public Transform HandText;//文字对应3D的物体
+    Vector3 screenPos;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -23,6 +26,11 @@ public class GuestAI : MonoBehaviour
     {
         agent.SetDestination(target.position);
         GoGuestStartLocation();
+
+        if (HandText)
+        {
+            HandText.LookAt(GetSymmetryPoint(Camera.main.transform));
+        }
     }
 
     void GoGuestStartLocation()
@@ -37,6 +45,20 @@ public class GuestAI : MonoBehaviour
                 GuestManager.GetComponent<GenerateGuest>().beiZuoList.Remove(num);
                 Destroy(gameObject);
             }
+            if (HandText)
+            {
+                Destroy(HandText.gameObject);
+            }
         }
     }
+
+
+    Vector3 GetSymmetryPoint(Transform LookTran)
+    {
+        return new Vector3(
+            transform.position.x * 2 - LookTran.position.x,
+            transform.position.y * 2 - LookTran.position.y + 1f,
+            transform.position.z * 2 - LookTran.position.z);
+    }
+
 }
