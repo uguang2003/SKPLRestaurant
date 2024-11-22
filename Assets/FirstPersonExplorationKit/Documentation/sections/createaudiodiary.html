@@ -1,0 +1,59 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Creating an Audio Diary</h2>
+
+<br/>
+
+<p>Audio Diaries are interactable objects in the game world that play an audio file and optionally show a title on screen. They can also be "collected" into the player's inventory and listened to again later.</p>
+
+<h3><u>Audio Diary</u></h3>
+
+<ol>
+<li>Drag any 3D object into the scene (e.g. model of a tape recorder).</li>
+<li>Ensure the Collider is either correctly scaled and rotated (e.g. if using imported Mesh Collider), or remove it completely.</li>
+<li>If Collider was removed in step 2, add a new collider (e.g. Box Collider).</li>
+<li>Size the Collider (either imported, or added in step 3 above - e.g. Box Collider) to fit for the object you're making, with consideration to reticle aiming (e.g. if tiny scrap of paper, make collider big enough to get reticle over easily for the player).</li>
+<li>Add FPEInteractableAudioDiaryScript to your object and set the following variables to suit your object:</li>
+<ul>
+<li>Interaction String: For example "Woah, what happened to that ship?"</li>
+<li>Audio Diary Title: For example, "Captain's Log - We crash landed"</li>
+<li>Audio Diary Clip: The audio clip for the diary. See audioDiaryDemo.ogg in FirstPersonExplorationKit/Resources/AudioDiaryAudioClips folder for an example.</li>
+<li>During Playback Interaction String (Optional): For example, when the diary is playing, the string would read "It's playing..."</li>
+<li>Post Playback Interaction String (Optional): For example, once the diary is played, the string would read "That's the captain's ship that crash landed"</li>
+<li>Automatic Playback: Set to true if the diary should start playing as soon as the player looks at it. Set to false if you want to require the player press the interact button to start playback</li>
+<li>Add Entry To Inventory: Set to true to "collect" this audio diary into the ivnentory, which can be played back again later from the inventory menu.</li>
+<li>Show Diary Title: Set to true to show a title on screen when the diary is playing.</li>
+</ul>
+<li>Run the scene, and move the reticle over the new Audio Diary to trigger play back.</li>
+<li>To ensure the Audio Diary can be saved and loaded, ensure that the Audio Clip selected is placed inside a Resources folder, in a sub-folder called "AudioDiaryAudioClips"</li>
+</ol>
+
+<br/>
+
+<p>Depending on the configuration options, an Audio Diary sound clip will play, and:</p> 
+<p>The title of the diary will be displayed,</p>
+<img src="img/AudioDiaryTitleDisplay.jpg">
+<br/>
+<p>and it can also be added to inventory screen under the Audio Diaries tab, and included in saved game data. To listen to the diary again, open the Audio Diaries tab in the inventory screen and click on the title of interest:</p>
+<img src="img/RegAudioDiaryInInventory.jpg">
+<br/>
+
+
+<br/>
+
+
+
+
+<br/>
+<br/>
+
+</body>
+
+</html>

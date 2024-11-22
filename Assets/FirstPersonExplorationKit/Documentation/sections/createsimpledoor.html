@@ -1,0 +1,80 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Creating a Simple Door</h2>
+
+<hr>
+
+<br/>
+<h3><u>Simple Doors</u></h3>
+
+<br/>
+<span class="note"><u>Note</u>: FPESimpleDoor has been deprecated and should no longer be used. Instead, use the FPESlidingDoor class or create a custom door class by extending FPEDoor. See <a href="createdoor.html#sliding">Creating a Door</a>.</span>
+<br/>
+<br/>
+
+<p>The Simple Door object type provides a way to create simple sliding doors. The Simple Door class can be extended into other types of doors, such as 
+double doors, swinging doors, garage doors, etc. There are two prefabs included with the asset that use the FPESimpleDoor script. They are 
+demoSimpleDoorUnlocked and demoSimpleDoorLocked, and are located in the DemoPrefabs folder.</p>
+
+
+<h3><u>To create a new Simple Door:</u></h3>
+<ol>
+<li>Add an Empty Game Object to your scene, name it MySimpleDoor.</li>
+<li>Add the FPESimpleDoor component.</li>
+<li>Create a child cube (or other mesh) to MySimpleDoor, and name it DoorMesh. Give it scale of (2.5,2.5,0.25).</li>
+<li>Size DoorMesh so it is about the size of your desired door opening.</li>
+<li>Add another child cube (or other mesh) to MySimpleDoor, and name it JambLeft. Give it a scale of (2.5,3.0,0.5).</li>
+<li>Position and scale JambLeft to the left side of DoorMesh.</li>
+<li>Duplicate JambLeft, and rename if JambRight. Move it to the other side of DoorMesh.</li>
+<br/>
+<img src="img/CreateDoorProgress01.jpg">
+<br/>
+<br/>
+<li>Add a child cube (or other mesh) to DoorMesh, and name it MyDoorHandle. Give it a scale of (0.15,0.5,1.5). This will act as the "Interactable" part of door (namely, the handle).</li>
+<br/>
+<img src="img/DoorHandle.jpg">
+<br/>
+<br/>
+<li>Add a child cube to DoorMesh, and name it DoorwayInteractionBlocker. Give it a scale of (0.05,0.5,1.9). Delete the Mesh Renderer and Mesh Filter.</li>
+<li>Position DoorwayInteractionBlocker so that it blocks a line of sight from the doorway. This will prevent the player from closing the door on themselves.</li>
+<br/>
+<img src="img/DoorInteractionBlocker.jpg">
+<br/>
+<br/>
+<li>Add another child cube to MySimpleDoor, and name it PlayerBlocker. Scale it so it blocks the doorway with a bit of overlap. Delete the Mesh Renderer and Mesh Filter. </li>
+<li>Assign PlayerBlocker to the FPEIgnore Layer. This will block the player from entering the doorway when it is closed.</li>
+<li>Click on MySimpleDoor, and assign DoorMesh to the "Sliding Part" field, PlayerBlocker to the "Player Blocker" field, and DoorwayInteractionBlocker to the "Player Interaction Blocker" field.</li>
+<li>Assign door sounds in the Sound section of the Inspector.</li>
+<br/>
+<img src="img/SimpleDoorInspector.jpg">
+<br/>
+<br/>
+<li>Select the DoorHandle child object, and add the FPEInteractableActivateScript component.</li>
+<li>In the "Type of Activation and Events" section of the Inspector, change the Event Fire Type to be EVERYTIME.</li>
+<li>In the "Shared 'Activation' and 'Toggle On' Event", press the '+' to add an event. Drag and drop MySimpleDoor, and select the MySimpleDoor.activateDoor() function, as shown below:</li>
+<br/>
+<img src="img/SimpleDoorHandleScript.jpg">
+<br/>
+<br/>
+<li>Change the Interaction String field in the inspector to read "Open Door".</li>
+<li>Run the scene. Look at the door handle and press the interact button. The door will open. Interact with it again, and the door will close.</li>
+<li>You're finished!</li>
+</ol>
+
+<p>Objects that use FPESimpleDoor are automatically saved and loaded by the Save Game System. To see an example of how you can require that the player have a key to unlock the door, please refer to the demoSimpleDoorLocked prefab.</p>
+
+<p>A completely configured Door (per the steps above) is shown here:</p>
+
+<img src="img/CompletedSimpleDoor.jpg"></br/>
+<br/>
+
+</body>
+
+</html>

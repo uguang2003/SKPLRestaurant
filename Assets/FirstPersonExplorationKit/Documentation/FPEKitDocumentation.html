@@ -1,0 +1,177 @@
+<html>
+
+<head>
+<meta charset="utf-8"/>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Documentation</h2>
+
+<img src="img/fpekitCover.jpg" alt="[FPE Kit Logo]"><br/>
+
+<h3>Latest Version</h3>
+<p>The latest version is <a href="https://assetstore.unity.com/packages/templates/systems/first-person-exploration-kit-60434" target="assetStore">available in the Unity Asset Store</a>.</p>
+
+<p>Download the <a href="https://whilefun.itch.io/first-person-exploration-kit-demo" target="demo">demo for Windows</a> (<a href="http://whilefun.com/unityweb/fpekit/FirstPersonExplorationKitDemo_v2.2.7.zip" target="demo2">alternate download host</a>), or <a href="https://www.youtube.com/watch?v=SlZnJF_X7Pg" target="youtubeDemo">watch a detailed walkthrough on youtube</a>.</p>
+<p>All demo scenes are included in the package.</p>
+
+<hr>
+<span class="note">
+<h3><a href="http://whilefun.com/fpedocs/FPEKitDocumentation.html">Get the latest documentation update online</a></h3>
+</span>
+<br/>
+
+<br/>
+<h3>Documentation and Guides in other languages</h3>
+<span class="widenote">
+<!--Simplified Chinese-->
+<h3>简体中文</h3>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/63557545" target="_cn1">【Unity插件】First Person Exploration Kit 插件 官方文档翻译</a><br/></li>
+<li><a href="http://doc.xudawang.fun/doc/FirstPersonExplorationKitDocCn/" target="_cn3">翻译说明</a><br/></li>
+<li><a href="https://www.bilibili.com/video/av50319721" target="_cn3">【Unity插件介绍】First Person Exploration Kit插件 轻松做第一人称游戏</a><br/></li>
+</ul>
+<!--Japanese-->
+<h3>日本語</h3>
+<ul>
+<li><a href="http://corevale.com/unity/6145" target="_jp1">Unity First Person Exploration Kit:基本機能で簡単な脱出ゲームメイキング【アセットアドカレ2018】</a><br/></li>
+<li><a href="http://corevale.com/unity/6386" target="_jp2">Unity First Person Exploration Kit:ユーザーインターフェースを日本語化する</a><br/></li>
+</ul>
+</span>
+<br/>
+
+<hr>
+
+<h3>Overview</h3>
+<p>First Person Exploration Kit is a complete package to create a First Person Environmental Exploration or Adventure game.</p>
+
+<hr>
+
+<h3>Table of Contents</h3>
+<ol>
+
+<br/><b>General Information</b><br/>
+<li><a href="#tutvid">Tutorial Videos</a></li>
+<li><a href="sections/commonerrors.html"target="commonrerrors">Common Issues</a></li>
+<li><a href="#faq">Frequently Asked Questions</a></li>
+<li><a href="sections/releasenotes20.html" target="sourcechanges">Release Notes</a></li>
+
+<br/><b>Upgrading for Scriptable Render Pipeline</b><br/>
+<li><a href="sections/urp.html" target="urp">Working with Universal Render Pipeline</a></li>
+<li><a href="sections/hdrp.html" target="hdrp">Working with HD Render Pipeline</a></li>
+
+
+<br/><b>Upgrading (for existing users of version 1.2)</b><br/>
+<li><a href="sections/migration.html" target="migration">Migrating your project from v1.2 to 2.0</a></li>
+<li><a href="sections/technicalchanges1220.html" target="sourcechanges">Summary of Technical Changes (source code and class structures) from v1.2 to v2.0</a></li>
+
+<br/><b>Getting Started - The Basics</b><br/>
+<li><a href="sections/gettingstarted.html" target="gettingstarted">Getting Started</a></li>
+<li><a href="sections/makefirstbuild.html" target="makefirstbuild">Making Your First Build</a></li>
+<li><a href="sections/gizmoicons.html" target="gettingstarted">Custom Gizmo Icons</a></li>
+<li><a href="sections/createpickup.html" target="gettingstarted">Creating a Pickup</a></li>
+<li><a href="sections/createjournal.html" target="gettingstarted">Creating a Journal</a></li>
+<li><a href="sections/createaudiodiary.html" target="gettingstarted">Creating an Audio Diary</a></li>
+<li><a href="sections/createnote.html" target="gettingstarted">Creating a Note</a></li>
+<li><a href="sections/createpassiveaudiodiary.html" target="gettingstarted">Creating a Passive Audio Diary</a></li>
+<li><a href="sections/createstatic.html" target="gettingstarted">Creating a Static Interaction</a></li>
+<li><a href="sections/inventoryitems.html#create" target="gettingstarted">Creating an Inventory Item</a></li>
+<li><a href="sections/events.html" target="events">Using Unity Events with Interactions</a></li>																								
+
+<br/><b>Getting Started - More Advanced Interactions</b><br/>
+<li><a href="sections/activate.html" target="gettingstarted">Overview of Activate Type Interactions</a></li>
+<li><a href="sections/createtoggle.html" target="createtoggle">Creating a Basic Toggle (Light Switch)</a></li>
+<li><a href="sections/createdoor.html" target="createdoor">Creating a Door</a></li>
+<li><a href="sections/createdrawer.html" target="createdrawer">Creating a Drawer</a></li>
+<li><a href="sections/createdock.html" target="createdock">Creating a Basic Player 'Dock' (An Armchair)</a></li>
+<li><a href="sections/createeventtrigger.html" target="createeventtrigger">Creating an Event Trigger</a></li>
+<li><a href="sections/doorways.html" target="createdoorway">Creating a Doorway to Another Level (Scene)</a></li>
+<li><a href="sections/cutscenes.html" target="cutscenes">Creating a Cutscene</a></li>
+
+<br/><b>Technical Details</b><br/>
+<li><a href="sections/systemsoverview.html" target="subsection">Systems Overview (prefabs, key scripts, etc.)</a></li>
+<li><a href="sections/interactionmanager.html" target="subsection">Interaction Manager</a></li>
+<li><a href="sections/inputsystem.html" target="subsection">Input System</a></li>
+<li><a href="sections/unityinputs.html" target="subsection">Input Definitions</a></li>
+<li><a href="sections/tagslayersphysics.html" target="subsection">Tags, Layers, and Physics</a></li>
+<li><a href="sections/types.html" target="subsection">Interaction Types</a></li>
+<li><a href="sections/inventoryitems.html" target="subsection">Inventory Items</a></li>
+<li><a href="sections/playerconfig.html" target="subsection">Player Configuration</a></li>
+<li><a href="sections/savegamesystem.html" target="subsection">Save Game System</a></li>
+<li><a href="sections/saveloadui.html" target="subsection">Saving and Loading UI</a></li>
+<li><a href="sections/uibasics.html" target="subsection">Gameplay UI</a></li>
+<li><a href="sections/menus.html" target="subsection">Menus (Main Menu, Game Menu)</a></li>
+
+<br/><b>Customization and Other</b><br/>
+<li><a href="sections/sounds.html" target="subsection">Sound Guide</a></li>
+<li><a href="sections/graphics.html" target="subsection">Graphics Guide</a></li>
+<li><a href="sections/addons.html" target="subsection">Add-Ons and Integration with Other Asset Packages</a></li>
+<li><a href="sections/generalnotes.html" target="subsection">General Package Notes</a></li>
+
+
+</ol>
+
+<hr>
+
+<p>If you have any problems using this package, please check out the <a href="sections/commonerrors.html"target="commonrerrors">Common Issues</a> section. If you need further assistance, or have tweaks or new features you'd like to see included, please <a href="mailto:support@whilefun.com?subject=Assistance with FPEKit v2">email me with the details</a>.</p>
+
+<p>Thanks,<br/>
+Richard</p>
+
+<hr>
+
+<br/>
+<a name="tutvid"><h3>Tutorial Videos</h3></a>
+<p>A series of tutorial videos is available on youtube playlist <a href="https://www.youtube.com/playlist?list=PLVMI-MFk1XWpuWJd5sdX3wRVuAT3JNaOy">here</a>.</p>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=SlZnJF_X7Pg" target="videos">Detailed Demo Walkthrough</a></li>
+<li><a href="https://www.youtube.com/watch?v=ln3q9OTH4ks" target="videos">Getting Started</a></li>
+<li><a href="sections/migrationvideo.html" target="migrationvideo">Migrating your project from v1.2 to 2.0</a></li>
+</ul>
+
+<hr>
+
+<a name="faq"><h3>Frequently Asked Questions</h3></a>
+
+<p class="faq_q">Q: I have changed some of the source code that was in the previous version. Will my changes be overwritten when I upgrade?</p>
+<p>A: YES! Your changes will be overwritten. Please be sure to back up your project before upgrading. Refer to the migration guide for detailed steps 
+on upgrading your project: <a href="sections/migration.html" target="migration">Migrating your project from v1.2 to 2.0</a></p>
+<br/>
+<p class="faq_q">Q: Is there a bullet proof way to modify the existing source code to ensure future upgrades will never break my project?</p>
+<p>A: No. BUT, you can do things like extend existing 'FPE' classes, which will help. I will always try to avoid "breaking changes" to the core code, but
+cannot guarantee it. It is best to make note of all changes you make to the source code. You can do this with code regions, comments, track them in a text file, etc.</p>
+<br/>
+<p class="faq_q">Q: Is this asset package compatible with other player controllers like UFPS?</p>
+<p>A: Not out of the box, no. Some customization is required. Please refer to the <a href="sections/playerconfig.html#others" target="subsection">Player Configuration</a> documentation.</p>
+<br/>
+<p class="faq_q">Q: Does First Person Exploration Kit work in VR?</p>
+<p>A: Not really, no. You could port it to work in VR, but it was not designed with VR in mind. As a result, much of the UI and interaction 
+methods won't work the same way in VR. For example, the screenspace UI will not work with stereoscopic cameras. And actions like examining objects require the player movement and view are locked, which is not really good practice in VR.</p>
+<br/>
+<p class="faq_q">Q: What are the license terms of this asset? Can I ship it in commercial games and applications?</p>
+<p>A: Absolutely you can. BUT, you cannot re-sell or re-distribute the source code or raw 'asset package' in any form. Basically, the thing you ship must 
+be an executable, not an editable "Unity Project". Please refer to the <a href="https://unity3d.com/legal/as_terms">Unity Asset Store terms of service</a>.</p>
+<br/>
+<p class="faq_q">Q: Why does this asset cost so much?</p>
+<p>A: Depending on your skill level and comfort with Unity, this asset will save you hundreds of hours of development time. The price is designed 
+to be fair for what the asset provides, without freezing out indies or hobbyists. It is important to me that the asset remains affordable, while also providing
+enough return so I can continue to support and maintain it.</p>
+
+<br/>
+<br/>
+<br/>
+
+<hr>
+<b>Disclaimer</b>
+<p class="disclaimer">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT 
+OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<br/>
+
+</body>
+
+</html>

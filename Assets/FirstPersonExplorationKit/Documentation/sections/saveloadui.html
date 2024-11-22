@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Saving and Load UI</h2>
+
+<br/>
+
+<p>When the game is saved and loaded, a simple 2D UI is presented that blacks out the screen and shows an animated progress spinner with a message.</p>
+
+<h3><u>Existing UI</u></h3>
+
+<p>The existing UI is intentionally very basic. For your game, you can reuse the existing UI, or create something stylized and in line with your game's art 
+direction. You can very easily customize the graphics present on the UI (change from basic black and white to something fancier), or change the layout
+entirely.</p>
+
+<img src="img/ExistingSaveLoadUI.jpg">
+<br/>
+
+<h3><u>Other UI Options and Considerations</u></h3>
+
+<p>Depending on your specific game, you may want to replace the existing 2D UI "Saving..."/"Loading..." progress indicator with an in-game transition like an elevator, tram
+ride, ladder climb, etc. To do this, you will need to customize the state machine in the FPESaveLoadManager script in the Update() function.</p>
+
+<img src="img/ProgressSpinnerCode.jpg">
+<p>Existing 2D UI spinner</p>
+<br/>
+
+<img src="img/ProgressElevatorIdea.jpg">
+<p>You may want to make elevator geometry whiz by rather than spin a 2D spinner graphic. The high level states
+should remain the same, but the representation of those states can change according to your needs.</p>
+<br/>
+
+
+
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>

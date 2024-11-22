@@ -1,0 +1,140 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Inventory Items and Inventory Consumers Overview</h2>
+
+<hr>
+
+<br/>
+<h3><u>Inventory Items</u></h3>
+
+<p>The FPEInteractableInventoryItemScript component provides the means to create Inventory Items that the player can collect and use in a variety of ways.</p>
+
+<hr>
+
+<b>Table of Contents</b>
+<br/>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#create">Creating an Inventory Item</a></li>
+<li><a href="#invconsumer">Inventory Consumers (for consumable Inventory Items)</a></li>
+<li><a href="#invideas">Inventory Type Ideas</a></li>
+</ul>
+<br/>
+
+<hr>
+
+<a name="overview"><h3><u>Overview</u></h3></a>
+<p>Inventory Items are similar to Pickup items, but they have some special properties. Most notably, they can be stored in inventory, then later retrieved by the player for interactions like unlocking doors, solving puzzles, etc.</p>
+
+<p>The included FPEGameMenu has an Items tab, which shows how you can display and interact with stored inventory items. Clicking on an item in the inventory screen will display its actions.</p>
+
+<hr>
+
+<a name="create"><h3><u>Creating an Inventory Item</u></h3></a>
+
+<ol>
+
+<li>Add a mesh or other visual object (e.g. a Cube) to your scene</li>
+
+<li>Add a primitive collider (e.g. Box Collider)</li>
+
+<li>Add the FPEInteractableInventoryItemScript component (script) to the cube</li>
+<br/>
+<span class="note"><u>Note</u>: This will automatically add a RigidBody and AudioSource to your object.</span>
+<br/>
+<br/>
+
+<li>Open the FPEInventoryManagerScript file and add a new Inventory Type to the eInventoryItems enum as shown below</li>
+<br/>
+<img src="img/CustomInventoryEnumValues.jpg">
+<br/>
+<br/>
+
+
+<li>Add a new lookup value inside the FPEObjectTypeLookup script, as shown below. This will ensure that the Save/Load system knows which prefab corresponds to which Inventory type.</li>
+<br/>
+<img src="img/InventoryObjectLookupValue.jpg">
+<br/>
+<br/>
+
+<li>In the Inspector, scroll down to the Inventory section, and assign the following values:</li>
+<br/>
+<img src="img/NewInventoryInspector.jpg">
+<br/>
+<br/>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>Inventory Item Type</td><td> The type you created in the eInventoryItems enum above (e.g. APPLE, MY_CUSTOM_INV_A, etc.)</td>
+</tr>
+<tr>
+<td>Inventory Quantity</td><td> The number of the type to give the player when they store this inventory item. For example, a Battery prefab might have a quantity of 1 of type BATTERY, while a BoxOfBandages prefab might have a quantity of 12 of type BANDAGE.</td>
+</tr>
+<tr class="odd">
+<td>Inventory Get Sound (Optional)</td><td>If specified, this sound will override the default inventory get sound.</td>
+</tr>
+<tr>
+<td>Can Be Held</td><td>If true, the player can take this item out of their inventory and hold it in their hand.</td>
+</tr>
+<tr class="odd">
+<td>Can Be Dropped</td><td>If true, the player can drop this item from their inventory.</td>
+</tr>
+<tr>
+<td>Can Be Consumed</td><td>If true, the player can consume this inventory item. This requires an <a href="#invconsumer">Inventory Consumer</a></td>
+</tr>
+<tr class="odd">
+<td>Item Name</td><td>The friendly display name of the item. E.g. demoApple has an Item Name of 'Apple'</td>
+</tr>
+<tr>
+<td>Item Image</td><td>The image shown in the inventory screen along with Name and Description. Refer to "inventoryItemImageTemplate.psd" Photoshop template inside the FirstPersonExplorationKit/Textures/Templates/ folder. You can create consistent images using the provided InventoryImageCapture.unity Scene file in the FirstPersonExplorationKit/Scenes/Utility/ folder.</td>
+</tr>
+<tr class="odd">
+<td>Item Description</td><td>The long form description of the item. E.g. demoApple description is 'It's an apple. Looks crunchy!'</td>
+</tr>
+<tr>
+<td>Stackable</td><td>If true, the item will be stacked inside the player's inventory. This means that the player can have more than one of this item and it will only take up one slot. The true quantity will be displayed in the top right (e.g. 5 items will have a label of 'x5')</td>
+</tr>
+</table>
+<br/>
+
+<li>To save your new Inventory Item prefab, put it in your Resources/InventoryItems/ folder</li>
+<br/>
+<img src="img/InventoryItemsResourcesFolder.jpg">
+<br/>
+<br/>
+
+<li>You are finished creating a custom Inventory Item prefab, hooray! If you are stuck, or getting weird errors, please email <a href="mailto:support@whilefun.com">support@whilefun.com</a>.</li>
+<br/>
+<img src="img/AllFinished.jpg">
+<br/>
+<br/>
+
+</ol>
+
+<hr>
+<a name="invconsumer"><h3><u>Inventory Consumers</u></h3></a>
+
+<p>Inventory Consumers (FPEInventoryConsumer), such as the included DemoInventoryConsumer, are scripts that make things happen when the associated inventory item is consumed. For example, the demoApple prefab, or inventory type APPLE, uses the DemoInventoryConsumer, which is assigned as a component in the Inspector:</p>
+<img src="img/InventoryConsumer.jpg" alt="Inventory Consumer"></br/>
+<br/>
+<p>All Inventory Consumers must implement and override the consumeItem() function, with a call to base.consumeItem() as shown below.</p>
+<img src="img/DemoInventoryConsumer.jpg" alt="Demo Inventory Consumer"></br/>
+<br/>
+<p>When your inventory item is consumed, the consumer functionality kicks in and the consumeItem() function is ultimately called, resulting in the execution of your custom consumer code.</p>
+
+<hr>
+
+<a name="invideas"><h3><u>Inventory Ideas - Combining Actions</u></h3></a>
+<img src="img/InventoryIdeas.jpg">
+<br/>
+
+</body>
+
+</html>

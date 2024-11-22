@@ -1,0 +1,221 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Migrating Your Project</h2>
+<br/>
+<h3><u>Project Migration Guide (from v1.2 to v2.0)</u></h3>
+<p>While it is easiest to start a new project, you may want or need to migrate your old projects to the newest version of First Person Exploration Kit. Below is a step by step guide that will upgrade your existing project.</p>
+<p><b><u>NOTE</u>:</b> If you made deep source code changes to the original files inside the FirstPersonExplorationKit folder in Unity, you will need to note those changes and port them over to the new version.</b></p>
+<br/>
+
+<p>Before doing anything else:</p>
+<span class="warning">
+<img src="img/warningLightSmall.jpg">&nbsp;***BACKUP YOUR PROJECT***&nbsp;<img src="img/warningLightSmall.jpg">
+</span>
+
+<br/>
+<br/>
+<br/>
+<b>Table of Contents</b>
+<br/>
+<ul>
+<li><a href="#sec1">Section 1: Project Migration Prep</a></li>
+<li><a href="#sec2">Section 2: Copying new files into old project</a></li>
+<li><a href="#sec3">Section 3: Replacing Prefabs and Fixing Errors</a></li>
+<li><a href="#sec4">Section 4: Running the Scene</a></li>
+<li><a href="#sec5">Section 5: Preparing Custom Assets for Game Save/Load Compatibility</a></li>
+</ul>
+<br/>
+
+<hr>
+
+<p>You can also watch a tutorial video <a href="migrationvideo.html" target="migrationvideo">right over here</a>.</li>
+
+<hr>
+
+<a name="sec1"><h3><u>Section 1: Project Migration Prep</u>:</h3></a>
+
+<h3>Pre-conditions</h3>
+<ul>
+<li>Ensure you have Unity v5.5.4p3 or newer installed. <a href="https://beta.unity3d.com/download/245d8623a674/UnityDownloadAssistant-5.5.4p3.exe?_ga=2.179375404.984674144.1511991026-2062258982.1449431926" target="unity">Unity v5.5.4p3 can be downloaded here</a>.</li>
+<li>Upgrade your existing project to Unity v5.5.4p3 or newer</li>
+<br/>
+</ul>
+
+
+<h3>Migration Steps</h3>
+<ol>
+
+<li>Ensure you have Unity v5.5.4p3 or newer installed.</li>
+<br/>
+
+<li>Close all instances of Unity and Visual Studio</li>
+<br/>
+
+<li><b>Backup your project</b>. I recommend using source control, but just make sure it's backed up. Yes this step is repeated. But's it's really important.</li>
+<br/>
+
+<li>Open your project Assets folder. Go into the Assets > FirstPersonExplorationKit > Scripts folder, and put a copy of FPEInventoryManagerScript.cs somewhere safe like your Desktop.</li>
+<br/>
+<span class="note"><u>Note</u>: We back this file up in case you made any custom Inventory entries in the eInventoryItems enum. You'll need to port these over to the new script later on.</span>
+<br/>
+<br/>
+<img src="img/customEnum.jpg">
+<br/>
+<br/>
+
+<li>Once FPEInventoryManagerScript.cs has been set aside, delete the entire FirstPersonExplorationKit folder from your old project.</li>
+<br/>
+<img src="img/deleteFolder.jpg">
+<br/>
+<br/>
+
+<li>Start a new Unity project called 'ImportFPEKitv2'.</li>
+<br/>
+
+<li>Open the Asset Store window, and import the new version of First Person Exploration Kit. It's very important that you click the 'Import' button when asked 'Importing Complete Project':</li>
+<br/>
+<span class="note"><u>Note</u>: Clicking 'Import' ensures that all project settings are also imported. This is critical for Tags, Layers, and Input mappings</span>
+<br/>
+<br/>
+<img src="img/fullImport.jpg">
+<br/>
+<br/>
+
+<li>When prompted, collapse the folder list, and that the FirstPersonExplorationKit folders is checked for import. Then, click Import</li>
+<br/>
+<img src="img/importFolders.jpg">
+<br/>
+<br/>
+
+<li>Once import is complete, open demoScene.unity and run it. Make sure the demoScene behaves as expected. This will help visually verify project setting import was successful.</li>
+<br/>
+
+<a name="sec2"><h3><u>Section 2: Copying new files into old project</u>:</h3></a>
+
+<li>Open both your old project's main folder and the new 'ImportFPEKitv2' project folder</li>
+<br/>
+
+<li>Open Project Settings sub folder in 'ImportFPEKitv2'. Copy InputManager.asset, and paste it into your old project's Project Settings folder, overwriting the old file.</li>
+<br/>
+<span class="note"><u>Note</u>: Ideally, you will copy ALL items from the Project Settings folder from 'ImportFPEKitv2' project to your old project. However, if you can only copy InputManager.asset that will be fine. The existing FPEKit tags and layers did not change, so the old files will work as they should. If you had any NEW inputs defined, you will need to redefine them. If you really know what you are doing, you can open both files, and merge them manually. I do not recommend this approach.</span>
+<br/>
+<br/>
+<img src="img/inputManager.jpg">
+<br/>
+<br/>
+
+<li>Open the Assets sub folder in 'ImportFPEKitv2'. Copy the FirstPersonExplorationKit folder and paste it into your old project's Assets folder.</li>
+<br/>
+<img src="img/copyPasteAssets.jpg">
+<br/>
+<br/>
+
+
+<li>Open Unity, and select your old project. You'll see a "Hold On" dialog appear as the new code is re-compiled and index for your old project</li>
+<br/>
+<img src="img/UpgradeHoldOnDialog.jpg">
+<br/>
+<br/>
+
+<a name="sec3"><h3><u>Section 3: Replacing Prefabs and Fixing Errors</u>:</h3></a>
+
+<li>Right away you will notice a couple of things. First, there will likely be a missing prefab in your scene. This is just the old FPEUICamera prefab which has been deprecated and can be deleted.</li>
+<br/>
+<img src="img/DeleteMissingPrefab.jpg">
+<br/>
+<br/>
+
+<li>Once that is deleted, look at the Console. There will probably be some errors that read "The type of namespace name 'FPEInteractableActivateScript' could not be found", as shown below:</li>
+<br/>
+<img src="img/MissingDirective.jpg">
+<br/>
+<br/>
+
+<li>To fix this namespace error, you need to change the effected scripts so they reference the new Whilefun.FPEKit namespace. Add the line shown below to the top of these scripts, and save them. The namespace errors should now be gone.</li>
+<br/>
+<span class="note"><u>Note</u>: You may need to add this namespace reference to multiple types of files. For example, if you also extended the FPEInteractablePickupScript, those child class files will also need the new namespace reference.</span>
+<br/>
+<br/>
+<img src="img/UpdateNamespaces.jpg">
+<br/>
+<br/>
+
+<li>Select the FPEInteractionManager, FPEPlayerController, and FPEEventSystem prefabs, and delete them from your scene. Place a single FPECore prefab into your scene.</li>
+<br/>
+<img src="img/ReplaceCorePrefab.jpg">
+<br/>
+<br/>
+
+<a name="sec4"><h3><u>Section 4: Running the Scene</u>:</h3></a>
+
+<li>If you have any of the old Inventory type objects in your scene, you will see this error:</li>
+<br/>
+<img src="img/InventoryRigidbodyError.jpg">
+<br/>
+<br/>
+
+<li>To fix this error, add a Rigidbody component to all your inventory prefabs. Re-run the scene to ensure these errors are gone.</li>
+<br/>
+<br/>
+<img src="img/AddRigidbodyToInventoryPrefabs.jpg">
+<br/>
+<br/>
+
+<li>Run the scene again, and you should no longer see any errors.</li>
+<br/>
+
+<a name="sec5"><h3><u>Section 5: Preparing Custom Assets for Game Save/Load Compatibility</u>:</h3></a>
+
+<li>All of your Pickup and Inventory type prefabs must be loadable at runtime via a Resources.Load call. In order to support this, all of these prefabs must live inside a Resources folder. Additionally, all Audio Diary audio clips must also be in Resources. Place your assets in the following folder structure:</li>
+<br/>
+<img src="img/MovePrefabsAndAudioClips.jpg">
+<br/>
+<br/>
+
+<li>You also need to prepare Inventory items and their corresponding lookup values. To do this, you need to add the old enum values from Section 1 above back into the FPEInventoryManager eInventoryItems enum, as shown below:</li>
+<br/>
+<img src="img/AddBackOldInventoryEnumValue.jpg">
+<br/>
+<br/>
+
+<li>Also add a new lookup value inside the FPEObjectTypeLookup script, as shown below. This will ensure that the Save/Load system knows which prefab corresponds to which Inventory type.</li>
+<br/>
+<img src="img/InventoryObjectLookupValue.jpg">
+<br/>
+<br/>
+
+<li>The old values may have a different index than they did before (depending on your decision to keep the provided enum values). If so, you will need to double check that your Inventory prefabs have the right value. Click on the prefab, and look at the FPEInventoryUItem </li>
+<br/>
+<img src="img/AssignEnumValueToInventoryPrefab.jpg">
+<br/>
+<br/>
+<span class="note"><u>Note</u>: There are new bits of information for Inventory items that include player action options as well as Item Name, Item Description, and Item Image. These can be configured in the Inspector: <br/><br/><img src="img/InventoryItemConfigShort.jpg"><br/><br/>For more details, please refer to the <a href="inventoryitems.html" target="invItems">Inventory Items Section</a> of the documentation.</span>
+<br/>
+<br/>
+
+<li>The last important difference between v1.x and v2.x is the addition of the Menu System. Projects built using v2.x must include a "Main Menu" scene at build index 0 of the Build Settings in order to function correctly. Scene index 0 is a specially reserved scene for "2D" UI interactions, rather than 3D game interactions. See the section on <a href="makefirstbuild.html" target="makingfirstbuild">Making Your First Build</a> for more details.</li>
+<br/>
+
+<li>You are finished migrating your project, hooray! If you are stuck, or getting weird errors, please email <a href="mailto:support@whilefun.com">support@whilefun.com</a> with details and we'll try to get things fixed up and working.</li>
+<br/>
+<img src="img/AllFinished.jpg">
+<br/>
+<br/>
+
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>

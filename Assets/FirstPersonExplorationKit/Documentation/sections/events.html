@@ -1,0 +1,46 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Using Unity Events with Interactions</h2>
+
+<p>Many types of objects and interactions allow for the use of Unity Events, which can be assigned in the Inspector.</p>
+
+
+<h3>Pickups and Inventory Items</h3>
+<p>Pickups and Inventory Items allow for you to assign Unity Events for Pick Up and Put Back events. It is important to note that if your game will use the Save Game feature, and particulary, the quick save and quick load features or allow the player to move back and forth between scenes, your events must be <b>self-contained</b> with the prefab.</p>
+
+<p>Self-Contained events are events whose logic resides on the associated prefab. For example, if you had an inventory item that needed to fire an event when picked up, the function that you assign in the event Inspector field needs to be in a script attached to that inventory item prefab. Otherwise, when the game is loaded, the assignment for the event will become broken.</p>
+
+<p>Here, we have a GOOD example of a Puzzle Ball inventory item which has a helper script component on the prefab called PuzzleBallEvents. That script's function, DoPuzzleBallPickupEvents() is assigned in the Inspector for the Puzzle Ball's OnPickupEvent. This is the right design</p>
+<img src="img/puzzleBallEventsGood.jpg">
+<br/>
+<br/>
+
+<p>Now here is a BAD example of a Puzzle Ball inventory item which has an assigned event that references an object in the scene called SomeSceneObject. The assigned event in the OnPickupEvent field is a function on the script component OtherObjectLogic, which is NOT on our Puzzle Ball prefab! This reference will break when the game is loaded from a saved game file, breaking the link to the event, causing the OnPickupEvent to fail. This is the wrong design.</p>
+<img src="img/puzzleBallEventsBad.jpg">
+<br/>
+<br/>
+
+
+<br/>
+<span class="note"><u>Note</u>: This same logic applies for all objects that can move from scene to scene, or that are created or destroyed during runtime. This is limited to Pickup and Inventory Items for now, but may apply to future interaction types as well.</span>
+<br/>
+<br/>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+
+</body>
+
+</html>

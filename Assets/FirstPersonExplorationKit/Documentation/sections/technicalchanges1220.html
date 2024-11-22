@@ -1,0 +1,148 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Source Code and Class Structure Changes new in version 2.0</h2>
+
+<hr>
+
+<br/>
+<h3><u>Overview</u></h3>
+
+<p>While most changes were designed specifically with backwards compatibility in mind, some changes required a hard cut from old code to new. This may result in your project's code working incorrectly, depending on how deep your changes deviate from the original source code.</p>
+
+
+
+<h3>Preparation</h3>
+<p>It's a good idea to have a diff handy that shows the differences between the original v1.2 source code of this asset and your current version. The core changes apply mostly to the FPEInteractionManagerScript, and FPEInventoryManagerScript files, but there were also significant changes made to the old Standard Assets folder and the related player and input class files.</p>
+
+
+
+<span class="warning">
+<img src="img/warningLightSmall.jpg">&nbsp;If you modified original source code in the previous version, please read this&nbsp;<img src="img/warningLightSmall.jpg">
+</span>
+
+<h3>Class Source Code and Related Prefab Changes</h3>
+<ul>
+<li>Pre-fixed all new Class Names with 'FPE' to prevent conflicts with other asset imports, standard assets, etc.</li>
+<li>Changed all previously Standard Asset-derived classes (e.g. FirstPersonController) to have 'FPE' prefix (e.g. now FPEFirstPersonController) to prevent conflicts if Standard Assets player controls are also imported.</li>
+<li>Removed flipGamepadY from MouseLook, it is now controlled through FPEInputManager class</li>
+<li>Removed XSensitivity and YSensitivity from MouseLook, it is now controlled through FPEInputManager class as single LookSensitivity value</li>
+<li>Changed FPEFirstPersonController variable 'enableJump' to 'jumpEnabled' and be private, but still editable in the Inspector. Same with new 'enableRun' and 'enableCrouch' variables.</li>
+<li>Changed FPEFirstPersonController variable 'enableMovement' to 'movementEnabled' and be strictly private</li>
+<li>Removed RigidbodyFirstPersonController and associated HeadBob from the old player controller. Existing one now incorporates required functionality.</li>
+</ul>
+
+<b>MouseLook</b>
+<p>In FPEInteractionManagerScript.cs, the variables zoomedMouseSensitivity and highlightedMouseSensitivity have been made private. In their place, two 
+new variables called zoomedMouseSensitivityMultiplier and highlightedMouseSensitivityFactor have been created. On start, the old values are automatically populated with a correct value based on 
+the multiplier and current mouse sensitivity. Every time the mouse sensitivity is changed, the function refreshAlternateMouseSensitivities() must be called to keep the "regular" sensitivity correctly 
+aligned to the relative zoom and highlight sensitivities. See FPEGameMenu functions called "changeMouseSensitivity()" and "refreshMouseSensitivityValue()" for example code.</p>
+
+<p>Mouse smoothing, Y-Axis flip, and mouse sensitivity are now fully controlled by the new FPEInputManager class.</p>
+
+<b>Misc.</b>
+<p>demoScene now has an object called FPECore which replaces all previous 'core component' requirements. TODO: docs/instructions</p>
+
+<b>Player</b>
+<ul>
+<li>Added new functionality for Run, Crouch, Jump</li>
+<li>Changed the way that held objects behave. They are now made children of the player which, among other benefits, reduces 'lerp jitter' in some cases.</li>
+</ul>
+
+<b>UI</b>
+<ul>
+<li>Added feature-rich FPEGameMenu class and prefab that includes access to game inventory, audio diaries, and notes.</li>
+<li>Added new FPEMenu class that can be used to create whatever menu you want for your game</li>
+<li>Added sample FPESimpleMenu class and prefab to demonstrate how to make a very basic pause/quit menu</li>
+</ul>
+
+<b>UI Camera</b>
+<p>The previous FPEUICamera prefab has been removed, and the FPEInteractionManager now uses "Screen Space - Overlay" Canvas Render Mode</p>
+
+<b>Controls</b>
+<ul>
+<li>Added new "Gamepad Put In Inventory" input, mapped to 'R' on Keyboard, and 'Y' on xbox gamepad</li>
+<li>Added new "Gamepad Menu" input, mapped to Tab on Keyboard, and "Start" on xbox gamepad</li>
+<li>Added new "Gamepad Previous Tab" and "Gamepad Next Tab" buttons for switching game menu "tabs" from gamepad</li>
+<li>Adopted more consistent buttons for gamepad so that all "select/do" actions use one button and all "back/close" actions use another button</li>
+<li>Changed the UI "submit" button to be the same as the examine button to allow for easier navigation and interaction when using menus</li>
+<li>Added inputs for Jump, Crouch, and Run</li>
+<li>Removed legacy mapping of Left Shift as alternate "Zoom/Examine", as it is now used for Run</li>
+<li>Added "Gamepad Jump", "Gamepad Crouch", and "Gamepad Run" inputs</li>
+</ul>
+
+<b>General</b>
+<ul>
+<li>Added all legacy and new code to a namespace called "Whilefun.FPEKit", which means all scripts that need access to First Person Exploration Kit classes need to add "using Whilefun.FPEKit;" at the top of the script.</li>
+<li>Added code regions to some scripts for easier reading and navigation</li>
+<li>Organized Textures folder to have sub folders for Reticles, Journal, Menu, etc.</li>
+<li>Modified the Journal UI to more closely match the new menu UI, removing the close button and adding a close hint to use assigned key/button for better gamepad support. Existing closeJournal() function remains for buttons if desired.</li>
+<li>Core UI (for interactions, etc.) now targets 1080p resolution by default instead of 720p. As a result, images have been adjusted, graphics refreshed, and the overall UI appears more crisp.</li>
+</ul>
+
+<b>Put Back Type Changes</b>
+<p>In order to support saving and loading of game data, put back locations now use a string name instead of GameObject Instance ID. This is due to the fact that saving and loading game data breaks the guarantee that
+a given game object will have the same instance ID across play sessions. For example, if I pick up a can of demoSoup, it may have instance ID 1. If I save the game, then reload the game, the instance ID may now 
+be 2. The put back location needs to allow for a can of demoSoup to be put back, but can no longer rely on instance ID matching the original assigned in the inspector.</p>
+
+<u>Some technical details, in case you modified this code in your project(s)</u>:
+<p>Now, internally, put back locations create a match string from the GameObject's prefab assigned in the scene editor. So for example, if you assign a demoSoup prefab called "demoSoup", "demoSoup (1)", or "demoSoup(Clone)", the 
+matching string created will simply be "demoSoup". This means that unique put back requirements must be handled with unique prefabs. So using the "demoArtifactPickupObject" object (the gold skull cube artifact in the demo) as 
+an example, its put back location now looks for an object called "demoArtifactPickupObject". Given that there is only ever exactly one of these in our scene, the uniqueness of the behaviour is guaranteed. It also means that 
+saving and loading the game at any state of the "Idol Trap Sequence" in the demo will always yield a successful result, even if the player picks up and drops the idol a bunch of times before returning it to the idol "artifact 
+missing" put back location.</p>
+
+<p>Automatically generated put back locations will also continue to work as expected, and all changes to matching logic are internal to FPEPutBackScript.</p>
+
+<b>Activation Type Changes</b>
+<ul>
+<li>Enhanced FPEInteractableActivateScript to include 3 modes: Once, Every Time, and Toggle. These types all allow for other events to be fired on activation (and in the case of Toggle, deactivation). They can also optionally require the player have an inventory item in their hand or stored in their inventory. This item can be optionally consumed upon activation.</li>
+<li>Updated the following demo objects from previous version: demoSwitch, demoCabinet demoUnlockableDoor (renamed to demoComplexDoor), demoIdol, demoRadioSimple, and demoRadioComplex</li>
+</ul>
+<p>All of the above to use the new Activate and Pickup type features. Namely, the events available in the Inspector are now hooked up to the correct functions, rather than requiring each of these have their own Activate or Pickup type sub classes.</p>
+<span class="note"><u>Note</u>: Depending on the nature of any implemented Activate subclasses you made, you may want to use the new features as well. 
+For example, the demoUnlockableDoor was changed from having one large function that talked to InventoryManager in code, it now uses two smaller specific functions: "attemptDoor()" and "cardError()". These functions 
+are assigned in the Inspector for Activation and Activation Failure, respectively. Inventory requirements are now handled in the Inspector too, with much better granularity. In this case, the player must have 1 
+keycard in their inventory, and they get to keep it after they open the door. Changing this to require the keycard is in the player's hand, and that they lose it when they use it would be as simple as checking two 
+checkboxes in the Inspector.</span>
+<br/>
+<br/>
+
+<b>Audio Diaries</b>
+<ul>
+<li>Added option to require manual playback (look at object, press 'Play' via interact button)</li>
+<li>Added additional optional "during playback" interaction string, so that you can indicate to the player near the reticle that the tape is being played right now</li>
+<li>Audio Diaries can now be added to the inventory when played, allowing for player to re-play previously heard diaries if desired.</li>
+<li>All audio diary AudioClip files must now be located in the "Resources/AudioDiaryAudioClips" folder so they can be restored from saved game data. To change the 
+sub folder, you must rename the existing folder and update the name inside the "FPEAudioDiarySaveData" class in FPESaveDataTypes.cs script file.</li>
+</ul>
+
+<b>Audio Diary Entry</b>
+<ul>
+<li>Added new "FPE Passive Audio Diary" that can be attached to any Interactable object and "collected" as part of base interaction. </li>
+<li>Existing Audio Diary type will remain, and can be used for more elaborate diary content, with support for events, custome interaction strings, and so on.</li>
+<li>Note: Passive audio diaries that are attached to regular audio diaries will be ignored.</li>
+</ul>
+
+<b>Note Entries</b>
+<ul>
+<li>Added new "FPE Attached Note" component that allows for any Interactable object to have a note entry associated with it. The note is "collected" and added to the inventory automatically when the interaction takes place.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

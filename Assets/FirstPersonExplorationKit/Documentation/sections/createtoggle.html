@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Creating a Simple Toggle (Light Switch)</h2>
+
+<br/>
+
+<p>Toggles are a special kind of Activate object that use the TOGGLE Event Fire Type. Please refer to the general <a href="activate.html">Activate Type documentation</a> for more details on various Activation types available in this package.</p>
+
+<h3><u>Creating a Light Switch</u></h3>
+
+<ol>
+<li>Create a Cube, and name it MyLightSwitch.</li>
+<li>Scale the Cube to (0.2,0.2,0.2).</li>
+<li>Give the Cube a Material such as the included DemoToggleOff.</li>
+<li>Create a child Sphere of MyLightSwitch, and name it LightBulb.</li>
+<li>Assign a material to LightBulb, such as the included DemoToggleLightOff.</li>
+<li>Create a child Light (Point Light) of MyLightSwitch, and name it LightSource. Scale it so it looks how you want it to. Then disable the Light component of LightSource.</li>
+<li>Select MyLightSwitch, and add the FPEInteractableActivateScript component.</li>
+<li>Configure the Inspector values as follows:</li>
+<ul>
+<li>Uncheck the "Highlight On Mouse Over"</li>
+<li>Change the base Interaction String value to be the same as your Toggle On strings.</li>
+<li>Event Fire Type: TOGGLE</li>
+<li>Assign 3 'Toggle On' events: Change material of LightBulb to 'on' material, enable Light in LightSource, and change material of MyLightSwitch to 'on' material.</li>
+<li>Assign 3 'Toggle Off' events: Change material of LightBulb to 'off' material, disable Light in LightSource, and change material of MyLightSwitch to 'off' material.</li>
+<li>Change Toggle On/Off strings to something like "turn light on" and "turn light off".</li>
+<li>Ensure that "Fire Toggle Events On Load Game is true.</li>
+</ul>
+<li>Run the scene, and interact with the MyLightSwitch object. The light will toggle between on and off states. If you save and load the game, the switches states will also be saved and loaded.</li>
+</ol>
+
+<p>Here is a screenshot of the completed Inspector value assignment:</p>
+<img src="img/SimpleToggleInspector.jpg">
+<br/>
+
+<p>Here is what our simple toggle looks like in game in the Toggle On and Off states:</p>
+<img src="img/SimpleToggleCompleteInGame.jpg">
+<br/>
+
+
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>

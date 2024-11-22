@@ -1,0 +1,166 @@
+fileFormatVersion: 2
+guid: d3e7f7810f4d7e644bb51110c9cf9c26
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ToiletBody
+    100004: ToiletFlushHandle
+    100006: ToiletSeat
+    100008: ToiletWaterStill
+    100010: ToiletWaterSwirl
+    400000: //RootNode
+    400002: ToiletBody
+    400004: ToiletFlushHandle
+    400006: ToiletSeat
+    400008: ToiletWaterStill
+    400010: ToiletWaterSwirl
+    2300000: ToiletBody
+    2300002: ToiletFlushHandle
+    2300004: ToiletSeat
+    2300006: ToiletWaterStill
+    2300008: ToiletWaterSwirl
+    3300000: ToiletBody
+    3300002: ToiletFlushHandle
+    3300004: ToiletSeat
+    3300006: ToiletWaterStill
+    3300008: ToiletWaterSwirl
+    4300000: ToiletWaterSwirl
+    4300002: ToiletWaterStill
+    4300004: ToiletSeat
+    4300006: ToiletFlushHandle
+    4300008: ToiletBody
+    6400000: ToiletBody
+    6400002: ToiletFlushHandle
+    6400004: ToiletSeat
+    6400006: ToiletWaterStill
+    6400008: ToiletWaterSwirl
+    7400000: ToiletWaterSwirl|FlushHandleMovement
+    7400002: ToiletWaterSwirl|LidOpen
+    7400004: ToiletWaterSwirl|WaterStillFlush
+    7400006: ToiletWaterSwirl|WaterSwirlFlush
+    7400008: ToiletWaterStill|FlushHandleMovement
+    7400010: ToiletWaterStill|LidOpen
+    7400012: ToiletWaterStill|WaterStillFlush
+    7400014: ToiletWaterStill|WaterSwirlFlush
+    7400016: ToiletSeat|FlushHandleMovement
+    7400018: ToiletSeat|LidOpen
+    7400020: ToiletSeat|WaterStillFlush
+    7400022: ToiletSeat|WaterSwirlFlush
+    7400024: ToiletFlushHandle|FlushHandleMovement
+    7400026: ToiletFlushHandle|LidOpen
+    7400028: ToiletFlushHandle|WaterStillFlush
+    7400030: ToiletFlushHandle|WaterSwirlFlush
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToiletBaseWhite
+    second: {fileID: 2100000, guid: 2d74823d7debef34c81a8ff1b7766c4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToiletFlushHandle
+    second: {fileID: 2100000, guid: 96ea2ef91429c794383c398dd5f3f2f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToiletSeat
+    second: {fileID: 2100000, guid: 9892c78a849e35042bca2c9fe5fc9a14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToiletWaterStill
+    second: {fileID: 2100000, guid: bab3297e3844a7942a11d5940bbc383e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToiletWaterSwirl
+    second: {fileID: 2100000, guid: bc279e47d1d25454da12150036a396d7, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 1
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

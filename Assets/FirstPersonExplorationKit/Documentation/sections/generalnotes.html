@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: General Notes</h2>
+
+<h3><u>Other Package Notes</u></h3>
+
+<h3>Demo Assets</h3>
+
+<p>The following files are provided to demonstrate examples and as a base to create your own game. However, you can discard them if you don't need them.</p>
+
+<ul>
+<li>All prefabs in the Prefabs > DemoPrefabs folder (e.g. "demoCabinet")</li>
+<li>All prefabs in the Resources > InventoryItems and Resources > Pickups folder (e.g. "demoSoup")</li>
+<li>All sounds in the Resources > AudioDiaryAudioClips</li>
+<li>All assets in the Materials > DemoMaterials folder (and if so, the Shaders folder as it is only referenced by demo materials)</li>
+<li>All scripts in the Scripts > DemoScripts folder</li>
+<li>All textures in the Textures > DemoTextures folder</li>
+<li>All models and materials in the Models folder and sub folders</li>
+<li>All Sounds in the Sounds folder</li>
+<li>All files in the Testing folder</li>
+</ul>
+
+<p>Feel free to delete the above items as you see fit.</p>
+
+<span class="note"><u>Note</u>: The Resources folder contains 6 sounds. These are critical for the package to function correctly. However, you may 
+modify or replace them so long as the filename is not changed.</span>
+<br/>
+<br/>
+
+
+<h3> Secondary Audio on Interact</h3>
+
+<span class="warning">
+<img src="img/warningLightSmall.jpg">&nbsp;This feature will be deprecated in the future. Please use the new Interactable Events to play additional audio content&nbsp;<img src="img/warningLightSmall.jpg">
+</span>
+<br/>
+
+<p>All Interactable objects have a section in the Inspector with header "Optionally play a Secondary Sound on Interact". Under this heading, 
+you can specify that the object's interaction trigger a secondary sound effect such as a narration or Audio Log like voice over. For most types, 
+this occurs the first time you interact with the object. For example, when you pick up a "Pickup" type object.</p>
+
+<p>When making your own custom complex Interactable objects (see demoToilet, and demoComplexRadio), you can opt-out of this behaviour 
+altogether. However, the Inspector values will still appear as they are attached to the Interactable base class. To use this feature in your own 
+custom scripts, just ensure that you make a call to base.interact() with the appropriate action (turning a knob, pressing a switch, breaking a 
+window, etc.). If you don't know what any of this means, don't worry. It will "just work" if you ignore this feature entirely.</p>
+
+<p>To add secondary audio to an object (for example, to narrate a Journal entry), set the following values in the inspector:</p>
+
+<ul>
+<li>Play Secondary Sound On Interact: Set to true to play a secondary sound.</li>
+<li>Show With Text: Set to true of you want "Audio Log Style" text to appear.</li>
+<li>Audio Log Text: This text will appear on the Audio Log UI when the sound is played, assuming you checked the "Show With Text" box.</li>
+<li>Sound Playback Behaviour: Set to PLAY_ONCE to only play the first time (good for journal narration or spooky discoveries, for example). Set to PLAY_EVERY_TIME to play every time the interaction occurs.</li>
+<li>Sound To Play On Interact: Select the audio file you want played. </li>
+</ul>
+
+<span class="note"><u>Note</u>: If you do not set a "Sound To Play On Interact", all other values for Secondary Sounds are ignored and no sound is played.</span>
+<br/>
+<br/>
+
+
+
+
+</body>
+
+</html>

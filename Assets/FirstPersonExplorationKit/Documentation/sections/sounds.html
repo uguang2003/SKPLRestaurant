@@ -1,0 +1,26 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Sounds Overview</h2>
+
+<hr>
+
+<br/>
+<h3><u>Sounds Guide</u></h3>
+
+<p>There are 3 key sounds in FPEInteractionManager: JournalOpen, JournalClose, and JournalPageTurn. If you replace these sounds, be sure to keep the filenames the same as they are loaded at runtime from the Resources folder.</p>
+<p>Each Pickup type Interactable object has 3 sound banks that can be optionally specified: Pickup Sounds, Put Back Sounds, and Impact Sounds. If more than one sound of a given type is specified, a random sound will be played from the sound bank.</p>
+<p>Impact Sounds are played any time the there is a physics interaction with the object. For example if you drop the demoBall object in the demo, it plays a sound when the ball bounces. The sound's volume is adjusted based on the stength of the impact.</p>
+<p>If no sounds are specified, generic sounds are loaded from the Resources folder. These sounds apply to all Pickup objects that have sounds enabled but no sounds specified.</p>
+
+<p>There are also additional sounds played by Audio Diary asset type, the FPEGameMenu, and related UI elements.</p>
+
+</body>
+
+</html>

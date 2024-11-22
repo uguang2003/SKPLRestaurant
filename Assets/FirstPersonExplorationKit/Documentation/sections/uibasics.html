@@ -1,0 +1,136 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: UI Overview</h3>
+
+<p>The core UI consists of some basic information and feedback. Depending on what the player is looking at, what they are holding, etc. the UI changes.</p>
+
+<hr>
+
+<b>Table of Contents</b>
+<br/>
+<ul>
+<li><a href="#fpehud">FPEHUD</a></li>
+<li><a href="#defaulthud">Default HUD</a></li>
+<li><a href="#customhud">Making Your Own HUD</a></li>
+<li><a href="#customdata">Customizing HUD Data</a></li>
+</ul>
+<br/>
+
+<hr>
+
+<hr>
+<a name="fpehud"/>
+<h3><u>FPEHUD Class</u></h3>
+
+<p>The FPEHUD class is a base class that provides a guaranteed set of functions to interface with FPEInteractionManagerScript. For example, when the player picks up a new object with an Attached Note, the FPEHUD is told. However, each HUD can do whatever it wants with that information. For example, the FPEDefaultHUD displays the note title and some animated text in the bottom center of the screen. But FPEMinimalHUD displays only a note icon in the top left of the screen. Your custom HUD could do some combination or something different entirely. It's up to you!</p>
+
+<img src="img/ArchitectureHUDs.jpg" alt="FPEHUD classes"></br/>
+
+<hr>
+<a name="defaulthud"/>
+<h3><u>Default HUD</u></h3>
+
+<p>The default HUD (FPEDefaultHUD.cs and FPEDefaultHUD.prefab) provides some basic information and visualization for all key interactions.</p>
+
+<p>By default, the neutral UI (when player is not looking at any Interactable object) is fairly minimal, as shown below:</p>
+<img src="img/UIOverviewNeutral.jpg" alt="Neutral UI"></br/>
+
+<p>But, when the player is holding an Inventory Item, and looking at an Activate type object:</p>
+<img src="img/UIOverviewActive.jpg" alt="UI when holding Inventory item"></br/>
+
+<p>And when the player is examining an object in their hand, the UI is hidden entirely, as shown below:</p>
+<img src="img/UIOverviewExamine.jpg" alt="UI when examing a held object"></br/>
+
+<h3><u>Element Breakdown</u></h3>
+
+<p>The core UI elements are layed out below in detail along with a visual representation of their on screen context and meaning:</p>
+<img src="img/InteractionManagerUIElements.jpg">
+<br/>
+<br/>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>Reticle (A)</td><td>The reticle Image reacts to interaction possibilities. When the reticle is over top of an Interactable object, it changes to indicate the interaction is available.</td>
+</tr>
+<tr>
+<td>InteractionTextLabel (B)</td><td>This Text element content changes based on the Interactable item, and the context of that interaction.</td>
+</tr>
+<tr class="odd">
+<td>Control Hints (e.g. UndockHint, etc.) (C)</td><td>These Text and Image hints use the FPEUIHint component to show and hide themselves, as well as change text based on interaction context and available actions.</td>
+</tr>
+<tr>
+<td>NotificationLabel (D)</td><td>This Text element is shown when the player retrieves an Attached Note.</td>
+</tr>
+<tr class="odd">
+<td>AudioDiarySkipHintLabel (E)</td><td>This Text and Image element displays the 'skip diary' option to the player. It only appears when a diary is playing, and disappears when the diary is skipped or finishes playing.</td>
+</tr>
+<tr>
+<td>AudioDiaryTitleLabel (F)</td><td>This Text element displays the title of the currently playing Audio Diary, along with some optional pre- and post-text.</td>
+</tr>
+</table>
+<br/>
+
+<p>The JournalBackground contains Text and Image elements used in displaying and reading Journal pages. It is only shown when the player interacts with a Journal.</p>
+<img src="img/JournalUIElements.jpg">
+<br/>
+<br/>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>JournalPage (G)</td><td>The Image element that houses each Journal Page as defined in the Inspector.</td>
+</tr>
+<tr>
+<td>JournalBackground (H)</td><td>This Image element simply provides a black background to support the overall UI design.</td>
+</tr>
+<tr class="odd">
+<td>NextButton (I)</td><td>This button moves the Journal forward one page (if allowed).</td>
+</tr>
+<tr>
+<td>PreviousButton (J)</td><td>This button moves the Journal back one page (if allowed).</td>
+</tr>
+<tr class="odd">
+<td>CloseIndicator (K)</td><td>This Image element displays a button hint showing how the journal can be closed.</td>
+</tr>
+</table>
+<br/>
+
+
+<span class="note"><u>Note</u>: It is possible to add or remove elements to the FPEDefaultHUD UI Canvas. However, you will need to do some customization to 
+the FPEDefautltHUD file. </span>
+
+<br/>
+<br/>
+<br/>
+
+<hr>
+<a name="customhud"/>
+<h3><u>Making Your Own HUD</u></h3>
+
+<p>In addition to the secondary FPEMinimalHUD script and prefab, you can completely customize the experience by making your own HUD.</p>
+
+<p>To create your own custom HUD, create a new class and call it MyCustomHUD, as an extension of the FPEHUD class. Implement the required class functions (e.g. initialize(), updateHUD(), etc. and add any other functionality you wish.</p>
+
+<hr>
+<a name="customdata"/>
+<h3><u>Customizing HUD Data</u></h3>
+
+<p>All HUD information is gathered and stored inside the FPEHUDData class. An instance of this class is created and updated by FPEInteractionManagerScript, and FPEHUD fetches that data every frame and refreshes itself based on any relevant changes. If you want to add new types of interactions or other data to this class that you want your custom HUD to use, you can! Here's how:</p>
+
+<ol>
+<li>Open the FPEHUDData.cs file, and add some new variables.</li>
+<li>Open the FPEInteractionManagerScript.cs file, and update the refreshHUDData() function to set the correct values in those variables.</li>
+<li>In your custom HUD class, you can now use those new variables however you wish.</li>
+</ol>
+
+<p>That's it! You're done.</p>
+
+</body>
+
+</html>

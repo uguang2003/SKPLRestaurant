@@ -1,0 +1,78 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Creating a Pickup</h2>
+
+<br/>
+
+<p>Pickups are objects that the player can be picked up, carried around, examined, and dropped or put back. Below are the simple steps required to create a brand new Pickup type object in your game.</p>
+
+<h3><u>Pickup</u></h3>
+
+<ol>
+<li>Drag any 3D object into the scene (e.g. model of a coffee mug).</li>
+<li>Ensure the Collider is either correctly scaled and rotated (e.g. if using imported Mesh Collider), or remove it completely.</li>
+<li>Add a RigidBody</li>
+<li>If Collider was removed in step 2, add a new collider (e.g. Box Collider)</li>
+<li>Size the Collider (either imported, or added in step 4 above - e.g. Box Collider) to fit for the object you're making.</li>
+<li>Run the scene, and see how the physics behave. Sometimes collider bounds don't quite match geometry. Adjust as needed.</li>
+<li>Set the Layer of the object to be FPEPickupObjects</li>
+<li>Add FPEInteractablePickupScript to your object (this will also add an AudioSource), and set the following variables to suit your object:</li>
+<li>Interaction String: For example "Grab Coffee Mug"</li>
+<li>Put Back String: For example "Set down Coffee Mug"</li>
+<li>You can check "Auto Generate Put Back Object" checkbox in the Inspector. But it's best to manually place put back locations. See below.</li>
+
+<br/>
+<span class="note"><u>Note</u>: that sometimes this can behave oddly if imported Mesh Collider geometry orientation differs fron Unity's coordinate 
+system orientation. If that's the case, either adjust mesh collider, or switch to a Box or other native Collider.</span>
+<br/>
+<br/>
+
+<li>Set Rotation Type, Examination offsets, etc. as required. Sometimes play testing helps judge the best values for oddly shaped objects.</li>
+<li>If Enable Sounds is checked, assign sounds if you wish. If no sounds are assigned, generic sounds will be used. This is fine for most small objects.</li>
+<li>Run the scene, and interact with your new Pickup object.</li>
+<li>To ensure your new pickup can be saved and loaded, you must place it in a Resources folder under the sub folder "Pickups". If you are not going to use game saving and loading in your game, ignore this step.</li>
+</ol>
+
+<p>Optional Optimization: If you know your new pickup object will NEVER use sound, you can uncheck "Enable Sounds" and also Remove the Audio Source component from the 
+Game Object. This is generally not recommended, unless perhaps you are making a Marshmallow object that can only touch other marshmallows :)</p>
+
+<span class="note"><u>Note</u>: There are many things you can create with this object type. For an example of something pretty complex and fun, see demoArtifactPickupObject prefab (or 
+complete "find the artifact" in the demo scene). You can hook up the "Pick up and Put Back Events" of a Pickup type object to any arbitrary scripts or other objects that you wish.</span>
+<br/>
+<br/>
+
+
+<h3><u>Put Back (Manually Placed)</u></h3>
+
+<p>While more labour intensive, <b><i>manually placing put back locations is the best option</i></b> and is highly recommended. It is also necessary in cases where the put back location for an object be in a different location than its starting location (See demoArtifactPickupObject and demoCardboardBoxSpecial in demo scene). These are also optimal for complex or small meshes (see demoPencil in demo scene), as it can provide a large target for the player, and can prevent "pixel hunting".</p>
+
+<p>Here are the steps to create a manually placed Put Back location:</p>
+
+<ol>
+<li>Add an empty Game Object to the scene</li>
+<li>Add Collider type of your choice and size accordingly (Box Collider recommended)</li>
+<li>Add FPEPutBackScript to the object</li>
+<li>In the Inspector, assign Scene object to My Pickup Object variable for the associated object you want to be put back in this location</li>
+<li>Run the scene and test it out. If your object is rotated weirdly when put back, ensure that the Put Back object has the same rotation as its assigned "My Pickup Object".</li>
+</ol>
+
+<span class="note"><u>Note</u>:  The transform of the Put Back object will guide the Pickup object when it is put back. So, for example, you could rotate the put back 
+transform and when the pickup object is put back it will assume that rotation as well. It is recommended that the transform's location by slightly above any physics 
+objects to prevent physics clipping and odd reactions when the object is put back. This will prevent physics problems, and also nicely simulate the object being set down 
+from the player's hand.</span>
+<br/>
+
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>

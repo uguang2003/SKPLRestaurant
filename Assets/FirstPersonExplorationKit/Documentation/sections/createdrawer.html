@@ -1,0 +1,225 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Creating a Drawer</h2>
+
+<hr>
+
+<h3><u>Overview</u></h3>
+
+<p>Drawers are a nice way to add depth to objects in your game such as furniture. There are 3 example pieces of furniture included with the asset. demoBasicDesk, demoComplexDesk, and demoDresser_A.</p>
+
+<hr>
+
+<b>Table of Contents</b>
+<br/>
+<ul>
+<li><a href="#commoncomponents">Common Drawer Components</a></li>
+<li><a href="#createdrawer">Creating a Drawer</a></li>
+<li><a href="#drawersandplayer">Drawer Collision and the Player</a></li>
+<li><a href="#drawersandobjects">Drawer Collision and Other Objects</a></li>
+<li><a href="#workflownotes">Workflow Notes</a></li>
+<li><a href="#externallocks">External Locks</a></li>
+</ul>
+<br/>
+
+<hr>
+
+<br/>
+
+
+<a name="commoncomponents"><h3><u>Common Drawer Components</u></h3></a>
+<p>All drawers have a common set of parts that behave help it function. Some of these parts are optional, and some are not.</p>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>Drawer Mesh</td><td>This is the visible "drawer box bit" that acts as the main main drawer body.</td>
+</tr>
+<tr>
+<td>Drawer Pull Mesh(es)</td><td>The part of the drawer the player looks at when interacting with the drawer.</td>
+</tr>
+<tr class="odd">
+<td>Sliding Part</td><td>This houses all the moving parts of any drawer (such as the drawer mesh, drawer pulls(s), colliders, and other objects)</td>
+</tr>
+<tr>
+<td>Drawer Pull Interaction(s) (uses FPEInteractableActivateScript component)</td><td>These are the Activation type objects that allow the player to open and close the drawer. It's a good idea to align these with the visible drawer pull mesh(es), and perhaps make them even larger.</td>
+</tr>
+<tr class="odd">
+<td>Hit Helpers (uses FPEDoorAndDrawerHitHelper component)</td><td>Optional child objects that are used to detect when a drawer should stop moving. Useful for ensuring large or tall objects placed in a drawer don't break things.</td>
+</tr>
+<tr>
+<td>Drawer Colliders</td><td>These keep Pickups and other stuff inside the drawer. For best results, use a handful of Box Colliders rather than a Mesh Collider.</td>
+</tr>
+<tr class="odd">
+<td>Drawer Contents Grabber</td><td>A special trigger volume that makes objects in the drawer stick to it when the drawer moves.</td>
+</tr>
+
+</table>
+
+<br/>
+<span class="note"><u>Note</u>: Most of the time, you want the Box Collider of your DrawerPull Activation objects to be a trigger. This will prevent it from colliding with other objects.</a>.</span>
+<br/>
+
+<p>All drawers have a shared set of Inspector Fields.</p>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>Start Internally Locked</td><td>If true, this means the drawer will start internally locked, and require specificed inventory item to act as a key to unlock it.</td>
+</tr>
+<tr>
+<td>Required Key Type</td><td>The type of inventory item required to unlock an internally locked door.</td>
+</tr>
+<tr class="odd">
+<td>Start Externally Locked</td><td>If true, the drawer will start externally locked. This means an external object such as a security system will need to unlock it before it can be opened.</td>
+</tr>
+<tr>
+<td>Start Opened</td><td>If true, the drawer will start in an Open state. You will also need to visually move the sliding part of the drawer to reflect this state. Good for cases where you want a drawer to be opened a little already to guide the player to it, or have an object visibly sticking out of it.</td>
+</tr>
+<tr class="odd">
+<td>Stop If Drawer Hits Something</td><td>If true, the drawer will use its Hit Helpers to stop when it hits another object such as the player or blocking physics object like a Pickup or large object in the drawer.</td>
+</tr>
+<tr>
+<td>Drawer Pull Handle Interaction Text Overrides</td><td>These interaction strings are assigned to the door handle(s) when different actions take place.</td>
+</tr>
+<tr class="odd">
+<td>Play Sounds</td><td>If true, your drawer will make sounds during various actions and events.</td>
+</tr>
+<tr>
+<td>Drawer <X> Sounds</td><td>These are the various sound banks that will be used to make sound effects if Play Sounds is true.</td>
+</tr>
+<tr class="odd">
+<td>Slide Distance</td><td>How far the drawer slides</td>
+</tr>
+<tr>
+<td>Slide Open Time</td><td>How long it takes for the drawer to slide either open or closed</td>
+</tr>
+<tr class="odd">
+<td>Drawer Slide Snap Distance</td><td>The distance considered to be "close enough" for the drawer to snap closed or open. Smaller drawers need smaller values.</td>
+</tr>
+<tr>
+<td>Auto Move Player To Safe Zone</td><td>If true, Player will be automatically moved into safe zone so the drawer will be less likely to hit them.</td>
+</tr>
+</table>
+
+
+<a name="createdrawer"><h3><u>Creating a Drawer</u></h3></a>
+
+<p>This asset comes with some example furniture prefabs with pre configured drawers: demoBasicDesk, demoComplexDesk, and demoDresser_A. To use them, simply drag them into your scene. If using the _Locked variant, ensure the player has access to the required key (default is demoSimpleKey.prefab). If using the _ExternallyLocked variant, ensure there is something such as the demoSecuritySystem prefab included so that the door can be externally unlocked. Run the scene and use the doors. You're done.</p>
+
+<p>You can also take the drawer child objects from these prefabs and stick them into whatever furniture you want.</p>
+
+<p>To create a customized Drawer from scratch, follow these steps:</p>
+
+<ol>
+<li>Create a new scene, and add a Plane at (0,0,0), and an FPECore object.</li>
+<li>Create an empty GameObject, name it MyCustomDrawer</li>
+<li>Add the FPEDrawer component. This will add come child objects: SlidingPart, SlidingPart\DrawerPull, and SafeZone.</li>
+<li>Add a child Mesh to SlidingPart at (0,0,0), such as the included Drawer_C.fbx, and rotate it as required.</li>
+<li>Add another child mesh to SlidingPart, such as the included DrawerPull_A.fbx, ensure it is at (0,0,0) and rotate it as required.</li>
+<li>Move and scale the DrawerPull object so that it is toward the Z+ side of the drawer and overlaps with the Drawer Pull mesh.</li>
+<li>Your drawer should now look like this:</li>
+<br/>
+<img src="img/CustomDrawer1.jpg">
+<br/>
+<li>Add an empty child object to SlidingPart, and name it Colliders</li>
+<li>Add 5 Box Colliders to the Colliders object, and size them accordingly to cover the <b>Back</b>, <b>Front</b>, <b>Left</b>, <b>Right</b> edges as well as the <b>Bottom</b> of the drawer. They should look like this:</li>
+<br/>
+<img src="img/CustomDrawer2.jpg">
+<br/>
+<li>Select the DrawerPull object, and set the Event Fire Type to EVERYTIME, then assign the activateDoor() function of your custom door to its Activation event.</li>
+<br/>
+<img src="img/CustomDrawer3.jpg">
+<br/>
+<li>Set the DrawerPull object's Box Collider to be a Trigger.</li>
+<li>Run your scene, and open the drawer by interacting with the drawer pull. The drawer should now slowly slide open and closed when activated.</li>
+<li>To make the drawer stop when it hits something, create two child objects of SlidingPart and name name OpenHitHelper and CloseHitHelper.</li>
+<li>Add a Box Collider and then add an FPEDoorAndDrawerHitHelper component to both OpenHitHelper and CloseHitHelper.</li>
+<li>Scale the HitHelper object so that the yellow gizmo outline is about the same size as the drawer width, and about twice the size as the thickness of the front part of the drawer.</li>
+<li>On the main MyCustomDrawer object, check the "Stop if drawer hits something" checkbox.</li>
+
+<li>Your drawer should now look like this:</li>
+<br/>
+<img src="img/CustomDrawer4.jpg">
+<br/>
+
+<li>The drawer should now stop if it hits an object when closing. It's hard to test this without it being inside a piece of furniture, but refer to demoBasicDesk.prefab 'BasicDeskLeftDrawer' child object for reference as needed. When in action, it will look something like this:</li>
+<br/>
+<img src="img/gif/DrawerCloseOnSoup.gif">
+<br/>
+
+<li>Create another empty child object to SlidingPart, and name it DrawerContentsGrabber</li>
+<li>Add an FPEDrawerContentsGrabber component</li>
+<li>Scale the Box Collider (not the Transform!) so that the pink gizmo is just inside the drawer bounds, and not too tall.</li>
+
+<li>Your drawer should now look like this:</li>
+<br/>
+<img src="img/CustomDrawer5.jpg">
+<br/>
+<li>By default, the drawer Safe Zone will be 1.3 units away from the drawer. You can adjust this to be closer depending on your drawer size and slide open time. To test this out, open the drawer while standing very close to it. if the player can smoothly open the drawer without it hitting them or stopping, then this is probably a good value. You can disable Safe Zone uncheckig the "Auto Move Player To Safe Zone" checkbox, however this is not recommended. See <li><a href="#drawersandplayer">Drawer Collision and the Player</a></li> below for details.</li>
+<li>To make the drawer be locked, simply check the Start Internally Locked checkbox and set the required key type (e.g. SIMPLEKEY)</li>
+<li>Add a demoSimpleKey to your scene. Run the scene again, and test out the drawer. You now need to unlock it with the key in order for the drawer to open.</li>
+<li>If you want your drawer to make sounds, assign sound banks to the "Drawer Sounds" fields in the inspector. The included sound banks are in \Sounds\Soundbanks\DoorsAndDrawers\ folder.</li>
+<li>You're all done! If you want, you can further customize the fields in "Drawer-Specific Behaviour" section of the inspector, then save your new door as a prefab.</li>
+</ol>
+
+<br/>
+<span class="note"><u>Note</u>: In order for saving and loading to work correctly, your drawers have to have unique names within a scene. If using a prefab, having two doors be named "MyCustomDrawer" and "MyCustomDrawer (1)" is perfectly fine! :)</span>
+<br/>
+
+
+<a name="drawersandplayer"><h3><u>Drawer Collision and the Player</u></h3></a>
+
+<p>Sometimes, it is hard to gauge the relative size of a drawer with respect to the player. As a result, drawers are hard to interact with. For best results, ensure that your furniture is designed in a way that facilitates easy drawer placement and use. By default, using Safe Zones will ensure a smooth gameplay experience. But, you can just let the drawer push the player, though that can be a little jarring sometimes. You can also do things to prevent the drawer from hitting the player at all, such as adding a Kinematic Rigidbody with Locked Rotation to the drawer's SlidingPart\Collider child object. This allows the player to "get closer" to the drawer, but can be a problem for really deep drawers and have other knock-on effects, so use with caution.</p>
+
+<p>See below for examples of various methods in action:</p>
+
+<br/>
+<img src="img/gif/DrawerDefaultSafeZone.gif">
+<p>Default Behaviour: Drawer gently and smoothly moves player out of the way (Best overall)</p>
+<br/>
+<img src="img/gif/DrawerStopHitPlayer.gif">
+<p>Drawer stops when it hits the player (Realistic, but can be a little cumbersome)</p>
+<br/>
+<img src="img/gif/DrawerPushPlayer.gif">
+<p>Drawer pushes player out of the way using physics collisions (Can be jarring)</p>
+<br/>
+
+<a name="drawersandobjects"><h3><u>Drawer Collision and Other Objects</u></h3></a>
+
+<p>Sometimes, tall objects will be put in drawers. The default configuration for most of the demo drawers is to basically stop moving if anything is in the way. However, you may want to lean on the physics engine a bit more to allow for the player to cram stuff in drawers and try to close them anyway. To avoid a "stuck drawer" feeling when this happens, you can play with the thickness of the "CloseHitHelper" child object of the drawer. Below is a more physics-driven close operation with a tall test object.</p>
+<br/>
+<img src="img/gif/ThinnerCloseHitHelper.gif">
+<br/>
+
+<p>To achieve this new result, the CloseHitHelper was simply made thinner, as shown below:</p>
+<br/>
+<img src="img/CloseHitHelperComparison.jpg">
+<br/>
+
+
+<p>Try experimenting with your own drawers to see what kinds of results you get for the objects you have in your game.</p>
+
+<a name="workflownotes"><h3><u>Workflow Notes</u></h3></a>
+
+<p>Drawers are meant to be set up as standalone prefabs. When placing drawers into furniture or other objects, you can optionally make them children of the furniture. For best results, model your furniture and drawers in a way that allows you to export the drawer meshes as separate model files. Similarly, you can leave out the drawer pull from the main drawer model, and create it separately. This will allow for more flexible customization and reuse between drawers and drawer pulls.</p>
+
+
+
+
+<a name="externallocks"><h3><u>External Locks</u></h3></a>
+
+<p>When you want any drawer to start locked from an external source (e.g. security system), you must check the "Start Externally Locked" checkbox in the Inspector. Most importantly, you must also include another object such as the included demoSecuritySystem prefab, and assign it to unlock your drawer. Externally locked drawers can only be unlocked from External systems. Otherwise, they will be locked forever! :)</p>
+
+
+<br/>
+<br/>
+<br/>
+
+</body>
+</html>

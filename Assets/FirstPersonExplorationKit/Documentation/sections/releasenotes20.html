@@ -1,0 +1,322 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Release Notes for version 2.0 and above</h2>
+
+<hr>
+
+
+<br/>
+<h3><u>Release Notes for v2.2.7</u></h3>
+
+<ul>
+<li>Fixed: Mouse look jitter, which was especially noticeable with VSync disabled</li>
+<li>Fixed: Camera zoom is now smoothed by delta time</li>
+<li>Changed: Increased object examination default rotation speed (from 150 to 300)</li>
+<li>Changed: Minor code cleanup in FPEFirstPersonController and FPEMouseLook</li>
+<li>Changed: Removed high runner calls gameObject.GetComponent(), repalced with single stored instance where appropriate</li>
+<li>Changed: Removed legacy FlipGamepadYAxis variable from FPEInputManager</li>
+<li>Added: Separate Y-Axis flip toggles for Gamepad and Mouse</li>
+<li>Added: FPEGameMenu prefab now has toggle buttons for both of the new Y-Axis flip options</li>
+<li>Added: New Y-Axis flip options are now saved as part of game option data</li>
+<li>Added: New Inspector value for Camera Zoom change rate</li>
+<li>Added: A new 'Delete Local Save Data' tool to the While Fun Games editor tools menu</li>
+</ul>
+
+
+<br/>
+<h3><u>Release Notes for v2.2.6</u></h3>
+
+<ul>
+<li>Fixed: Updated behaviour which allows keys to be consumed from inventory/hand when a door is unlocked</li>
+<li>Fixed: Missing demo object put back location in demoScene_1</li>
+<li>Fixed: Stair mesh colliders now convex</li>
+<li>Changed: Minimum supported version to v2019.4.32f1</li>
+<li>Changed: Documentation updates (SRP guides and other)</li>
+</ul>
+
+
+<br/>
+<h3><u>Release Notes for v2.2.5</u></h3>
+
+<ul>
+<li>Changed: Minimum supported version to v2018.4.35f1 per Unity LTS roadmap.</li>
+</ul>
+
+<br/>
+<h3><u>Release Notes for v2.2.4</u></h3>
+
+<ul>
+<li>Fixed: If player start is rotated in x/z, player will be tilted off-axis</li>
+<li>Fixed: Some code comments with Interactables</li>
+<li>Fixed: Flipped Y axis incorrectly applied to mouse look</li>
+<li>Fixed: Documentation typos and broken links</li>
+<li>Fixed: FPEFindBrokenInteractions was using outdated PrefabUtility API</li>
+<li>Fixed: Player walk cycle variable has bad/broken timing in some</li>
+<li>Fixed: Custom put back strings not preserved in some cases when loading a game</li>
+<li>Fixed: When saving a game player sometimes falls. If loaded from same run of build, player does not fall. If quit game and start build a game and load via Continue, player falls. If quit to main menu and press Continue again, player does not fall</li>
+<li>Fixed: Player is initialized in some cases to think they were in the air</li>
+<li>Fixed: Player's initial height was sometimes set to crouch height</li>
+<li>Changed: Demo Main Menu scene now places player start at correct location, no longer prone to error</li>
+<li>Changed: Minor code formatting and organization changes</li>
+<li>Changed: All CS0618 compiler warnings now gone</li>
+<li>Changed: All CS0649 compiler warnings now gone</li>
+<li>Changed: demoDresser_A prefab updated so that the demoDuctTape in the left drawer uses actual duct tape prefab in accordance with new prefab workflow</li>
+<li>Changed: demoComplexDesk prefab updated so that demoToyBlock in right drawer uses actual toy block prefab in accordance with new prefab workflow</li>
+<li>Changed: Some script line endings were not Windows (CR LF)</li>
+<li>Added: New Documentation page about more effective use of Events with some interactable types</li>
+<li>Added: "Find Broken Interactions" menu tool now accounts for nested prefabs</li>
+</ul>
+
+<br/>
+<h3><u>Release Notes for v2.2.3</u></h3>
+
+<ul>
+<li>Fixed: Typos in documentation</li>
+<li>Changed: Name of Game Collectible demo object modified for easier readability in game menu</li>
+<li>Changed: By default, reticle is now hidden when examining an object</li>
+</ul>
+
+<br/>
+<h3><u>Release Notes for v2.2.2</u></h3>
+
+<ul>
+<li>Fixed: Inside demo level 1, the pink button on the left wall near radio's text read "this button was also created with any coding", now reads "...without any coding"</li>
+<li>Fixed: Turned off sprite packer in editor, as it sometimes caused lag when entering Play mode from the editor (especially on first Play of editor session)</li>
+<li>Changed: Moved DemoGenericButton.png texture out of the Models/SourceFiles directory so that the source files directory can be excluded/deleted without breaking any materials</li>
+<li>Changed: Modified FPEPlayerController.cs to reduce instances of motion stutter when performing certain player movements (such as circle strafing)</li>
+<li>Changed: Removed KitchenSinkTest.unity from Testing\Scenes as it was out of date and no longer required</li>
+<li>Changed: Removed empty demoScene_N folders as they were not being used</li>
+<li>Changed: Modified language in one type of Activation error message to indicate the error can be ignored in some specific cases</li>
+<li>Added: New links to Simplified Chinese and Japanese langauge documentation for FPE Kit Docs pages</li>
+<li>Added: Code comment inside FPE Inventory Manager to indicate how one can sort inventory items by title instead of chronological collection order, if desired</li>
+</ul>
+
+<br/>
+<h3><u>Release Notes for v2.2.1</u></h3>
+
+<ul>
+<li>Fixed: Removed Unity 2018/2019 [ExecuteAlways] conditional attribute, as it was causing conflicts with v2018.X under 2018.3.1 and is not a hard requirement for gizmos to refresh well</li>
+<li>Changed: Minor documentation update to include notes about drawer physics tweaks</li>
+<li>Changed: FPEAttachedNote and FPEInventoryItemScript now use TextArea attribute to make editing long text strings in the Inspector a lot easier</li>
+</ul>
+
+<br/>
+<h3><u>Release Notes for v2.2: "Doors and Drawers" Update</u></h3>
+
+
+<ul>
+<li>Fixed: demoToggleSwitch was missing initial interaction string and had slight lag when first turning on light.</li>
+<li>Fixed: In Game Menu, if you have almost two pages of one item (e.g. puzzle ball), then have the last item on page 2 be another item (e.g. apple), and drop the apple, an IndexOutOfRange exception occurred.</li>
+<li>Fixed: In Game Menu, if you had a stack of items (e.g. Battery), and 2 pages of items (e.g. puzzle ball), when you dropped/held the last battery from first page first slot, the first slot is blank and inventory is not re-ordered until the next time the menu was opened.</li>
+<li>Fixed: FPESaveLoadLogic error message typo</li>
+<li>Fixed: When scene zero does not contain an FPEMenu (e.g. someone deletes demoMainMenu and makes a build), the build causes player movement to break in scene zero because there is no menu. Introduced a script change that checks for this and prints an error if a build issue may arise.</li>
+<li>Fixed: Very rarely, mouse look sensitivity would drift down when game quick save and quick load happened.</li>
+<li>Fixed: Missing null assignment check against FPEHub on game start.</li>
+<li>Fixed: If player movement was frozen (e.g. in cutscene or menu), you could still hear footstep audio sometimes.</li>
+<li>Fixed: Some "player config" prefabs (for building custom player controller from scratch) had incorrect transform positions, making setup more tedious than it needed to be.</li>
+<li>Fixed: FPEMenu modified to support users who don't want to use FPECore object.</li>
+<li>Fixed: When saving and loading using quick save/load rapidly, player's restored look angle would change.</li>
+<li>Fixed: Custom "inventory get" sounds were ignored.</li>
+<li>Fixed: Demo Cabinet simplified. Will be deprecated for future versions, but existing version now works better.</li>
+<li>Fixed: Sometimes player would make "landing sound" when bumped by a moving object at low speed. "Minimum Fall Speed" variable added FPEFirstPersonController.cs to account for this.</li>
+<li>Changed: Added "repeat delay" to Activate interactions so that if you configure activation to EVERYTIME mode, it automatically disables the activation for some seconds before it can be activated again.</li>
+<li>Changed: Included documentation update to link to Add Ons repo (see https://github.com/whilefun/FPEAddons)</li>
+<li>Changed: Added Layer detection on start when running in editor to warn user if a required Layer is missing. This can occur if multiple assets are imported on top of FPEKit and overrite Layers. Also added this functionality to the While Fun Games, Tools menu</li>
+<li>Changed: Remove "RecalculateBounds" calls from interactable base script as this was no longer relevant to highlighting materials.</li>
+<li>Changed: Demo scenes are completely redesigned</li>
+<li>Changed: Swap out doors in level transition to be new types, not FPESimpleDoor type.</li>
+<li>Changed: Deprecate demoCabinetScript</li>
+<li>Changed: Door locks now work in two ways: Internal (e.g. key in door handle) and external (e.g. security system)</li>
+<li>Changed: doorLocked.ogg removed from Sounds folder, replaced with /Sounds/DoorsAndDrawers/doorLocked01.ogg and /Sounds/DoorsAndDrawers/doorLocked02.ogg</li>
+<li>Changed: All other door*.ogg sound files moved from Sounds/ to Sounds/DoorsAndDrawers</li>
+<li>Changed: FPEDoorSaveData class modified to included 3 new pieces of data: A custom vector3 for partial door open positions/rotations, a flag for internal lock and external lock states. See FPESaveDataTypes.cs for details.</li>
+<li>Changed: FPESimpleDoor, DemoSlidingDoorScript, and DemoCabinetScript will not be supported beyond v2.2 release. All future doors will be made using the FPEDoor types or one of the new derived door types</li>
+<li>Changed: Removed "UNITY_5 or newer" checks for setCursorVisibility() and setCursorTexture() in FPEInteractionManager since Unity 5.6.7f1 is now the minimum supported version</li>
+<li>Changed: Unity 2018 Physx no longer supports setting a CCD RigidBody to Kinematic. As a result, all Pickups and Inventory Items are assumed to have Continuous collision (which is probably a good idea anyway)</li>
+<li>Added: Add Doors (sliding, basic swinging always away from player, complex 'realistic' swinging), Drawers, and Doorbells</li>
+<li>Added: Various new sound effects for Doors and Drawer and related objects</li>
+<li>Added: Several new interactable demo objects (with related models, textures, etc.)</li>
+<li>Added: New warnings inside Activate type script to tell you if you forgot to assign an event in the Inspector, but try to activate them anyway.</li>
+<li>Added: DemoSecuritySystem for remotely locking and unlocking FPEDoor objects</li>
+</ul>
+
+
+<br/>
+<h3><u>Release Notes for v2.1</u></h3>
+<ul>
+<li>Fixed: Documentation FAQ about breaking changes said "...It is best to make note off all changes...", but now says "...It is best to make note of all changes..."</li>
+<li>Fixed: If player was docked or was crouched when quitting to main menu, then started a new game, they were still Docked or crouched when the new game started</li>
+<li>Fixed: When player was in game with inventory items, audio diaries, or notes, chose to save, then returns to main menu, then decides to start a new game without exiting and re-entering the game, their inventory was not reset.</li>
+<li>Fixed: A few timing related items that were running independent of Time.deltaTime</li>
+<li>Fixed: Multi-page journals did not always get focus for xbox controller navigation. Navigation left and right was also not explicit</li>
+<li>Fixed: Inventory items that were flagged in a put back location could be put back but didn't display a string</li>
+<li>Fixed: Flag for "show Mouse Control Hints" in FPEInteractionManager was partially ignored, because unchecking it did not actually clear the mouse hints</li>
+<li>Fixed: Unity 2018 compiler directives added to Cursor functions to eliminate "Outdated API" warnings when opening in Unity 2018.x</li>
+<li>Fixed: When holding an inventory item and looking at another interaction (non-inventory), the interaction text hint said "Press R/XBoxY to put in Inventory", but that didn't actually work</li>
+<li>Fixed: When holding an inventory/pickup, looking at another pickup, then moving view away from the other pickup but into a putback, the currentInteractableObject doesn't get set to null. Result was that the
+secondary pickup remains assigned as the currentInteractable until pickup raycast hit is not longer true. To the player, it meant that the thing they were looking at was not reflected in the UI</li>
+<li>Fixed: Notification text (for Notes, for example) had bug where if nearly faded out, it would fade for next notification prematurely</li>
+<li>Changed FPEMenuButton now "clicks" using OnPointerUp() instead of InPointerDown(). This helps address "click to close UI" causing erroneous interaction events. For example, if clicking a button to close a UI using OnPointerDown(), that same down press can be carried through to FPEInteractionManager, causing the player to activate a button, pickup or drop an object, etc.</li>
+<li>Changed: Add cutscenes overview page to documentation</li>
+<li>Changed: System overview diagrams updated in documenation</li>
+<li>Changed: Update and added to UI/HUD section to mention new FPEHUD classes and prefabs</li>
+<li>Changed: Removed all UI components and code from FPEInteractionManagerScript. UI now lives in FPEHUD</li>
+<li>Changed: Legacy "Demo" HUD is still the default, but all visuals reside inside the FPEDefaultHUD script and prefab</li>
+<li>Changed: Added new UI sub-folder to Prefabs folder</li>
+<li>Changed: Moved the following UI prefabs into new Prefabs\UI\ sub-folder: FPEEventSystem, FPEGameMenu, FPEMainMenu, FPESimpleMenu, FPEMinimalHUD, and FPEDefaultHUD</li>
+<li>Changed: Moved player sound effects to Sounds\Player\Basic folder</li>
+<li>Changed: Moved player footstep soundbank into Sounds\SoundBanks\ folder</li>
+<li>Changed: Removed Audio and ScriptableObjects sub-folders from FPEPlayerController\FPECharacters\FPEFirstPerson\ as they were made empty by the above changes</li>
+<li>Changed: Replaced default player sound effects with improved ones. Defaults sound files are still present in Sounds\Player\Basic\</li>
+<li>Added: New Interaction Manager FSM with new FREE, IN_MENU, and SUSPENDED states to add support for Cutscenes</li>
+<li>Added: Demo Cutscenes (one cinematic that uses letterbox bars and automatic camera movement, and one simple UI-driven)</li>
+<li>Added: Cutscene helper scripts for using letterbox bars and forcing player look at transform during a cutscene</li>
+<li>Added: New soundbanks for jumping and landing for better variation</li>
+<li>Added: Delay to player landing sounds to prevent landing sound from playing immediately when level is loaded</li>
+<li>Added: New editor script to validate a given scene for all known save game errors (duplicate objects, missing prefabs, prefabs in wrong folder, etc.)</li>
+<li>Added: New documentaion to reflect new editor script, how to use, and how to fix any errors that are found</li>
+<li>Added: FPEHUD class and associated sub-classes as well as FPEHUDData class. FPEHUDData is populated by interaction manager, and consumed by FPEHUD</li>
+</ul>
+
+
+<br/>
+<h3><u>Release Notes for v2.0.2</u></h3>
+<ul>
+<li>Fixed: Sometimes loaded game options such as look sensitivity did not get applied to input system until the options menu was first opened</li>
+<li>Fixed: Player can perform double jump by tapping jump button multiple times while in the air, causing second jump when player lands</li>
+<li>Fixed: When audio diary playback is in progress, and player exits the game back to the main menu, the diary keeps playing.</li>
+<li>Changed: Switching menu tabs in FPEGameMenu no longer triggers a call to SaveGameOptions(). Now only changes made to individual options trigger such a call.</li>
+<li>Fixed: Player movement was a bit loose, especially when stopping to perform small scale interactions. Input Gravity for "WASD" controls has been increased for Horizontal and Vertical inputs from 3 to 8. Lateral view bob movement was also reduced by 0.05 to aid in tightening up player control feel.</li>
+<li>Changed: Refreshed documentation, and added a new section detailing save game file locations and purpose.</li>
+</ul>
+
+
+<br/>
+<h3><u>Release Notes for v2.0.1</u></h3>
+<ul>
+<li>Fixed: If player looks at an interactable, then backs away slowly, they are allowed player to exceed set interaction distance of said object.</li>
+</ul>
+
+
+<br/>
+<h3><u>Release Notes for v2.0</u></h3>
+<b>Published List</b>
+<ul>
+<li>Fixed: "Future" reticle assets was incorrectly Default not Sprite (2D/UI) so they didnt appear to be choices when changing GUI skin</li>
+<li>Fixed: Did efficiency pass on all UI elements to ensure no extraneous raycast targets, etc. are present</li>
+<li>Fixed: Fixed NullReferenceException if player presses the B button on XBox controller when there is no journal open. Related: Sometimes, erroneous "journal close" sound can be heard if player presses B button when no journal is visible.</li>
+<li>Fixed: Highlight in Unity 5 on some objects (especially those with cutout materials, etc.) can cause z-fighting.</li>
+<li>Fixed: Issue where two demoCabinets in your game caused both to activate whenever one was interacted with.</li>
+<li>Fixed: Slowed mouse movment when looking at an objec to interact with. When the player is strafing and also looking at an object, the slow mousespeed switching causes the mouse cursor and interaction text to stutter sometimes.</li>
+<li>Fixed: Player Controller now has more interesting/complete/standard customizations out of the box such as crouching, jumping, running, view bob, etc.</li>
+<li>Fixed: A few other small bugs and code refactor items</li>
+<li>Added: Added a new Input Management system to provide a layer of abstraction into controls for easier editing and addition of new control schemes (for arbitrary new hardware, controllers, etc.)</li>
+<li>Added: UnityEvent-based event support to allow users to specify arbitrary events through the Inspector. User can specify to repeat once, everytime, or toggle.</li>
+<li>Added: Proper inventory screen that will show Inventory and allow player to replay "discovered" audio diaries and read collected notes.</li>
+<li>Added: Ability for player to add applicable items to inventory after they've inspected them, or discard/put back as usual.</li>
+<li>Added: Custom 'Whilefun.FPEKit' namespace for all code to prevent name overlaps, compile conflicts, etc. when importing other packages, Standard Assets, etc.</li>
+<li>Added: Ability to force refresh on highlight materials such that activations that cause UV offset to change can ask for a material refresh if they know their materials are stale</li>
+<li>Added: Dock object that will engage the player in a fixed location and and limited mouse look space such that they can interact with an object while "at a station" for that object until such time as they are released from that object's interaction (example: sit at a radio or computer and fiddle with buttons while things happen, then get up after they have happened or user aborts interaction)</li>
+<li>Added: Demo objects to demonstrate all new/changed features</li>
+<li>Added: Snazzier documentation and new video clips showing the features/fixes.</li>
+</ul>
+
+<b>Other Changes (maybe some overlap with Published List above)</b>
+<ul>
+<li>Fixed: initial examination does additional rotation to account for offset value in the inspector.</li>
+<li>Fixed: Sometimes, journal sound effect plays if close journal button is pressed, but no journal is open.</li>
+<li>Fixed: Bug where if you have more than 1 item in inventory, select item 2, close inventory, then re-open it the first AND second are highlighted depending on mouse positions</li>
+<li>Fixed: UI tabs on game menu need to have additional indicator (selected tab sprite?) in addition to mouse over highlight, as all 3 can be unhihglighted at times which makes it unclear what tab you are in)</li>
+<li>Fixed: When pickup two batteries in inventory, open menu, drop one, then drop other, only 1 is ever dropped.</li>
+<li>Fixed: Quanittiy stacked shown in UI is not updated once one battery is dropped.</li>
+<li>Fixed: Inventory 'Next page' movement on gamepad causes rapid fire infinite sounds when held down</li>
+<li>Fixed: XBOX navigation now works on all inventory screens</li>
+<li>Fixed: Issue when you pickup apple, put in inventory, open menu, drop. Error warning of cannot play disabled audio source.</li>
+<li>Fixed: When crouching is disabled, pressing crouch still causes 1 frame ish of crouching twitch</li>
+<li>Fixed: When using xbox controller, and pressing right bumper to change menu tabs, player jumps when menu is closed.</li>
+<li>Fixed: When adding all notes (~a dozen of them) to inventory, the 3rd page cannot be accessed. Button is enabled, but clicking it doesn't do anything.</li>
+<li>Fixed: When examining object when crouched, you stand up</li>
+<li>Fixed: UI display for save/load only comes up when operation is finished. Now uses coroutine so progress spinner keeps animating even when busy.</li>
+<li>Fixed: When loading a game, if were docked when saved, cannot undock. This requires saving 'currentDock' dock object, which might not work and may mean we can't save while docked.</li>
+<li>Fixed: Save game in level2 with 3 apples in inv. Load game from level 2, you have 4 apples. probably a stackable +1 error or something. Doesn't happen when there is just one, but happens if there are two or more. </li>
+<li>Fixed: When loading inventory that can be consumed, the consumer throws an error because audio source reference is stale.</li>
+<li>Fixed: Some activate types that are complex (such as state machines) now have save logic and data types where required. Old demo objects now save and load state as they should.</li>
+<li>Fixed: If player was running when the loaded the game, they will remain running until they press and release shift again</li>
+<li>Fixed: Cabinet toggle saved correctly</li>
+<li>Fixed: First interaction requires 2 clicks of left mouse button for some reason</li>
+<li>Fixed: demoToilet state was not saved/restored properly</li>
+<li>Fixed: demoSimpleDoor fires close event because of toggleOff being fired by default. Need to add a flag for this.</li>
+<li>Fixed: Journals save/load strings now correct</li>
+<li>Fixed: Audio Diary save/load strings now correct</li>
+<li>Fixed: If load game when audio diary is playing, it keeps playing (and showing text). Now stop diary when suspend player for load game, but keep playing for room transitions.</li>
+<li>Fixed: Passive Audio Diary hasBeenPlayed save/load was not working, can replay demoFlatPaper over and over, for example, adding redundant copies to the inventory each time</li>
+<li>Fixed: Control instructions image shows xbox B button opens menu, when in fact it does not. Need to add a Start button graphic and line item on xbox side to show menu open button</li>
+<li>Fixed: Options not loaded until first time game menu is opened</li>
+<li>Fixed: Unity2017: In interaction manager, change cursor line @ line 2481 to be '#if UNITY_5 || UNITY_2017' so it includes UNITY 2017</li>
+<li>Fixed: Removed shadow caster from purple box detector cylinder</li>
+<li>Fixed: Code inspection pass (old commented out stuff, spacing, function headers, commemts, etc.)</li>
+<li>Fixed: FPEInput no longer contains direct key and mouse button checks.</li>
+<li>Fixed: FPESimpleDoor player blocker blocks player when door is opening which feels annoying</li>
+<li>Fixed: Demo pickup rotate types read "look at X", now say "pick up x" instead</li>
+<li>Added: Make pickupRotationOffset on PIckup type actually do something :) Around line 637 of FPEInteractionManagerScript, position is set, rotation is set, but is not offset. </li>
+<li>Added: For custom namespace items, need to rename the class itself to be FPEFirstPersonController instead of FirstPersonController, as the import of StandardAssets stomps custom stuff completely.</li>
+<li>Added: custom UI elements for various Menus</li>
+<li>Added: Clean up the old Virtual Input stuff from Unity Standard Assets, as most of it is no longer required (see new FPEInputManager class)</li>
+<li>Added: Make check box on Audio Diary type so that it can optionally require audio diary to be "interacted with" to play back, or play as soon as discovered.</li>
+<li>Added: Add flag to audio diaries to auto play or require interaction</li>
+<li>Added: Create new designated position for "in inventory" for pickup types that can be held or dropped. Just like holding pickup now, but maybe inside the player capsule, or some designated zone. Then disable game objects.</li>
+<li>Added: Deterministic and fast sort order for inventory items</li>
+<li>Added: Highlighted tab graphic</li>
+<li>Added: Add flag to audio diaries to be "recallable" via the diary UI</li>
+<li>Added: Add 'system' menu for exit/resume game from 'inventory' screen</li>
+<li>Added: Method to add a note to the inventory.</li>
+<li>Added: Renamed StandardAssetBase</li>
+<li>Added: Add Audio Diary callback event to fire when audio diary is skipped or finished playing (e.g. so tape recorder can stop itself, stop animating, move a button up, or whatever)</li>
+<li>Added: Add 'got a new note' sound and small popup notification 'note added' so it's clear that notes are added during other regular interactions (static, pickup, etc.) </li>
+<li>Added: Remapped xbox buttons for Jump, Crouch, Run, and ensured no overlap</li>
+<li>Added: A custom minmax attribute, basic sound bank, etc. for making player steps and other sounds more varied and interesting.</li>
+<li>Added: Running (line 236 of FPEFirstPersonController, plus add toggles, etc.)</li>
+<li>Added: Control mapping image on the wall as well for the demo scene</li>
+<li>Added: Add toggle for look smoothing in the system menu</li>
+<li>Added: New Activate types to handle various types of activations, events, and repeat modes.</li>
+<li>Added: An 'FPEEventTrigger' type that provides an empty shell for UnityEvents and can arm or disarm other triggers when itself is triggered. Provided debug visualization checkbox.</li>
+<li>Added: A way to call event(s) on Dockable objects when Dock is finished and when Undock is finished (e.g. when docked into chair, turn on computer screen)</li>
+<li>Added: Merge old Activate type by incorporating Generic sub type. Keep Toggle sub type, and put ToggleOn event calls inside inherited activate so that inventory can still be required to ToggleON</li>
+<li>Added: Pickup and Put Down events to Pickup type, ensure they work and are implemented. This will eventually lead to full deprecation of "Play Secondary Audio" feature.</li>
+<li>Added: PutBack events</li>
+<li>Added: Ability to require specific inventory type and quantity for activations to work (keys in doors, batteries in machines, etc.)</li>
+<li>Added: Shifted the audio diary detection and playback and make it similar to notes, in taht if there is on attached, it just gets played and added to inventory. This makes more sense than standalone type.</li>
+<li>Added: For activatable items, add slot for required inventory item, quantity, and checkbox that requires it be held on interaction to "work" (e.g. hold battery, place in device), or just in inventory</li>
+<li>Added: Refresh reticle to be higher resolution (see old build @ 1080p, it looked bad)</li>
+<li>Added: Rebuild applicable previous demo objects with new interaction building blocks.</li>
+<li>Added: Re-factored menu button code and make toggle an extension of button (side effect was that mouse over toggle doesn't un-highlight buttons and vice-versa)</li>
+<li>Added: Saved Game/Load Game interfaces for inventory</li>
+<li>Added: A basic game saving and loading mechanism in FPESaveLoadManager class.</li>
+<li>Added: Cleaned up prefabs folder to ensure there aren't random ones that don't matter (looking at you, FPEUICamera)</li>
+<li>Added: Related to save data for inventory, clips for Audio Diaries now have to be located to the Resources folder so they can be reloaded at runtime.</li>
+<li>Added: Save Note and Audio Diary 'collected'/'played' states in level data</li>
+<li>Added: In FPESaveLoadLogic, added 'break;' on foundMatch to make things a little more efficient.</li>
+<li>Added: Generic Save Type.</li>
+<li>Added: Simple Door Save Type.</li>
+<li>Added: FPECore prefab to make "Getting Started" a lot easier, make scene transitions and hierarchy a lot cleaner.</li>
+<li>Added: Save/Load/Start toggle flags so they can optionally fire when these events happen.</li>
+<li>Added: Menu item in editor to perform automated testing to check for duplicate saveable object names, which may cause save/load conflicts.</li>
+<li>Added: Wall instructions in demoScen now show how to open the menu with XBox Start or escape button. Also post the instruction image on the wall.</li>
+<li>Added: An additional demo barebones template scene with nothing but required objects for interaction stuff (basically the output of the instructions, less any props)</li>
+<li>Added: Attached Note to a few demo objects, explaining how they work.</li>
+<li>Added: Demo objects to demonstrate all new/changed features</li>
+<li>Added: All error prints have function/class names that match actual function/class. Where possible, add helpful hints (e.g. during migration for Inventory Item prefabs)</li>
+<li>Added: Cleaned up Resources folder, along with right click context menu (that contained old WFG stuff)</li>
+<li>Added: Debug Keys (wrapped in flag and compiler directive) for SaveLoadManager and Menu(s)</li>
+</ul>
+
+</body>
+
+</html>

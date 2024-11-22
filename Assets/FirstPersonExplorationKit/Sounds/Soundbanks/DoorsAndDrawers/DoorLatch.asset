@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8603ff8ec41bafa4884ab55973c99b81, type: 3}
+  m_Name: DoorLatch
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 2340066d22fb2b747b71b387bef0957f, type: 3}
+  volume:
+    minValue: 0.4603925
+    maxValue: 0.51039255
+  pitch:
+    minValue: 0.92734414
+    maxValue: 0.9673439

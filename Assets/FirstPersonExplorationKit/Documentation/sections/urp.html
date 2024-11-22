@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Working with Universal Render Pipeline</h2>
+
+
+
+
+<hr>
+
+<b>Table of Contents</b>
+<br/>
+<ul>
+<li><a href="#import">Importing Project Files</a></li>
+<li><a href="#urpdetails">Setting URP Details</a></li>
+<li><a href="#updatingmaterials">Updating Materials</a></li>
+<li><a href="#newstackedcameras">Using New Stacked Cameras Method</a></li>
+
+</ul>
+<br/>
+
+<hr>
+
+<br/>
+
+
+<a name="import"><h3><u>Importing Project Files</u></h3></a>
+
+</ol>
+<li>Start a new Project, Select URP as Template</li>
+<li>Once done, import First Person Exploration Kit from the Asset Store.</li>
+<li>When prompted with warning dialog, choose Import.</li>
+<img src="img/urp_importPrompt1.jpg">
+<br/>
+<br/>
+<li>Ensure all files are selected, and choose Import.</li>
+<img src="img/urp_importPrompt2.jpg">
+<br/>
+<br/>
+</ol>
+
+
+<a name="urpdetails"><h3><u>Setting URP Details</u></h3></a>
+
+
+<p>You will notice that default URP "Construction Site" scene may have turned pink. To fix, set URP:</p>
+
+<img src="img/urp_pinkConstructionSite.jpg">
+<br/>
+<br/>
+
+<ol>
+<li>Go to Project Settings, Graphics</li>
+<li>Set Scriptable Render Pipeline Settings to choose  "UniversalRP-MediumQuality (UniversalRenderPipelineAsset)" (or desired equivalent setting)</li>
+<img src="img/urp_fixurpsetting.jpg">
+<br/>
+<br/>
+<li>This fixes the "Construction Site" scene so its no longer pink. </li>
+<li>Open demoScene_1 that comes with FPE Kit. You will notice most or all the materials are pink. To fix this you must update the materials.</li>
+<img src="img/urp_fixedConstructionSite.jpg">
+<br/>
+<br/>
+</ol>
+
+<a name="updatingmaterials"><h3><u>Updating Materials</u></h3></a>
+
+
+<p>Next, you need to upgrade project materials.</p>
+
+<ol>
+<li>Select Edit > Render Pipeline > Universal Render Pipeline > Upgrade Project Materials to UniversalRP Materials</li>
+<img src="img/urp_convertmaterials1.jpg">
+<br/>
+<br/>
+<li>Choose Proceed when prompted.</li>
+<img src="img/urp_convertmaterials2.jpg">
+<br/>
+<br/>
+<li>A handful of custom shader materials (from ProBuilder, TriPlanar, and some legacy Alpha Cutouts) require custom conversion.</li>
+<li>For example DemoInternalGeometry material. To fix these, simply note the Albedo (e.g. Floor.png), and change the material shader from WhileFunGames/DemoTriPlanar to Universal Render Pipeline/Lit and set the Base Map value to the old Albedo value.</li>
+<img src="img/urp_triplanarfix.jpg">
+<br/>
+<br/>
+<li>For alpha cutout textures (such as SoupCanLid, FanMachineCutout, etc.), do the same, but ensure Surface Type is set to Transparent, and that Alpha Clipping is enabled.</li>
+<img src="img/urp_cutoutfix.jpg">
+<br/>
+<br/>
+<li>There are also 3 surfaces that used the old Default-Material. They are the beams on the demo room ceiling, a table surface for the Demo Artifact, and a sign in the DemoComplexDesk. To fix all of these, simply create a new material of type Universal Render Pipeline/Lit, and leave texture blank. Drag and Drop this material onto those surfaces if you wish, and you're done.</li>
+<img src="img/urp_fixedmaterials.jpg">
+<br/>
+<br/>
+<li>Now look at the Game View window and you'll notice the scene is no longer pink.</li>
+<img src="img/urp_scenenotpink.jpg">
+<br/>
+<br/>
+<li>Run demoScene_1.</li>
+</ol>
+
+<a name="newstackedcameras"><h3><u>Using New Stacked Cameras Method</u></h3></a>
+
+<p>You'll notice the screen is solid blue. We must update the Player prefab to used the new Stacked Cameras method. To do this:</p>
+
+<img src="img/urp_camblue.jpg">
+<br/>
+<br/>
+
+<ol>
+<li>Open the FPEPlayerController prefab</li>
+
+<li>Select the child of MainCamera called ExaminationCamera, and set its RenderType to Overlay</li>
+<img src="img/urp_overlayexamcam.jpg">
+<br/>
+<br/>
+<li>Now go to MainCamera, ensure its RenderType is set to Base (should be by default), and assign ExaminationCamera in the Stack area of the Inspector fields.</li>
+<img src="img/urp_fixmaincam.jpg">
+<br/>
+<br/>
+<li>Run the scene again. Everything is rendering correctly.</li>
+<img src="img/urp_camfixed.jpg">
+<br/>
+<br/>
+<li>You're all done!</li>
+</ol>
+
+
+
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>

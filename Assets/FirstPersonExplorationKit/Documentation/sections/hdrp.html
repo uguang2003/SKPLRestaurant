@@ -1,0 +1,199 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Working with High Definition Render Pipeline</h2>
+
+
+<span class="warning">
+<img src="img/warningLightSmall.jpg">&nbsp;*** HDRP is still effectively in BETA. I recommend you do not use it until Unity is finished changing it. This guide was created using Unity v2020.2.1f1, HDRP v10.2.2, and FPEKit v2.2.5 ***&nbsp;<img src="img/warningLightSmall.jpg">
+</span>
+
+<hr>
+
+<b>Table of Contents</b>
+<br/>
+<ul>
+<li><a href="#import">Importing Project Files</a></li>
+<li><a href="#hdrplayers">Updating Layers and Physics</a></li>
+<li><a href="#hdrpprefabs">Updating Prefabs</a></li>
+<li><a href="#hdrptestscene">Prepare a New Scene for HDRP</a></li>
+<li><a href="#updatingmaterials">Updating Project Materials</a></li>
+</ul>
+<br/>
+
+<hr>
+<br/>
+
+<a name="import"><h3><u>Importing Project Files</u></h3></a>
+</ol>
+<li>Start a new Project (tested on Unity 2020), Select HDRP as Template</li>
+<li>Verify scene looks correct (show gold ball scene view thing in RUN mode)</li>
+
+<br/>
+<img src="img/hdrp_defaultScene.jpg">
+<br/>
+<br/>
+
+<li>Start another new project in the same unity version, and import import First Person Exploration Kit from the Asset Store.</li>
+<li>Verify it works as expected (show game view scene)</li>
+
+<br/>
+<img src="img/hdrp_fpekitDefaultScene.jpg">
+<br/>
+<br/>
+
+
+
+<a name="hdrplayers"><h3><u>Updating Layers and Physics</u></h3></a>
+
+
+<li>Close all copies of Unity</li>
+<li>Browse to your First Person Exploration Kit project folder. You will need to copy Assets and SOME project settings to your HDRP project.</li>
+<li>First, copy the /Assets/FirstPersonExplorationKit/ to your HDRP project /Assets/ folder.</li>
+<li>Next, copy /ProjectSettings/InputManager.asset into your HDRP /ProjectSettings/ folder.</li>
+
+<br/>
+<span class="note"><u>Note</u>: Layers now include "PostProcessing" on Layer 8, and "Not In Reflection" on Layer 9. We will need to update a couple of FPE Kit prefabs for this, as layer 8 and 9 in FPEKit are used for interaction functions. We will also have to update physics interactions as well.</span>
+<br/>
+<br/>
+
+<li>Open your HDRP project and let it import all the new stuff you copied from FPE Kit.</li>
+<li>Open the Project Settings window, and select Tags and Layers</li>
+<li>Starting at Layer 12, add the FPE Kit layers:</li>
+
+<br/>
+<img src="img/hdrp_withFPEKitLayers.jpg">
+<br/>
+<br/>
+
+<li>Next, select Physics, and ensure your physics interaction matrix looks like this:</li>
+
+<br/>
+<img src="img/hdrp_physicsMatrix.jpg">
+<br/>
+<br/>
+
+
+<a name="hdrpprefabs"><h3><u>Updating Prefabs</u></h3></a>
+
+<b>Updating FPEPlayerController</b>
+<li>Select the FPEPlayerController prefab, and edit it. Change the Layer of this prefab to FPEPlayer, click yes to change child objects if prompted.</li>
+<li>Create a new folder in FirstPersonExplorationKit called HDRPMaterialUpgrades</li>
+<li>Create a new material, call it MyHDRPDefault</li>
+<li>Edit the FPEPlayerController prefab again, and select the GraphicsReference child of FPEPlayerController prefab, and assign MyHDRPDefault material to it.</li>
+<li>Select the Sphere child objects of the player controller, assign the MyHDRPDefault material, and disable the mesh renderer and mesh filter components.</li>
+
+<br/>
+<img src="img/hdrp_playerControllerEdit1.jpg">
+<br/>
+<br/>
+
+
+<b>Updating FPEInteractionManager</b>
+<li>Edit the FPEInteractionManager prefab</li>
+<li>In the Inspector, change the Put Back Layer Mask and Interaction Layer Mask as shown below:</li>
+
+<br/>
+<img src="img/hdrp_interactionManagerLayers.jpg">
+<br/>
+<br/>
+
+<span class="note"><u>Note</u>: While editing FPEInteractionManager, you may a repeated error message caused by OnDrawGizmos. This can be ignored as it will not happen during regular use.</span>
+<br/>
+<br/>
+
+
+<b>Updating Demo Prefabs</b>
+<p>Some demo prefabs, like demoManualSlidingDoor, and demoSecuritySystem use the FPEIgnore layer. But we changed what this layer is to make room for HDRP layers. So, any prefab that previously used FPEIgnore will now point to another layer, like FPEPutBackObjects. So you must edit those prefabs to ensure the child objects on the FPEPutBackObjects layer are moved to the FPEIgnore layer.</p>
+
+<ul>
+<li>demoManualSlidingDoor and demoManualSlidingDoor_Locked "SlidingPart" and "DoorJamb_Pocket" children</li>
+<li>demoSecuritySystem "KeypadHousing" child</li>
+</ul>
+
+
+
+<a name="hdrptestscene"><h3><u>Prepare a New Scene for HDRP</u></h3></a>
+
+<li>Create a new Scene, and select Indoor scene template.</li>
+<li>Save you scene as IndoorsScene.</li>
+<li>Place FPECore prefab in your scene at (0,0,0)</li>
+<li>Place a new empty game object, and add the FPEPlayerStartLocation script. Position it at coordinates (0, 0.2,0)</li>
+<li>Create a cube, rename it table, and place it on the ground in the scene at (0, 0.5, 2)</li>
+<li>Grab the demoSoup prefab and place it on the table.</li>
+
+<br/>
+<img src="img/hdrp_indoorsScene1.jpg">
+<br/>
+<br/>
+
+<br/>
+<span class="note"><u>Note</u>: The soup can materials are pink. You can edit the soup materials to use HDRP > Lit, and the soup can lids to be HDRP > Lit, with Alpha Clipping enabled. Set the Base Map to be the old material's albedo texture.</span>
+<br/>
+<br/>
+
+<br/>
+<img src="img/hdrp_fixedDemoSoup.jpg">
+<br/>
+<br/>
+
+
+
+
+
+<li>Run the scene. Look at the soup and press the interact button to pick it up.</li>
+
+<br/>
+<img src="img/hdrp_indoorsScene3.jpg">
+<br/>
+<br/>
+
+<li>You're finished! All other functionality for FPE Kit should now work as expected.</li>
+
+
+<a name="updatingmaterials"><h3><u>Updating Other Project Materials</u></h3></a>
+
+<p>The other demo materials may have pink materials due to legacy shader conflicts with HDRP. You can convert all of them by switching the material to use HDRP > Lit, and selecting the albedo mask again.</p>
+
+<p>For example, DemoWall material can be switch to use HDRP > Lit, and set Base Map to be \Assets\FirstPersonExplorationKit\Textures\DemoTextures\DemoLevelGeometry\wall.png</p>
+
+<p>You can also convert these automatically, by selecting Edit > Render Pipeline > HD Render Pipeline > Upgrade from Builtin Pipeline > Upgrade Project Materials to High Definition Materials</p>
+
+<br/>
+<img src="img/hdrp_autoFixMaterials.jpg">
+<br/>
+<br/>
+
+<p>The Triplanar shader may not be compatible at all, but can be discarded or set to HDRP > Lit as its only used for very specific demo scene surfaces.</p>
+
+<p>Before:</p>
+<br/>
+<img src="img/hdrp_demoSceneWithBrokenMaterials.jpg">
+<br/>
+<br/>
+
+<p>After:</p>
+<br/>
+<img src="img/hdrp_demoSceneWithFixedMaterials.jpg">
+<br/>
+<br/>
+
+
+
+</ol>
+
+
+
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>

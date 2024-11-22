@@ -1,0 +1,49 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Making Your First Build</h2>
+
+
+<br/>
+<h3><u>Replicating the Demo Build</u></h3>
+
+<p>The provided demo scenes show how your game must also be structured. To make your very first build, open the Build menu and ensure you have the default scenes (as shown below), then press Build.</p>
+
+<br/>
+<img src="img/FPEBuildSettings.jpg">
+<br/>
+<br/>
+
+<p>When the build finishes, you will have a compiled and working executable that matches the First Person Exploration Kit Demo.</p>
+
+<br/>
+<h3><u>Creating and Adding Custom Scenes</u></h3>
+
+<p>To customize the build to have your own scenes, simply create the scenes according to the first <a href="gettingstarted.html" target="gettingstarted">Getting Started</a> section, and add them to the scene list in Build Settings. Ensure that your "Main Menu" scene is at build scene index 0 as shown below:</p>
+
+<span class="note"><u>Note</u>:Your build must include a "Main Menu" scene at index 0. </span>
+
+<br/>
+<br/>
+<img src="img/FPECustomBuildSettings.jpg">
+<br/>
+<br/>
+
+
+<p>Your "Main Menu" scene must include a Main Menu prefab (such as the included FPEMainMenu.prefab) and an FPECore. If you do not include a "Main Menu" scene at index 0, your player will not be able to move around in the 0th scene in your build. Below is an example Scene Hierarchy for a custom "Main Menu" scene:</p>
+
+<img src="img/customMainMenuScene.jpg">
+<br/>
+
+<p>You're now ready to make your custom build!</p>
+<br/>
+
+</body>
+
+</html>

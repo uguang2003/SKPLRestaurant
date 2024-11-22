@@ -1,0 +1,10 @@
+newmtl Default_Prototype
+map_Kd GridBox_Default.png
+Kd 1 1 1
+d 1
+
+newmtl DemoWall
+map_Kd Wall.png
+Kd 1 1 1
+d 1
+

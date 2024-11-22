@@ -1,0 +1,5 @@
+newmtl DemoWall
+map_Kd Wall.png
+Kd 1 1 1
+d 1
+

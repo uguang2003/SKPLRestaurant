@@ -1,0 +1,174 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Player Configuration</h2>
+
+<p>You can use the included "FPEPlayerController" prefab, or build from scratch using the Unity Standard Asset "First Person Controller".</p>
+
+<b>Table of Contents</b>
+<br/>
+<ul>
+<li><a href="#included">Using Included FPEPlayerController prefab (Recommended)</a></li>
+<li><a href="#fromscratch">Building a Player Controller from Scratch</a></li>
+<li><a href="#others">Configuring Other Player Controllers (e.g. Standard Assets, UFPS, etc.)</a></li>
+</ul>
+<br/>
+
+<hr>
+
+
+
+<br/>
+<a name="included"><h3><u>Using Included FPEPlayerController prefab (Recommended)</u></h3></a>
+
+<ol>
+<li>Add some level geometry to your scene for the player to walk on (a plane is fine), and direction light to light the scene.</li>
+<li>To use the "FPEPlayerController", just drag an instance of FPECore into your scene.</li>
+<li>Run the scene.</li>
+<li>You're done.</li>
+</ol>
+
+<p>Refer to the included _GettingStarted.unity scene for an example of this setup.</p>
+
+<br/>
+<a name="fromscratch"><h3><u>Building a Player Controller from Scratch</u></h3></a>
+
+<p>To rebuild using another player controller (such as the Standard Asset version of "First Person Controller"):</p>
+
+<ol>
+<li>Add some level geometry to your scene for the player to walk on (a plane is fine), and direction light to light the scene.</li>
+<li>Add an empty game object to your scene, rename if MyCustomFPEPlayerController.</li>
+<li>Tag object with tag "Player".</li>
+<li>Add a Character Controller, make height 1.8.</li>
+<li>Add a RigidBody, and make it Kinematic.</li>
+<li>Add an AudioSource, and make Play On Awake false.</li>
+<li>Add the FPEPlayer script.</li>
+<li>Add the FPEFirstPersonController script (this will automatically add the FPEMouseLook script.</li>
+<li>In the Inspector, add the following prefabs (found in the CustomPlayerComponents prefabs sub folder) as children of MyCustomFPEPlayerController:</li>
+<ul>
+<li>FPEAudioDiaryPlayer prefab at offset location (0,0,0)</li>
+<li>FPESecondaryInteractionSoundPlayer prefab at offset location (0,0,0)</li>
+<li>FPEJournalSFX prefab at offset location (0,0,0)</li>
+<li>FPEGenericSFX prefab at offset location (0,0,0)</li>
+</ul>
+<li>Add a child Camera object, call it "MainCamera", and ensure that it is tagged as "Main Camera"</li>
+<li>Move the MainCamera to position (0, 0.8, 0)</li>
+<li>Ensure MainCamera uses Perspective Projection, with Clipping planes of 0.25 for near, and 1000 for far.</li>
+<li>In the Inspector, add the following prefabs (found in the CustomPlayerComponents prefabs sub folder) as children of MainCamera:</li>
+<ul>
+<li>ObjectPickupLocation prefab at offset location (0.39,-0.406,0.7)</li>
+<li>ObjectTossLocation prefab at offset location (0,-0.03,0.48)</li>
+<li>ObjectExamineLocation prefab at offset location (0,0,0.557)</li>
+<li>ObjectInInventoryPosition prefab at offset location (0,-0.5,0)</li>
+<li>ExaminationCamera prefab at offset (0,0,0)</li>
+</ul>
+<li>Set location of MyCustomFPEPlayerController to be (0,1.2,0)</li>
+<li>Assign the Footsteps soundbank in the Audio section of the FPEFirstPersonController component in the Inspector.</li>
+<li>Assign the Jump and Land sounds in the Audio section of the FPEFirstPersonController component in the Inspector.</li>
+<li>Ensure that "Custom Flags for Movement Options" are configured as desired (jump, movement sounds, etc.)</li>
+<li>Save MyCustomFPEPlayerController as a prefab in the Prefabs folder.</li>
+<li>To ensure it is included as part of the FPECore set, re-assign the "Player Prefab" value to use your new MyCustomFPEPlayerController prefab.</li>
+<li>Ensure there is FPECore prefab in your scene.</li>
+<li>Run the scene. The player should work as required (same as included FPEPlayerController prefab)</li>
+</ol>
+
+<br/>
+<a name="others"><h3><u>Configuring Other Player Controllers (e.g. Standard Assets, UFPS, etc.)</u></h3></a>
+
+<span class="warning">
+<img src="img/warningLightSmall.jpg">&nbsp;While some customers have successfully used 3rd party player controller assets (such as UFPS) with First Person Exploration Kit, they are not officially supported.&nbsp;<img src="img/warningLightSmall.jpg">
+</span>
+<br/>
+<br/>
+
+<p>For UFPS specific integration, please see the <a href="addons.html#ufps">Add-Ons page</a>.</p>
+
+<p>It is possible to port the Interactable functionality to any player controller asset, but it is not a drag and drop exercise. Several functions must 
+changed so that the core of FPEInteractionManagerScript.cs works as expected. All of these functions are contained in the PLAYER_CONTROLLER_SPECIFIC code 
+region inside the FPEInteractionManagerScript.cs file.</p>
+
+<p>Here is a list of the functions that currently allow FPEInteractionManagerScript to control the FPEPlayerController prefab during interactions.</p>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>private void rememberStartingMouseSensitivity()</td><td>This function records our starting sensitivity. The Standard Asset version of the MouseLook script uses X on Character Controller and Y on Camera.</td>
+</tr>
+<tr>
+<td>public void refreshAlternateMouseSensitivities()</td><td>Refreshes alternate (zoomed, etc.) mouse sensitivities.</td>
+</tr>
+<tr class="odd">
+<td> private void setMouseSensitivity(Vector2 sensitivity)</td><td>Set sensitivity directly, and ensure smoothMouseChange is off.</td>
+</tr>
+<tr>
+<td>private void restorePreviousMouseSensitivity(bool smoothTransition)</td><td>Restores mouse sensitivity to starting Mouse sensitivity. Vector2 is desired sensitivity. If smoothTransition is true, sensitivity change is gradual. Otherwise, it is changed immediately.</td>
+</tr>
+<tr class="odd">
+<td>public void changeMouseSensitivityFromMenu(float sensitivity)</td><td>A hook for a menu or UI to set the mouse sensitivity during the game. Note in this case, both X and Y are set to the same value to simplify the UI. This can be done a different way, respecting X and Y as separate values if desired.</td>
+</tr>
+<tr>
+<td>private void disableMouseLook()</td><td>Locks mouse look, so we can move mouse to rotate objects when examining them. If using another Character Controller (UFPS, etc.) substitute mouselook disable functionality</td>
+</tr>
+<tr class="odd">
+<td>private void enableMouseLook()</td><td>Unlocks mouse look so we can move mouse to look when walking/moving normally. If using another Character Controller (UFPS, etc.) substitute mouselook enable functionality</td>
+</tr>
+<tr>
+<td>private void disableMovement()</td><td>Locks movement of Character Controller. If using another Character Controller (UFPS, etc.) substitute disable functionality</td>
+</tr>
+<tr class="odd">
+<td>private void enableMovement()</td><td>Unlocks movement of Character Controller. If using another Character Controller (UFPS, etc.) substitute enable functionality</td>
+</tr>
+<tr>
+<td>public bool isMouseLookEnabled()</td><td>Returns mouse look enabled value.</td>
+</tr>
+<tr class="odd">
+<td>private void DockPlayer(FPEInteractableDockScript dock)</td><td>Starts docking the player to the specified dock</td>
+</tr>
+<tr>
+<td>private void UnDockPlayer(bool smoothDock = false)</td><td>Starts to Un-Dock the player from their current Dock. Note: converting this function to work with assets such as UFPS may be a non-trivial exercise. See FPEFirstPersonController.cs for details on existing implementation.</td>
+</tr>
+<tr class="odd">
+<td>private bool dockingCompleted()</td><td>Checks with player controller to see if dock is currently in progress</td>
+</tr>
+<tr>
+<td>public GameObject getCurrentDockForSaveGame()</td><td>For use by Save Load Manager only.</td>
+</tr>
+<tr class="odd">
+<td>public void restoreCurrentDockFromSavedGame(GameObject cd)</td><td>For use by Save Load Manager only.</td>
+</tr>
+<tr>
+<td>public void RestrictPlayerLookFromCurrentView(Vector2 angles)</td><td>Restricts player's look ability to be +/- specified x and y angles, relative to current reticle position.</td>
+</tr>
+<tr class="odd">
+<td> public void FreePlayerLookFromCurrentViewRestrictions()</td><td>Removes any existing view restriction on player's view</td>
+</tr>
+<tr>
+<td> public void suspendPlayerAndInteraction()</td><td>This function disables player movement and look, for use by SaveLoadManager or other operation that requires player be 'locked'</td>
+</tr>
+<tr class="odd">
+<td>public void resumePlayerAndInteraction(bool resetLook)</td><td>This function enables player movement and look, for use by SaveLoadManager or other operation when it no longer requires player be 'locked'</td>
+</tr>
+</table>
+<br/>
+
+<p>Once your 3rd party Player Controller code has these functions, you will need to follow "Building a Player Controller from Scratch" above, to ensure the child objects are present (e.g. 
+Examination Camera, toss location, etc., etc.)</p>
+
+<span class="note"><u>Note</u>: Some people have reported a conflict with UFPS zooming and First Person Exploration Kit zooming, but changing a couple of tags (MainCamera, for example) and 
+ensuring the controls for each asset package don't conflict with each other seemed to solve the problem for them. Additionally, if you run into any other issues integrating the two asset 
+packages, I can take a look at your project or code repo and help get things working as expected.</span>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>

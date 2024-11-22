@@ -1,0 +1,58 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Common Errors</h2>
+
+<hr>
+
+<p>The following is a collection of error messages or other hiccups some people commonly come across while using First Person Exploration Kit.</p>
+
+<b>Table of Contents</b>
+<br/>
+<ul>
+<li><a href="#cs0246">Error CS0246: Are you missing an assembly refrence?</a></li>
+<li><a href="#playercantmove">When I make a build, my player cannot move around.</a></li>
+
+
+</ul>
+<br/>
+
+
+
+<hr>
+
+<br/>
+<a name="cs0246"><h3><u>Error CS0246: Are you missing an assembly refrence?</u></h3></a>
+
+<img src="img/FPEFirstPersonControllerImportError.jpg"><br/>
+
+<p>This error is most likely the result of the import of a conflicting asset package, probably the Standard Assets package. To fix, simply re-import First Person Exploration Kit or start a new Unity project and only import First Person Exploration Kit, and the issue should resolve itself. The reason this happens is that sometimes Unity thinks the First Person FPS Controller that comes with Standard Assets is the same as the FPEKit namespace  FPEFirstPersonController and overwrites it without clear warning.</p>
+
+<p>If you want to import the Standard Assets package (or another package that caused the import conflict), you can still do so. Just be sure to un-check the "FirstPersonExplorationKit" checkbox when importing Standard Assets, and the rest of Standard Assets will import as expected and First Person Exploration Kit will continue to work as it did before.</p>
+
+<img src="img/FPEFirstPersonControllerImportErrorFix.jpg"><br/>
+
+<br/>
+<a name="playercantmove"><h3><u>When I make a build, my player cannot move around.</u></h3></a>
+<p>This issue occurs as a result of not having a "Main Menu" in your build. The 0th scene index is specially reserved for the Main Menu. If you have a regular scene at build index 0, interactions won't work the same as a gameplay scene.</p>
+<p>To fix this, see the section on <a href="makefirstbuild.html" target="makingfirstbuild">Making Your First Build</a> for details on how to add a "Main Menu" scene to your build.</p>
+
+<br/>
+<img src="img/PlayerCannotMove.jpg">
+<br/>
+
+<p>If your scenes included a "DebugSceneIndexChecker", you may see an error message similar to this in your build's outputlog.txt:</p>
+<pre>FPEBuildIndexTester:: This scene must be in Build Settings scene list at index '1' in order to function correctly. But, it is not (buildIndex is '0', not the required index of '1')</pre>
+<br/>
+
+
+
+</body>
+
+</html>

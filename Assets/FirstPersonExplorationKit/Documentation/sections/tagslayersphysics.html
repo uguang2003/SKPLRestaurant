@@ -1,0 +1,64 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Tags, Layers, Physics Interactions</h2>
+
+<hr>
+
+<h3><u>Overview</u></h3>
+
+<p>First Person Exploration Kit relies on the following Tags, Layers, and Physics interactions to function correctly.</p>
+
+
+<hr>
+
+
+<p>The only tag required is the standard Unity "Player" tag, which is built into your Unity project.</p>
+<img src="img/tagslayersphysics/tags.jpg">
+<br/>
+
+<p>There are 5 unique layers required. They are:</p>
+<img src="img/tagslayersphysics/layers.jpg">
+<br/>
+<br/>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>FPEPutBackObjects</td><td>Used to make put back location detection more efficient, and keep it from interfering with other Interactable objects and functionality.</td>
+</tr>
+<tr>
+<td>FPEPickupObjects</td><td>Reserved for Pickups (and by extension, all Pickup children like Inventory Items).</td>
+</tr>
+<tr class="odd">
+<td>FPEPlayer</td><td>The layer the player is on.</td>
+</tr>
+<tr>
+<td>FPEObjectExamination</td><td>Used by the examination camera to draw examined objects last so they don't clip into other objects like walls.</td>
+</tr>
+<tr class="odd">
+<td>FPEIgnore</td><td>Reserved for colliders you want to physically impact the world, but not interfere with interactable objects. Similar to Unity IgnoreRaycast, but for Interactable items specifically.</td>
+</tr>
+</table>
+<br/>
+
+<span class="note"><u>Note</u>: The order of physics layers matters. The index numbers shown in the image above need to match in your project in order for layer masks 
+to remain intact. For example, the FPEInteractionManager prefab layer masks must look like this: <br/><br/> <img src="img/tagslayersphysics/interactionManager.jpg"><br/><br/></span> 
+<br/>
+<br/>
+
+<p>In combination with the custom Layers, there is some special Physics interactions that must be configured as follows:</p>
+<img src="img/tagslayersphysics/physicstable.jpg"><br/><br/>
+<br/>
+
+
+<br/>
+
+</body>
+
+</html>

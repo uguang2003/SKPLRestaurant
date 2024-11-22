@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Cutscenes Overview</h2>
+
+<hr>
+
+<br/>
+<h3><u>Cutscenes</u></h3>
+
+<p>Cutscenes can be used through calls to the FPEInteractionManagerScript's BeginCutscene() and EndCutscene() functions.</p>
+
+
+<span class="note"><u>Note</u>: The player can only enter a SUSPENDED state when requested by an outside script using the BeginCutscene() function. This outside script is responsible for releasing the suspended state by calling the EndCutscene() function. Failure to do this will result in play being stuck in a suspended state!</span>
+
+<h3><u>Creating a Cutscene</u></h3>
+
+<h3><u>Sample Cutscenes</u></h3>
+
+<p>In demoScene.unity, there is a demo cutscene interaction in the form of a small stage with a button. When the button is pressed, a call to BeginCutscene() is made.</p>
+<img src="img/DemoCutscene.jpg" alt="Demo Cutscene"></br/>
+
+<p>When that demo cutscene plays, it shows some letterbox bars and forces the player camera to look at the stage, as shown below. Once the cutscene is over, the player is released by a call to EndCutscene().</p>
+<img src="img/CutscenePlaying.jpg" alt="Demo Cutscene Playing"></br/>
+
+<p>In demoScene.unity, there is also a demo cutscene that uses a basic UI with some text and a button. When the cutscene starts, the dialog appears. And when the player clicks the button, the cutscene ends.</p>
+<img src="img/DemoCutsceneWithUI.jpg" alt="Demo Cutscene with UI"></br/>
+
+<p>A cutscene can also be really basic. If you simply need to make the player stand still for a second while another scripted event happens, you can do that. For example, when swinging open a door, you may want to make sure the player cannot move while the door is swinging. That is just a tiny cutscene.</p>
+
+<h3><u>Cutscenes Helpers</u></h3>
+
+<p>There are two helper classes that also come with the demo that can be reused for other cutscenes. Those are:</p>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>DemoForcePlayerLookAt.cs</td><td>This script forces the player camera to look at a transform through the forceLookAt() function. It requires a DemoLetterBox.</td>
+</tr>
+<tr>
+<td>DemoLetterbox.cs</td><td>This script is placed on an object with a canvas and letterbox bars. The bars are animated to move in and out through calls to moveInLetterBox() and moveOutLetterBox().</td>
+</tr>
+</table>
+<br/>
+
+<p>When these elements are used in combination, you can create some really interesting results!</p>
+
+</body>
+
+</html>

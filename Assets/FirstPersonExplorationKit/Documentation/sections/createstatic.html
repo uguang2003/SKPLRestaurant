@@ -1,0 +1,41 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Creating an Audio Diary</h2>
+
+<br/>
+
+<p>Static type interactions provide a means to simply add context to an object in your game world. Static objects display interaction text below the reticle, but cannot be 
+activated or interacted with. This is useful for cases where you just want the player to know what something is without having to physically label it in the game. For an 
+example, see the included demoPainting prefab included with the asset.</p>
+
+<span class="note"><u>Note</u>: You can add Attached Notes and Passive Audio Diaries to Static objects. They will be collected when the player looks at the static object, depending on configuration options.</span>
+<br/>
+<br/>
+
+<h3><u>Static</u></h3>
+
+<ol>
+<li>Drag any 3D object into the scene (e.g. model of an old book).</li>
+<li>Ensure the Collider is either correctly scaled and rotated (e.g. if using imported Mesh Collider), or remove it completely.</li>
+<li>If Collider was removed in step 2, add a new collider (e.g. Box Collider).</li>
+<li>Size the Collider (either imported, or added in step 3 above - e.g. Box Collider) to fit for the object you're making, with consideration to reticle aiming (e.g. if tiny scrap of paper, make collider big enough to get reticle over easily for the player).</li>
+<li>Add FPEInteractableStaticScript to your object and set the following variables to suit your object:</li>
+<li>Interaction String: For example "It's a picture of the old mill"</li>
+<li>Optionally, for some objects it makes sense to un-check "Highlight on mouse over", and adjust Interaction Range. For example, see demoMoon and demoPainting in demo scene.</li>
+<li>Run the scene, and interact with new static object.</li>
+
+
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>

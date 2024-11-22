@@ -1,0 +1,148 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Activate Type Interactions</h2>
+
+<p>Activate type interactions use the FPEInteractableActivateScript component and are possibly the most versatile of all the included interaction types.</p>
+
+<p>Activate type interactions can optionally require inventory in order to succeed. For example, a door might require a key. A machine might require a batter. A jukebox might require 2 coins.</p>
+
+<img src="img/ActivateInventoryRequirements.jpg">
+<br/>
+<br/>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>Require Inventory Item</td><td>If true, the rest of the field values matter, and the activation will require inventory. If false, the other fields for Inventory Requirements are ignored.</td>
+</tr>
+<tr>
+<td>Required Item Type</td><td>The Inventory Item Type required for the activation to succeed. (e.g. KEYCARD, BATTERY, etc.).</td>
+</tr>
+<tr class="odd">
+<td>Required Inventory Quantity</td><td>The quantity of the required item type needed. (e.g. 1 KEYCARD, 3 BATTERY, etc.)</td>
+</tr>
+<tr>
+<td>Required To Be In Hand</td>
+<td>There are 3 options here:<br/>
+<ul>
+<li>IN_HAND: Inventory must be HELD in the players hand at time of activation.</li>
+<li>IN_INVENTORY: Inventory must be STORED in inventory at time of activation.</li>
+<li>IN_HAND_OR_INVENTORY (default): Inventory can either be in player's hand, or in their inventory. This is the most flexible option.</li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td>Remove On Use</td><td>If true, the inventory that was used to perform the actiation is destroyed. (e.g. For a door that requires a KEYCARD, you probably want this to be false. For a juicer that needs 5 apples and returns apple juice, you probably want this to be true.</td>
+</tr>
+</table>
+
+<br/>
+<span class="note"><u>Note</u>: It is important that you use the above Inventory requirements consistently. For example, if you have 2 locked doors that require different keys, both doors should have 
+the same "in hand" requirements to keep the gameplay consistent. Similarly, if your require that a door be unlocked by having a key in hand, the key Inventory item itself must allow the player to hold 
+it (refer to the available options in the <a href="inventoryitems.html#create">Inventory Item documentation</a>.</span>
+<br/>
+<br/>
+
+<p>There are 3 core types of activation, which are distinguished by the Event Fire Type value assigned in the Inspector:</p>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>ONCE</td><td>This makes the Activation event(s) occur exactly once. This is good for starting one-way sequences of events or game-changing choices. (e.g. cutting a rope, smashing a glass panel, etc.)</td>
+</tr>
+<tr>
+<td>EVERYTIME</td><td>This makes the Activation event(s) occur every time. This is good for repeating actions (e.g. activate doors, press item dispensors, etc.)</td>
+</tr>
+<tr class="odd">
+<td>TOGGLE</td><td>This makes the Toggle On and Toggle Off event(s) happen in a rotating order. For example, turning on a light, then turning it off.</td>
+</tr>
+</table>
+
+
+<br/>
+
+<p>These Event Fire Types drive the Events assigned in the Inspector</p>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>Shared 'Activation' and 'Toggle On' Event</td><td>These event(s) are used for all Event Fire Types. If TOGGLE type, this event is fired on Toggle On. If 
+ONCE or EVERYTIME, this is the 'Activation' event. For example, demoSwitch uses EVERYTIME event fire type, and the 'Activation' event is assigned to play a sound, animation, and turn on a light.</td>
+</tr>
+<tr>
+<td>Shared 'Activation Failure' Event</td><td>These event(s) are used for all Event Fire Types. When an Activation requires inventory to activate, and the player does not have the required inventory, these event(s) are fired.</td>
+</tr>
+<tr class="odd">
+<td>TOGGLE-specific 'Toggle Off' Event</td><td>These event(s) are used for the TOGGLE Event Fire Type only. When an object is Toggled Off, these event(s) are fired.</td>
+</tr>
+</table>
+<br/>
+
+<p>The Inspector Events as assigned for the demoFanMachine prefab, which is included in the DemoPrefabs folder.</p>
+<img src="img/DemoFanMachineInspectorEvents.jpg">
+<br/>
+<br/>
+
+<br/>
+<span class="note"><u>Note</u>: For TOGGLE event fire types specifically, the Toggle Off event will only occur if the activation was successful. For example, if 
+the activation requires a keycard to toggle on, the state of the object won't be 'Toggle On' until the first successful activation. Once successfully 
+activated, the next interaction will be to perform a 'Toggle Off'. Refer to demoFanMachine prefab for a complex example of this behaviour.</span>
+<br/>
+<br/>
+
+
+<p>There are a few TOGGLE-specific options in the Inspector that require your attention to ensure your Toggle Activations behave properly.</p>
+
+<img src="img/SpecialToggleOptions.jpg">
+<br/>
+<br/>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>Toggle Off Requires Inventory</td><td>If true, the "Required Inventory" section of the settings will also apply to the Toggle Off event(s). For example, if you required a
+magic wand to produce a magic effect, you may want to require that the player have the wand to stop said magic effect. However, if the player needs a battery to turn on a machine,
+it makes less sense that they also need a battery to turn off the machine (especially if the machine consumes the battery).</td>
+</tr>
+<tr>
+<td>Toggle On Interaction String</td><td>Applied to the Base object's Interaction String when ready for a Toggle On activation (e.g. a light switch Toggle could read 'Turn lights on' when its currently off)</td>
+</tr>
+<tr class="odd">
+<td>Toggle Off Interaction String</td><td>Applied to the Base object's Interaction String when ready for a Toggle Off activation (e.g. a light switch Toggle could read 'Turn lights off' when its currently on)</td>
+</tr>
+<tr>
+<td>Toggle On At Start</td><td>If true, the Toggle On event(s) will be fired when scene Starts. NOTE: Inventory Requirements are ignored if this is true. The Toggle On is simply fired blindly.</td>
+</tr>
+<tr class="odd">
+<td>Toggle Off At Start</td><td>If true, the Toggle Off event(s) will be fired when scene Starts. NOTE: Inventory Requirements are ignored if this is true. The Toggle Off is simply fired blindly.</td>
+</tr>
+<tr>
+<td>Fire Toggle Events On Load Game</td><td>If true (default), toggle events are fired when the game is loaded, restoring previous toggle states. For example: Toggle On a light switch then 
+save the game. If this value is true, the Toggle On event(s) are fired again when the game is loaded.</td>
+</tr>
+</table>
+<br/>
+
+<br/>
+<span class="note"><u>Note</u>: By default, Activation type interaction states are saved and loaded at a basic level. For example, if you turned on a toggle in your scene in 
+when the game is saved, the state of the toggle will be restored when the game is loaded. Saving additional outcomes from Activation Events may 
+require additional effort. For example, if an Activation event spawns a Pickup object, that will be saved for you since Pickups are automatically saved. But if your Activation
+Event makes a cutscene play or wall crumble, you will need to save those states yourself. Please refer to the <a href="savegamesystem.html#data">Save/Load System documentation</a> and 
+included demoFanMachine prefab for more details.</span>
+<br/>
+<br/>
+
+<br/>
+<br/>
+<br/>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Creating a Passive Audio Diary</h2>
+
+<br/>
+
+<p>Passive Audio Diaries are like Attached Notes, but with Audio. They allow you to add commentary or audio context to another type of Interactable object. For example, you could add a Passive Audio Diary to a light switch or a journal.</p>
+
+<h3><u>Passive Audio Diary</u></h3>
+
+<ol>
+<li>Create any other Interactable type (e.g. Journal, Static, Pickup, etc.)</li>
+<li>Add FPEPassiveAudioDiary to your object, and set the following variables to suit your object:</li>
+<ul>
+<li>Diary Title: For example "The tale of the old book"</li>
+<li>Diary Audio: For example, a narratio explaining the history of the old book.</li>
+<li>Automatic Playback: Set to true if the diary should start playing as soon as the player looks at it. Set to false if you want to require the player press the interact button to start playback</li>
+<li>Add Entry To Inventory: Set to true to "collect" this audio diary into the ivnentory, which can be played back again later from the inventory menu.</li>
+<li>Show Diary Title: Set to true to show a title on screen when the diary is playing.</li>
+</ul>
+
+<p>Below is an image showing the inspector of the example Journal object with a Passive Audio Diary attached.</p>
+<img src="img/PassiveAudioDiary.jpg">
+<br/>
+<br/>
+
+<li>Run the scene, and interact with the Interactable with the attached passive audio diary to play the diary.</li>
+</ol>
+
+<br/>
+
+<p>Similar to <a href="createaudiodiary.html">regular Audio Diaries</a>, when passive audio diaries are retrieved, the sound clip will play and (optionally) the title of the diary will be displayed. They can also be added to inventory screen under the Audio Diaries tab, and included in saved game data. To listen to the diary again, open the Audio Diaries tab in the inventory screen and click on the title of interest:</p>
+<img src="img/AudioDiaryInInventory.jpg">
+<br/>
+
+<p>You can attach a passive audio diary to any type of Interactable object, but it is not recommended that you attach them to regular Audio Diary objects :)</p>
+
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>

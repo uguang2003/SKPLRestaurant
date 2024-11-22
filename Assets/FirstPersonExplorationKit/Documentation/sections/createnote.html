@@ -1,0 +1,50 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Creating an Attached Note</h2>
+
+<br/>
+
+<p>Attached Notes are a special type of Interactable because they are used to compliment other types through a passive interaction. For example, you might attach a note to a journal or a statue or other object that provides context and background about the object, or serves as a reminder of the object the player saw.</p>
+
+<h3><u>Attached Note</u></h3>
+
+<ol>
+<li>Create any other Interactable type (e.g. Journal, Static, Pickup, etc.)</li>
+<li>Add FPEAttachedNote to your object, and set the following variables to suit your object:</li>
+<ul>
+<li>Note Title: For example "The old book"</li>
+<li>Note Body: For example, the text found in a relevant book page containing a spell or puzzle clue.</li>
+</ul>
+
+<p>Below is an image showing the inspector of the example Journal object with a Note Attached.</p>
+<img src="img/AttachedNote.jpg">
+<br/>
+<br/>
+
+<li>Run the scene, and interact with the Interactable with the attached note to collect the note.</li>
+</ol>
+
+<p>When the note is retrieved, a text and sound notification will be presented at the bottom of the screen:</p>
+<img src="img/NoteNotification.jpg">
+<br/>
+
+<p>Notes are automatically included in saved game data. To read the note contents, open the Notes tab in the inventory screen and click on the title of interest:</p>
+<img src="img/NoteInInventory.jpg">
+<br/>
+
+<p>You can attach a note to any type of Interactable object. But if you want a literal note in your game (e.g. a yellow sticky note) with a note as its only result, just make a <a href="createstatic.html">Static type interactable</a> and attach the FPEAttachedNote script to it.</p>
+
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>

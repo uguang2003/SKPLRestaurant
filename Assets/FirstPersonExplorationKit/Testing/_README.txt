@@ -1,0 +1,1 @@
+This folder contains a set of scripts and prefabs that can be used to test various aspects of your game. If you don't want to use them, simply delete the entire folder.

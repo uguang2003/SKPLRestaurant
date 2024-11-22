@@ -1,0 +1,95 @@
+# Exported from ProBuilder
+# http://www.procore3d.com/probuilder
+# 3/8/2019 10:02:44 AM
+
+mtllib ./Level1Floor.mtl
+o Level1Floor
+
+g Level1Floor
+v 11 -1 35
+v -28 -1 35
+v 11 0 35
+v -28 0 35
+v -28 -1 35
+v -28 -1 -1
+v -28 0 35
+v -28 0 -1
+v -28 -1 -1
+v 11 -1 -1
+v -28 0 -1
+v 11 0 -1
+v 11 -1 -1
+v 11 -1 35
+v 11 0 -1
+v 11 0 35
+v 11 0 35
+v -28 0 35
+v 11 0 -1
+v -28 0 -1
+v 11 -1 -1
+v -28 -1 -1
+v 11 -1 35
+v -28 -1 35
+
+vn 0 0 1
+vn 0 0 1
+vn 0 0 1
+vn 0 0 1
+vn -1 0 0
+vn -1 0 0
+vn -1 0 0
+vn -1 0 0
+vn 0 0 -1
+vn 0 0 -1
+vn 0 0 -1
+vn 0 0 -1
+vn 1 0 0
+vn 1 0 0
+vn 1 0 0
+vn 1 0 0
+vn 0 1 0
+vn 0 1 0
+vn 0 1 0
+vn 0 1 0
+vn 0 -1 0
+vn 0 -1 0
+vn 0 -1 0
+vn 0 -1 0
+
+vt 8 0
+vt -31 0
+vt 8 1
+vt -31 1
+vt 35 0
+vt -1 0
+vt 35 1
+vt -1 1
+vt 31 0
+vt -8 0
+vt 31 1
+vt -8 1
+vt 1 0
+vt -35 0
+vt 1 1
+vt -35 1
+vt -8 35
+vt 31 35
+vt -8 -1
+vt 31 -1
+vt 8 -1
+vt -31 -1
+vt 8 35
+vt -31 35
+
+g Level1Floor_0
+usemtl Default_Prototype
+f 3/3/3 4/4/4 2/2/2 1/1/1
+f 7/7/7 8/8/8 6/6/6 5/5/5
+f 11/11/11 12/12/12 10/10/10 9/9/9
+f 15/15/15 16/16/16 14/14/14 13/13/13
+f 23/23/23 24/24/24 22/22/22 21/21/21
+
+g Level1Floor_1
+usemtl DemoFloor
+f 19/19/19 20/20/20 18/18/18 17/17/17
+

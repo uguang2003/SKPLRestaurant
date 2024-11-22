@@ -1,0 +1,38 @@
+<html>
+
+<head>
+<title>First Person Exploration Kit - Documenation</title>
+<link rel="stylesheet" type="text/css" href="../style/docs.css">
+</head>
+
+<body>
+
+<h2>First Person Exploration Kit: Interaction Management</h2>
+
+<br/>
+
+<p>The Interaction Manager handles all core interaction logic and actions. Please refer to FPEInteractionManagerScript.cs or the FPEInteractionManager.prefab files for details.</p>
+
+<p>The Interaction Manager also acts as an interface for most other systems. For example, when FPEPlayer-based components need to be updated or have functions called, a call to FPEInteractionManager is made, which updates any internal state data required, and makes subsequent calls to FPEPlayer, FPEFirstPersonController, etc. This design was chosen to be more flexible should you choose to replace the included player controller with one of your own.</p>
+
+<p>The Interaction Manager is driven by a state machine, and the states are contained in the eInteractionState enum inside FPEInteractionManagerScript.cs. They are:</p>
+
+<table class="inspectorfields">
+<tr class="odd">
+<td>FREE</td><td>The default state when the player is able to walk around and interact with the world.</td>
+</tr>
+<tr>
+<td>IN_MENU</td><td>The state used when the player is using a menu. For example, during play (in the FREE state), if the player opens the menu, the state is switched to IN_MENU.</td>
+</tr>
+<tr class="odd">
+<td>SUSPENDED</td><td>A generic suspended state is used for times when the player should not be able to move or interact, but is still playing the game. An example of such a time is during a cutscene.</td>
+</tr>
+</table>
+<br/>
+
+<span class="note"><u>Note</u>: The player can only enter a SUSPENDED state when requested by an outside script using the BeginCutscene() function. This outside script is responsible for releasing the suspended state by calling the EndCutscene() function. Failure to do this will result in play being stuck in a suspended state!</span>
+
+
+</body>
+
+</html>
