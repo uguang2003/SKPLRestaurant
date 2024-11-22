@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class ShowItem : MonoBehaviour
 {
     //物件对应的模型序号，用于激活对应需要的检视用模型
     public int ItemNum;

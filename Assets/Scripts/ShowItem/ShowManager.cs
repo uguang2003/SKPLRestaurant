@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using static Whilefun.FPEKit.FPEInteractionManagerScript;
 using Whilefun.FPEKit;
 
-public class GameManager : MonoBehaviour
+public class ShowManager : MonoBehaviour
 {
     public static WaitForSeconds waitForMOneSecond = new WaitForSeconds(0.1f);
 
@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     public Vector3 PlayerV3;
 
-    public static GameManager instance { get; private set; }
+    public static ShowManager instance { get; private set; }
 
     public bool LoadedPlayerv3 = false;
 
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     private GameObject UIManager;
     private GameObject FPEInputManager;
 
-    public GameObject LookItemGroup;
+    private GameObject LookItemGroup;
 
     //private static bool origional = true;
 
@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = false;
         instance = this;
+
+        LookItemGroup = GameObject.Find("ShowGroup(Clone)");
 
         GameObject[] gameObjects = getDontDestroyOnLoadGameObjects();
 
@@ -84,10 +86,14 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (LookItemGroup.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        if (LookItemGroup)
         {
-            ToMuseum();
+            if (LookItemGroup.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+            {
+                ToMuseum();
+            }
         }
+
     }
 
     //前往检视界面
@@ -98,7 +104,7 @@ public class GameManager : MonoBehaviour
         UIManager.SetActive(false);
         FPEInputManager.SetActive(false);
         //FPEInteractionManager.SetActive(false);
-        ItemUI.instance.RefreshItemInfo();
+        ShowUI.instance.RefreshItemInfo();
     }
 
     //返回至博物馆

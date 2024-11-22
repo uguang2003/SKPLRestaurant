@@ -28,6 +28,10 @@ public class PlotText : MonoBehaviour
     void FixedUpdate()
     {
         StartTyping();
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Destroy(plotPanel);
+        }
     }
     void StartTyping()
     {

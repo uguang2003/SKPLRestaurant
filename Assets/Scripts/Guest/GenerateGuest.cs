@@ -1,13 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class GenerateGuest : MonoBehaviour
 {
 
     public GameObject guestPrefab;
-    public GameObject guestStartLocation;
+    private GameObject guestStartLocation;
     //生成的方法传位置的编号，生成了就保存这个编号，下次生成的时候判断是否已经有人坐了
     public List<int> seatList = new List<int>();
     public List<int> beiZuoList = new List<int>();
@@ -16,6 +14,8 @@ public class GenerateGuest : MonoBehaviour
 
     void Start()
     {
+        guestStartLocation = GameObject.Find("GuestPosition");
+
         //设置座位的编号为{ 4, 5, 6, 7 }
         seatList.Add(4);
         seatList.Add(5);
@@ -41,7 +41,6 @@ public class GenerateGuest : MonoBehaviour
             }
             time = 0;
         }
-          
     }
     public void GenerateGuests(int num)
     {

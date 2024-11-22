@@ -46,10 +46,10 @@ public class CameraRay : MonoBehaviour
                     FPEInputManager.Instance.LookSensitivity = Vector2.zero;
                     setCursorVisibility(true);
 
-                    GameManager.instance.SelectItemNum = hitInfo.collider.gameObject.GetComponent<Item>().ItemNum;
-                    GameManager.instance.SelectItemName = hitInfo.collider.gameObject.GetComponent<Item>().ItemName;
-                    GameManager.instance.SelectItemInfo = hitInfo.collider.gameObject.GetComponent<Item>().ItemInfo;
-                    GameManager.instance.LookItem();
+                    ShowManager.instance.SelectItemNum = hitInfo.collider.gameObject.GetComponent<ShowItem>().ItemNum;
+                    ShowManager.instance.SelectItemName = hitInfo.collider.gameObject.GetComponent<ShowItem>().ItemName;
+                    ShowManager.instance.SelectItemInfo = hitInfo.collider.gameObject.GetComponent<ShowItem>().ItemInfo;
+                    ShowManager.instance.LookItem();
                     //GameManager.instance.GMLoadScene();
                 }
             }

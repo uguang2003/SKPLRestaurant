@@ -25,6 +25,10 @@ public class GuestAI : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.position);
+        if (Vector3.Distance(transform.position, target.transform.position) < 0.7f)
+        {
+            transform.localScale = new Vector3(0.35f, 0.5f, 0.35f);
+        }
         GoGuestStartLocation();
 
         if (HandText)
