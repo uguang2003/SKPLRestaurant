@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor.SceneManagement;
 
 namespace Whilefun.FPEKit
 {
