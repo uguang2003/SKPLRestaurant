@@ -14,7 +14,6 @@ public class CameraRay : MonoBehaviour
     public float screenH;
     public Vector2 screenV2;
 
-
     private GameObject FPEInterActionManager;
     private GameObject currentHeldObject;
 
@@ -63,7 +62,13 @@ public class CameraRay : MonoBehaviour
                 if (hitInfo.transform.gameObject.tag == "Guest")
                 {
                     currentHeldObject = FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentHeldObject;
-                    if (currentHeldObject && currentHeldObject.tag == "Apple")
+                    if (currentHeldObject && currentHeldObject.tag == "Apple" && hitInfo.transform.gameObject.GetComponent<GuestAI>().eat == 0)
+                    {
+                        //获取到的物体是Guest，获取GuestAI组件，设置isGoGuestStartLocation为true
+                        hitInfo.transform.gameObject.GetComponent<GuestAI>().isGoGuestStartLocation = true;
+                        Destroy(currentHeldObject);
+                    }
+                    if (currentHeldObject && currentHeldObject.tag == "Burger" && hitInfo.transform.gameObject.GetComponent<GuestAI>().eat == 1)
                     {
                         //获取到的物体是Guest，获取GuestAI组件，设置isGoGuestStartLocation为true
                         hitInfo.transform.gameObject.GetComponent<GuestAI>().isGoGuestStartLocation = true;

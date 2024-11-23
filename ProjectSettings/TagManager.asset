@@ -8,6 +8,7 @@ TagManager:
   - Chair
   - Guest
   - Apple
+  - Burger
   layers:
   - Default
   - TransparentFX

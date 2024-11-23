@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,14 +14,26 @@ public class GuestAI : MonoBehaviour
     public GameObject GuestManager;
     public int num;
 
-    public Transform HandText;//文字对应3D的物体
+    private List<Transform> HandTextList;
+    public Transform HandText;
     Vector3 screenPos;
+
+    public int eat;
 
     void Start()
     {
+        eat = Random.Range(0, 2);
+        //HandTextList为HandText下的所有子物体
+        HandTextList = new List<Transform>();
+        for (int i = 0; i < HandText.childCount; i++)
+        {
+            HandTextList.Add(HandText.GetChild(i));
+        }
+        HandTextList[eat].gameObject.SetActive(true);
+
         agent = GetComponent<NavMeshAgent>();
         guestStartLocation = GameObject.Find("GuestPosition");
-        GuestManager = GameObject.Find("GuestManager");
+        GuestManager = GameObject.Find("GuestManager(Clone)");
     }
     void Update()
     {
@@ -28,6 +41,10 @@ public class GuestAI : MonoBehaviour
         if (Vector3.Distance(transform.position, target.transform.position) < 0.7f)
         {
             transform.localScale = new Vector3(0.35f, 0.5f, 0.35f);
+        }
+        else
+        { 
+            transform.localScale = new Vector3(0.35f, 1f, 0.35f);
         }
         GoGuestStartLocation();
 
@@ -49,7 +66,7 @@ public class GuestAI : MonoBehaviour
                 GuestManager.GetComponent<GenerateGuest>().beiZuoList.Remove(num);
                 Destroy(gameObject);
             }
-            if (HandText)
+            if (HandText != null)
             {
                 Destroy(HandText.gameObject);
             }
