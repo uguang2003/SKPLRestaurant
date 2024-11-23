@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor.SceneManagement;
 
 namespace Whilefun.FPEKit
 {
@@ -174,8 +175,13 @@ namespace Whilefun.FPEKit
 
             loadingUIParentCanvas.SetActive(false);
             baseSavePath = Application.persistentDataPath;
-            autoSavePath = Application.persistentDataPath + "/" + autoSaveDirName;
-            fullSavePath = Application.persistentDataPath + "/" + fullSaveDirName;
+            //if (!Directory.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Doc) + "/SKPLStorage"))
+            //{
+            //    Directory.CreateDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/SKPLStorage");
+            //}
+            //baseSavePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/SKPLStorage";
+            autoSavePath = baseSavePath + "/" + autoSaveDirName;
+            fullSavePath = baseSavePath + "/" + fullSaveDirName;
 
             // These don't change names at runtime
 

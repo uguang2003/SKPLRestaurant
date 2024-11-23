@@ -449,7 +449,7 @@ MonoBehaviour:
   minimumUIDisplayTime: 0.25
   firstLevelSceneBuildIndex: 1
   mainMenuSceneBuildIndex: 0
-  editorDebugKeys: 1
+  editorDebugKeys: 0
 --- !u!114 &114587360704544710
 MonoBehaviour:
   m_ObjectHideFlags: 0

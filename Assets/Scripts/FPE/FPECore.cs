@@ -66,7 +66,7 @@ namespace Whilefun.FPEKit
             {
 
                 _instance = this;
-                DontDestroyOnLoad(this.gameObject);
+                DontDestroyOnLoad(this.transform);
 
                 if (!initialized)
                 {

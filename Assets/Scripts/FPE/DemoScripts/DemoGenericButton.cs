@@ -30,6 +30,7 @@ public class DemoGenericButton : MonoBehaviour {
     private Vector3 downPosition;
 
     private GameObject GenerateAnAppleLocation;
+    private GameObject GenerateABurgerLocation;
 
     void Awake()
     {
@@ -39,6 +40,7 @@ public class DemoGenericButton : MonoBehaviour {
         downPosition = transform.position + (transform.up * buttonActionVector.y) + (transform.right * buttonActionVector.x) + (transform.forward * buttonActionVector.z);
         buttonSpeaker = gameObject.GetComponent<AudioSource>();
         GenerateAnAppleLocation = GameObject.Find("AppleLocation");
+        GenerateABurgerLocation = GameObject.Find("BurgerLocation");
 
     }
 
@@ -62,13 +64,22 @@ public class DemoGenericButton : MonoBehaviour {
     /// <summary>
     /// Assign this to the "Activation Event" in the Inspector field for the associated FPEInteractableActivateScript component
     /// </summary>
-    public void PressButton()
+    public void PressAppleButton()
     {
 
         pressCounter = pressTime;
         transform.position = downPosition;
         buttonSpeaker.Play();
         GenerateAnAppleLocation.GetComponent<GenerateApple>().GenerateAnApple();
+    }
+
+    public void PressBurgerButton()
+    {
+
+        pressCounter = pressTime;
+        transform.position = downPosition;
+        buttonSpeaker.Play();
+        GenerateABurgerLocation.GetComponent<GenerateBurger>().GenerateABurger();
     }
 
 }

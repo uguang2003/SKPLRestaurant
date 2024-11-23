@@ -34,7 +34,7 @@ namespace Whilefun.FPEKit
             else
             {
                 _instance = this;
-                DontDestroyOnLoad(this.gameObject);
+                DontDestroyOnLoad(this.transform.root);
             }
 
         }
