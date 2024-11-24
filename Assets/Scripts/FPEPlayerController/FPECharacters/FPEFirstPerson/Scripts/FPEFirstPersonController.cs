@@ -209,7 +209,6 @@ namespace Whilefun.FPEKit {
                         myMouseLook.enableLookRestriction(targetMaxAngles);
                         myMouseLook.enableMouseLook = true;
                         currentDockingState = ePlayerDockingState.IDLE;
-
                     }
 
                 }

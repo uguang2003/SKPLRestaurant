@@ -24,6 +24,13 @@ namespace Whilefun.FPEKit
             get { return _instance; }
         }
 
+        public bool targetFrameRate;
+        public bool TargetFrameRate
+        {
+            get { return targetFrameRate; }
+            set { targetFrameRate = value; }
+        }
+
         protected bool menuActive = false;
         protected EventSystem myEventSystem = null;
 

@@ -61,7 +61,7 @@ public class DemoToiletSeatScript : FPEInteractableActivateScript {
                 transform.localRotation = seatClosedRotation;
                 myAudio.clip = toiletSeatDown;
                 myAudio.Play();
-                interactionString = "Lift seat";
+                interactionString = "打开马桶盖";
 
             }
 
@@ -78,7 +78,7 @@ public class DemoToiletSeatScript : FPEInteractableActivateScript {
                 transform.localRotation = seatOpenRotation;
                 myAudio.clip = toiletSeatUp;
                 myAudio.Play();
-                interactionString = "Put seat down";
+                interactionString = "关闭马桶盖";
 
             }
 

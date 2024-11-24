@@ -41,8 +41,8 @@ public class DemoCabinetScript : FPEGenericSaveableGameObject
     public void openCabinet()
     {
 
-        doorOpenerLeft.GetComponent<FPEInteractableActivateScript>().interactionString = "Close cabinet";
-        doorOpenerRight.GetComponent<FPEInteractableActivateScript>().interactionString = "Close cabinet";
+        doorOpenerLeft.GetComponent<FPEInteractableActivateScript>().interactionString = "打开柜子";
+        doorOpenerRight.GetComponent<FPEInteractableActivateScript>().interactionString = "关闭柜子";
         gameObject.GetComponent<Animator>().SetTrigger("OpenCabinet");
         gameObject.GetComponent<Animator>().ResetTrigger("CloseCabinet");
         gameObject.GetComponent<Animator>().SetBool("ForceOpenCabinet", false);
@@ -55,8 +55,8 @@ public class DemoCabinetScript : FPEGenericSaveableGameObject
     public void closeCabinet()
     {
 
-        doorOpenerLeft.GetComponent<FPEInteractableActivateScript>().interactionString = "Open cabinet";
-        doorOpenerRight.GetComponent<FPEInteractableActivateScript>().interactionString = "Open cabinet";
+        doorOpenerLeft.GetComponent<FPEInteractableActivateScript>().interactionString = "打开柜子";
+        doorOpenerRight.GetComponent<FPEInteractableActivateScript>().interactionString = "关闭柜子";
         gameObject.GetComponent<Animator>().SetTrigger("CloseCabinet");
         gameObject.GetComponent<Animator>().ResetTrigger("OpenCabinet");
         gameObject.GetComponent<Animator>().SetBool("ForceOpenCabinet", false);
@@ -94,8 +94,8 @@ public class DemoCabinetScript : FPEGenericSaveableGameObject
         if (cabinetOpen)
         {
 
-            doorOpenerLeft.GetComponent<FPEInteractableActivateScript>().interactionString = "Close cabinet";
-            doorOpenerRight.GetComponent<FPEInteractableActivateScript>().interactionString = "Close cabinet";
+            doorOpenerLeft.GetComponent<FPEInteractableActivateScript>().interactionString = "打开柜子";
+            doorOpenerRight.GetComponent<FPEInteractableActivateScript>().interactionString = "关闭柜子";
             gameObject.GetComponent<Animator>().SetBool("ForceOpenCabinet", true);
             gameObject.GetComponent<Animator>().ResetTrigger("CloseCabinet");
             gameObject.GetComponent<Animator>().ResetTrigger("OpenCabinet");

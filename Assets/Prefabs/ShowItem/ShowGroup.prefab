@@ -8677,8 +8677,8 @@ GameObject:
   - component: {fileID: 6812158147498201596}
   - component: {fileID: 8924882507288584892}
   - component: {fileID: 2792027220333332204}
-  - component: {fileID: 7540841126157824487}
   - component: {fileID: 4938012192118914679}
+  - component: {fileID: 6607687109949456319}
   m_Layer: 5
   m_Name: ShowUI
   m_TagString: Untagged
@@ -8772,7 +8772,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7540841126157824487
+--- !u!222 &4938012192118914679
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820880492869340789}
+  m_CullTransparentMesh: 1
+--- !u!114 &6607687109949456319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8793,14 +8801,6 @@ MonoBehaviour:
   ItemList:
   - {fileID: 9135289863473992500}
   RawInputV3: {x: 0, y: 0, z: 0}
---- !u!222 &4938012192118914679
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820880492869340789}
-  m_CullTransparentMesh: 1
 --- !u!1 &1870803049097647675
 GameObject:
   m_ObjectHideFlags: 0

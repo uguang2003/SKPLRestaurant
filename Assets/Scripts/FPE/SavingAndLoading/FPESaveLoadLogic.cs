@@ -1099,7 +1099,9 @@ namespace Whilefun.FPEKit
                                                                             FPEInputManager.Instance.LookSmoothing, 
                                                                             FPEInputManager.Instance.UseGamepad,
                                                                             FPEInputManager.Instance.FlipYAxisMouseOnly,
-                                                                            FPEInputManager.Instance.FlipYAxisGamepadOnly);
+                                                                            FPEInputManager.Instance.FlipYAxisGamepadOnly,
+                                                                            FPEMenu.Instance.TargetFrameRate
+                                                                            );
 
             return optionsData;
 
@@ -1117,6 +1119,7 @@ namespace Whilefun.FPEKit
             FPEInputManager.Instance.UseGamepad = data.UseGamepad;
             FPEInputManager.Instance.FlipYAxisMouseOnly = data.FlipYAxisMouseOnly;
             FPEInputManager.Instance.FlipYAxisGamepadOnly = data.FlipYAxisGamepadOnly;
+            FPEMenu.Instance.TargetFrameRate = data.TargetFrameRate;
 
             if (FPEInteractionManagerScript.Instance != null)
             {

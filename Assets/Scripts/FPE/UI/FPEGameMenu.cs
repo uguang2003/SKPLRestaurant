@@ -112,6 +112,7 @@ namespace Whilefun.FPEKit
         private FPEMenuToggle useGamepadToggle = null;
         private FPEMenuToggle flipMouseYAxisToggle = null;
         private FPEMenuToggle flipGamepadYAxisToggle = null;
+        private FPEMenuToggle targetFrameRateToggle = null;
         private FPEMenuButton loadGameButton = null;
 
         // Visual feedback when errors occur, etc.
@@ -124,10 +125,8 @@ namespace Whilefun.FPEKit
         private float jiggleTimer = 0.0f;
         private float jiggleOffset = 0.0f;
 
-
         public override void Awake()
         {
-
             base.Awake();
 
             menuCanvas = transform.Find("MenuCanvas").gameObject;
@@ -243,6 +242,7 @@ namespace Whilefun.FPEKit
             useGamepadToggle = systemPanel.gameObject.transform.Find("UseGamepadToggle").GetComponent<FPEMenuToggle>();
             flipMouseYAxisToggle = systemPanel.gameObject.transform.Find("FlipMouseYAxisToggle").GetComponent<FPEMenuToggle>();
             flipGamepadYAxisToggle = systemPanel.gameObject.transform.Find("FlipGamepadYAxisToggle").GetComponent<FPEMenuToggle>();
+            targetFrameRateToggle = systemPanel.gameObject.transform.Find("TargetFrameRateToggle").GetComponent<FPEMenuToggle>();
             loadGameButton = systemPanel.gameObject.transform.Find("LoadGameButton").GetComponent<FPEMenuButton>();
 
             if (!mouseSensitivityValueText || !lookSmoothingToggle || !useGamepadToggle || !flipMouseYAxisToggle || !flipGamepadYAxisToggle || !loadGameButton)
@@ -284,6 +284,16 @@ namespace Whilefun.FPEKit
         {
 
             base.Start();
+
+            //设置帧率
+            if (targetFrameRate)
+            {
+                Application.targetFrameRate = 120;
+            }
+            else
+            {
+                Application.targetFrameRate = 30;
+            }
 
             menuAudio = gameObject.GetComponent<AudioSource>();
 
@@ -1170,6 +1180,21 @@ namespace Whilefun.FPEKit
 
         }
 
+        public void changeScreenTargetFrameRate(bool toggleValue)
+        {
+            targetFrameRate = toggleValue;
+            //设置帧率
+            if (targetFrameRate)
+            {
+                Application.targetFrameRate = 120;
+            }
+            else
+            {
+                Application.targetFrameRate = 30;
+            }
+            refreshOptionsValues();
+        }
+
         private void refreshOptionsValues()
         {
 
@@ -1177,6 +1202,7 @@ namespace Whilefun.FPEKit
             //lookSmoothingToggle.ForceToggleState(FPEInputManager.Instance.LookSmoothing);
             //useGamepadToggle.ForceToggleState(FPEInputManager.Instance.UseGamepad);
             flipMouseYAxisToggle.ForceToggleState(FPEInputManager.Instance.FlipYAxisMouseOnly);
+            targetFrameRateToggle.ForceToggleState(targetFrameRate);
             //flipGamepadYAxisToggle.ForceToggleState(FPEInputManager.Instance.FlipYAxisGamepadOnly);
 
             // Always save options when they are changed - assumes they are refreshed using this function when changed from UI.

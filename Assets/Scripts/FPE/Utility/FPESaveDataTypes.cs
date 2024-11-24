@@ -643,9 +643,11 @@ namespace Whilefun.FPEKit
         public bool FlipYAxisMouseOnly { get { return flipYAxisMouseOnly; } }
         private bool flipYAxisGamepadOnly;
         public bool FlipYAxisGamepadOnly { get { return flipYAxisGamepadOnly; } }
+        private bool targetFrameRate;
+        public bool TargetFrameRate { get { return targetFrameRate; } }
 
 
-        public FPEGameOptionsSaveData(float lookSensitivity, bool lookSmoothing, bool useGamepad, bool flipMouseY, bool flipGamepadY)
+        public FPEGameOptionsSaveData(float lookSensitivity, bool lookSmoothing, bool useGamepad, bool flipMouseY, bool flipGamepadY, bool targetFrameRate)
         {
 
             sensitivity = lookSensitivity;
@@ -653,7 +655,7 @@ namespace Whilefun.FPEKit
             gamepad = useGamepad;
             flipYAxisMouseOnly = flipMouseY;
             flipYAxisGamepadOnly = flipGamepadY;
-
+            this.targetFrameRate = targetFrameRate;
         }
 
         public override string ToString()

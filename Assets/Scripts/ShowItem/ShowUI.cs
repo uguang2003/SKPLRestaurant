@@ -29,6 +29,8 @@ public class ShowUI : MonoBehaviour
         instance = this;
         BackButton.onClick.AddListener(BackToMuseum);
         ResetRotateButton.onClick.AddListener(OnInitRotate);
+
+        this.transform.parent.gameObject.SetActive(false);
     }
 
     public void Update()

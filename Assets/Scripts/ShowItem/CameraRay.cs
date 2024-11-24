@@ -4,6 +4,7 @@ using UnityEngine;
 using static Whilefun.FPEKit.FPEInteractionManagerScript;
 using Whilefun.FPEKit;
 using UnityEngine.AI;
+using UnityEngine.Video;
 
 public class CameraRay : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class CameraRay : MonoBehaviour
 
     private GameObject FPEInterActionManager;
     private GameObject currentHeldObject;
+
+    float time = 0;
 
     void Start()
     {
@@ -59,24 +62,43 @@ public class CameraRay : MonoBehaviour
             ray = Camera.main.ScreenPointToRay(screenV2);
             if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
             {
-                if (hitInfo.transform.gameObject.tag == "Guest")
+                if (Vector3.Distance(transform.position, hitInfo.transform.position) < 2.2f)
                 {
-                    currentHeldObject = FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentHeldObject;
-                    if (currentHeldObject && currentHeldObject.tag == "Apple" && hitInfo.transform.gameObject.GetComponent<GuestAI>().eat == 0)
+                    time += Time.deltaTime;
+                    if (time >= 0.1f)
                     {
-                        //获取到的物体是Guest，获取GuestAI组件，设置isGoGuestStartLocation为true
-                        hitInfo.transform.gameObject.GetComponent<GuestAI>().isGoGuestStartLocation = true;
-                        Destroy(currentHeldObject);
-                    }
-                    if (currentHeldObject && currentHeldObject.tag == "Burger" && hitInfo.transform.gameObject.GetComponent<GuestAI>().eat == 1)
-                    {
-                        //获取到的物体是Guest，获取GuestAI组件，设置isGoGuestStartLocation为true
-                        hitInfo.transform.gameObject.GetComponent<GuestAI>().isGoGuestStartLocation = true;
-                        Destroy(currentHeldObject);
-                    }
+                        if (hitInfo.transform.gameObject.tag == "Guest")
+                        {
+                            currentHeldObject = FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentHeldObject;
+                            if (currentHeldObject && currentHeldObject.tag == "Apple" && hitInfo.transform.gameObject.GetComponent<GuestAI>().eat == 0)
+                            {
+                                //获取到的物体是Guest，获取GuestAI组件，设置isGoGuestStartLocation为true
+                                hitInfo.transform.gameObject.GetComponent<GuestAI>().isGoGuestStartLocation = true;
+                                Destroy(currentHeldObject);
+                            }
+                            if (currentHeldObject && currentHeldObject.tag == "Burger" && hitInfo.transform.gameObject.GetComponent<GuestAI>().eat == 1)
+                            {
+                                //获取到的物体是Guest，获取GuestAI组件，设置isGoGuestStartLocation为true
+                                hitInfo.transform.gameObject.GetComponent<GuestAI>().isGoGuestStartLocation = true;
+                                Destroy(currentHeldObject);
+                            }
+                        }
 
-
+                        if (hitInfo.transform.gameObject.GetComponent<VideoPlayer>())
+                        {
+                            if (hitInfo.transform.gameObject.GetComponent<VideoPlayer>().isPaused)
+                            {
+                                hitInfo.transform.gameObject.GetComponent<VideoPlayer>().Play();
+                            }
+                            else
+                            {
+                                hitInfo.transform.gameObject.GetComponent<VideoPlayer>().Pause();
+                            }
+                        }
+                        time = 0;
+                    }
                 }
+                
             }
         }
     }
