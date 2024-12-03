@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guestPrefab: {fileID: 6094007602234855420, guid: 06b86f0cb5023274e8b39b6ee9d5b0e7,
     type: 3}
-  guestStartLocation: {fileID: 0}
+  guestPrefab2: {fileID: 5619448599066922864, guid: 9a4ae44d541b3ba4dae3b9e538d8d9c4,
+    type: 3}
   seatList: 
   beiZuoList: 
 --- !u!114 &3214768700880080489

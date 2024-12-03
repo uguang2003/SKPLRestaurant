@@ -398,7 +398,6 @@ namespace Whilefun.FPEKit
                 // Restore previous selections, or switch to defaults if first time using menu
                 restoreTabSelection(previouslySelectedTab);
                 menuActive = true;
-
             }
 
         }

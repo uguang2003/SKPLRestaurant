@@ -5,6 +5,7 @@ public class GenerateGuest : MonoBehaviour
 {
 
     public GameObject guestPrefab;
+    public GameObject guestPrefab2;
     private GameObject guestStartLocation;
     //生成的方法传位置的编号，生成了就保存这个编号，下次生成的时候判断是否已经有人坐了
     public List<int> seatList = new List<int>();

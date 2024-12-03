@@ -57,16 +57,16 @@ public class CameraRay : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonUp(0))
         {
             ray = Camera.main.ScreenPointToRay(screenV2);
             if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
             {
-                if (Vector3.Distance(transform.position, hitInfo.transform.position) < 2.2f)
+                if (Vector3.Distance(transform.position, hitInfo.transform.position) < 2.5f)
                 {
-                    time += Time.deltaTime;
-                    if (time >= 0.1f)
-                    {
+                    //time += Time.deltaTime;
+                    //if (time >= 0.1f)
+                    //{
                         if (hitInfo.transform.gameObject.tag == "Guest")
                         {
                             currentHeldObject = FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentHeldObject;
@@ -97,7 +97,7 @@ public class CameraRay : MonoBehaviour
                         }
                         time = 0;
                     }
-                }
+                //}
                 
             }
         }

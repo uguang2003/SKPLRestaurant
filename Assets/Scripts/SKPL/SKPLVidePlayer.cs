@@ -12,10 +12,11 @@ public class SKPLVidePlayer : MonoBehaviour
     }
     void Start()
     {
-        //Vp.loopPointReached += VideoEnd;
 
-        //Vp.Play();//播放视频
-        //Vp.Pause();//暂停视频
+        Vp.loopPointReached += VideoEnd;
+
+        Vp.Play();//播放视频
+        Vp.Pause();//暂停视频
         //Vp.Stop();//停止视频
         //Vp.playbackSpeed = 1;//播放速度
     }
@@ -25,7 +26,6 @@ public class SKPLVidePlayer : MonoBehaviour
     /// <param name="vp"></param>
     void VideoEnd(VideoPlayer vp)
     {
-        Debug.Log("视频播放结束");
         Vp.Play();//重新播放视频
     }
 

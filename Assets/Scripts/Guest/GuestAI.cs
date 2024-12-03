@@ -40,11 +40,13 @@ public class GuestAI : MonoBehaviour
         agent.SetDestination(target.position);
         if (Vector3.Distance(transform.position, target.transform.position) < 0.7f)
         {
-            transform.localScale = new Vector3(0.35f, 0.5f, 0.35f);
+            //transform.localScale = new Vector3(0.35f, 0.5f, 0.35f);
+            transform.localScale = new Vector3(1f, 0.5f, 1f);
         }
         else
         { 
-            transform.localScale = new Vector3(0.35f, 1f, 0.35f);
+            //transform.localScale = new Vector3(0.35f, 1f, 0.35f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
         GoGuestStartLocation();
 
