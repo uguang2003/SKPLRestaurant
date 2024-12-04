@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guestPrefab: {fileID: 6094007602234855420, guid: 06b86f0cb5023274e8b39b6ee9d5b0e7,
     type: 3}
-  guestPrefab2: {fileID: 5619448599066922864, guid: 9a4ae44d541b3ba4dae3b9e538d8d9c4,
+  guestPrefab2: {fileID: 7604958823532818989, guid: 20b45018bb3fbac418bcd85c5dec0b13,
+    type: 3}
+  guestPrefab3: {fileID: 2574150031633828998, guid: 57388a41992662b4c9a82c1c5fc7941c,
     type: 3}
   seatList: 
   beiZuoList: 

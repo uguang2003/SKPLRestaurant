@@ -20,6 +20,9 @@ public class GuestAI : MonoBehaviour
 
     public int eat;
 
+    public GameObject animatorGamebject;
+    Animator animator;
+
     void Start()
     {
         eat = Random.Range(0, 2);
@@ -34,6 +37,8 @@ public class GuestAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         guestStartLocation = GameObject.Find("GuestPosition");
         GuestManager = GameObject.Find("GuestManager(Clone)");
+
+        animator = animatorGamebject.GetComponent<Animator>();
     }
     void Update()
     {
@@ -41,12 +46,14 @@ public class GuestAI : MonoBehaviour
         if (Vector3.Distance(transform.position, target.transform.position) < 0.7f)
         {
             //transform.localScale = new Vector3(0.35f, 0.5f, 0.35f);
-            transform.localScale = new Vector3(1f, 0.5f, 1f);
+            //transform.localScale = new Vector3(1f, 0.5f, 1f);
+            animator.SetBool("isSitting", true);
         }
         else
-        { 
+        {
             //transform.localScale = new Vector3(0.35f, 1f, 0.35f);
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            //transform.localScale = new Vector3(1f, 1f, 1f);
+            animator.SetBool("isSitting", false);
         }
         GoGuestStartLocation();
 
@@ -61,7 +68,7 @@ public class GuestAI : MonoBehaviour
         if (isGoGuestStartLocation)
         {
             agent.SetDestination(guestStartLocation.transform.position);
-            if (Vector3.Distance(transform.position, guestStartLocation.transform.position) < 0.5f)
+            if (Vector3.Distance(transform.position, guestStartLocation.transform.position) < 0.8f)
             {
                 //截取出来的代码，将座位编号添加到seatList里，从beiZuoList里移除
                 GuestManager.GetComponent<GenerateGuest>().seatList.Add(num);
