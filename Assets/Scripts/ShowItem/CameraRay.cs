@@ -16,6 +16,7 @@ public class CameraRay : MonoBehaviour
     public Vector2 screenV2;
 
     private GameObject FPEInterActionManager;
+    private GameObject FPEDefaultHUDManager;
     private GameObject currentHeldObject;
 
     float time = 0;
@@ -27,6 +28,7 @@ public class CameraRay : MonoBehaviour
         screenV2 = new Vector2(screenW, screenH);
 
         FPEInterActionManager = GameObject.Find("FPEInteractionManager(Clone)");
+        FPEDefaultHUDManager = GameObject.Find("FPEDefaultHUD(Clone)");
     }
 
     void Update()
@@ -74,12 +76,14 @@ public class CameraRay : MonoBehaviour
                             {
                                 //获取到的物体是Guest，获取GuestAI组件，设置isGoGuestStartLocation为true
                                 hitInfo.transform.gameObject.GetComponent<GuestAI>().isGoGuestStartLocation = true;
+                                FPEDefaultHUDManager.GetComponent<FPEDefaultHUD>().money += 20;
                                 Destroy(currentHeldObject);
                             }
                             if (currentHeldObject && currentHeldObject.tag == "Burger" && hitInfo.transform.gameObject.GetComponent<GuestAI>().eat == 1)
                             {
                                 //获取到的物体是Guest，获取GuestAI组件，设置isGoGuestStartLocation为true
                                 hitInfo.transform.gameObject.GetComponent<GuestAI>().isGoGuestStartLocation = true;
+                                FPEDefaultHUDManager.GetComponent<FPEDefaultHUD>().money += 30;
                                 Destroy(currentHeldObject);
                             }
                         }

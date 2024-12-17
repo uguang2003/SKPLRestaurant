@@ -126,9 +126,13 @@ namespace Whilefun.FPEKit
 
         private bool manuallyHidingInterface = false;
 
+        public Text moneyText;
+        public int money = 0;
+
         protected override void Start()
         {
             base.Start();
+            moneyText = transform.Find("钱").GetComponent<Text>();
         }
 
         public override void initialize()
@@ -219,8 +223,8 @@ namespace Whilefun.FPEKit
 
         protected override void Update()
         {
-
             base.Update();
+            moneyText.text = "￥: " + money;
 
             // Animate the size of the interaction text //
             interactionLabel.localScale = Vector3.Lerp(interactionLabel.localScale, interactionLabelTargetScale, interactionLabelScaleChangeFactor * Time.deltaTime);

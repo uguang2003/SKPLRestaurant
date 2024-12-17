@@ -17,6 +17,7 @@ public class GuestAI : MonoBehaviour
     private List<Transform> HandTextList;
     public Transform HandText;
     Vector3 screenPos;
+    Vector3 HandTextPos;
 
     public int eat;
 
@@ -34,6 +35,8 @@ public class GuestAI : MonoBehaviour
         }
         HandTextList[eat].gameObject.SetActive(true);
 
+        HandTextPos = new Vector3(HandText.position.x, HandText.position.y - 0.5f, HandText.position.z);
+
         agent = GetComponent<NavMeshAgent>();
         guestStartLocation = GameObject.Find("GuestPosition");
         GuestManager = GameObject.Find("GuestManager(Clone)");
@@ -48,6 +51,11 @@ public class GuestAI : MonoBehaviour
             //transform.localScale = new Vector3(0.35f, 0.5f, 0.35f);
             //transform.localScale = new Vector3(1f, 0.5f, 1f);
             animator.SetBool("isSitting", true);
+            transform.rotation = target.transform.rotation;
+            if (HandText)
+            {
+                HandText.position = new Vector3(HandText.position.x, HandTextPos.y, HandText.position.z);
+            } 
         }
         else
         {
