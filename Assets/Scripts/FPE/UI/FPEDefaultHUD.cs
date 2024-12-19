@@ -123,16 +123,19 @@ namespace Whilefun.FPEKit
         private FPEUIHint interactHint = null;
         private FPEUIHint inventoryHint = null;
         private FPEUIHint unDockHint = null;
+        private GameObject moneyObj = null;
 
         private bool manuallyHidingInterface = false;
 
         public Text moneyText;
         public int money = 0;
+        private GameObject FPEInterActionManager;
 
         protected override void Start()
         {
             base.Start();
             moneyText = transform.Find("钱").GetComponent<Text>();
+            FPEInterActionManager = GameObject.Find("FPEInteractionManager(Clone)");
         }
 
         public override void initialize()
@@ -158,6 +161,7 @@ namespace Whilefun.FPEKit
                 journalPreviousButton = transform.Find("JournalBackground/PreviousButton").gameObject;
                 journalNextButton = transform.Find("JournalBackground/NextButton").gameObject;
                 journalPage = transform.Find("JournalBackground/JournalPage").gameObject;
+                moneyObj = transform.Find("钱").gameObject;
                 audioDiaryLabel = transform.Find("AudioDiaryTitleLabel").GetComponent<RectTransform>();
                 audioDiarySkipHintLabel = transform.Find("AudioDiarySkipHintLabel").GetComponent<RectTransform>();
                 notificationLabel = transform.Find("NotificationLabel").GetComponent<RectTransform>();
@@ -177,7 +181,6 @@ namespace Whilefun.FPEKit
                 interactHint.gameObject.SetActive(true);
                 inventoryHint.gameObject.SetActive(true);
                 unDockHint.gameObject.SetActive(true);
-
                 // The undock hint is sort of special, as we don't necessarily set it like the others. So disable it here to start.
                 unDockHint.setHint("");
 
@@ -536,7 +539,24 @@ namespace Whilefun.FPEKit
                         break;
 
                     case FPEInteractableBaseScript.eInteractionType.PICKUP:
-                        activateReticle(myHUDData.lookedAtInteractionString, mouseHintPickUpHandsFullText);
+                        bool isHitPickkUp = false;
+                        if ((FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentInteractableObject.tag == "下层面包"
+                            && FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentHeldObject.tag == "芝士") ||
+                            (FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentInteractableObject.tag == "芝士"
+                            && FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentHeldObject.tag == "番茄") ||
+                            (FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentInteractableObject.tag == "番茄"
+                            && FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentHeldObject.tag == "肉饼") ||
+                            (FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentInteractableObject.tag == "肉饼"
+                            && FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentHeldObject.tag == "生菜") ||
+                            (FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentInteractableObject.tag == "生菜"
+                            && FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentHeldObject.tag == "上层面包") ||
+                            (FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentInteractableObject.tag == "上层面包"
+                            && FPEInterActionManager.GetComponent<FPEInteractionManagerScript>().currentHeldObject.tag == "芝麻")
+                            )
+                        {
+                            isHitPickkUp = true;
+                        }
+                        activateReticle(myHUDData.lookedAtInteractionString, isHitPickkUp ? "" : mouseHintPickUpHandsFullText);
                         setMouseHints(mouseHintExamineText, mouseHintDropText, "");
                         break;
 
@@ -752,7 +772,7 @@ namespace Whilefun.FPEKit
             inventoryHint.setHintVisibility(false);
             unDockHint.setHintVisibility(false);
             hideReticleAndInteractionLabel();
-
+            moneyObj.SetActive(false);
         }
 
         private void unhideAllUI()
@@ -763,6 +783,7 @@ namespace Whilefun.FPEKit
             inventoryHint.setHintVisibility(true);
             unDockHint.setHintVisibility(true);
             showReticleAndInteractionLabel();
+            moneyObj.SetActive(true);
 
         }
 

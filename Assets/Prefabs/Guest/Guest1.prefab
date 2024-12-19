@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4897925049503844181}
   - component: {fileID: 3142002538139326978}
   - component: {fileID: 6174693624096775790}
+  - component: {fileID: -7572619645521271866}
   m_Layer: 0
   m_Name: "\u6C49\u5821"
   m_TagString: Untagged
@@ -97,6 +98,28 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!64 &-7572619645521271866
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661850492015384254}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5043671844730386062
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +131,7 @@ GameObject:
   - component: {fileID: 3613354616676274950}
   - component: {fileID: 1624074570968589358}
   - component: {fileID: 2943769328415912293}
+  - component: {fileID: 4819014242578701754}
   m_Layer: 0
   m_Name: "\u82F9\u679C"
   m_TagString: Untagged
@@ -194,6 +218,28 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!64 &4819014242578701754
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5043671844730386062}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5661273215457091616
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +363,7 @@ GameObject:
   - component: {fileID: -1345034867369936411}
   - component: {fileID: 271138562961562224}
   - component: {fileID: -6795905026421508771}
+  - component: {fileID: 6059626862383253569}
   m_Layer: 0
   m_Name: Guest1
   m_TagString: Guest
@@ -431,6 +478,7 @@ MonoBehaviour:
   num: 0
   HandText: {fileID: 6503642436122676170}
   eat: 0
+  animatorGamebject: {fileID: 0}
 --- !u!195 &271138562961562224
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -475,3 +523,25 @@ MonoBehaviour:
   soundToPlayOnInteract: {fileID: 0}
   interactionString: "\u8BF7\u7ED9\u6211\u5403\u98DF\u7269"
   canInteractWithWhileHoldingObject: 1
+--- !u!64 &6059626862383253569
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6094007602234855420}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}

@@ -2622,10 +2622,12 @@ MonoBehaviour:
   inventoryHintFromWorldPreText: "\u6536\u8D77"
   inventoryHintFromHandPreText: "\u6536\u8D77"
   inventoryHintFromHandPostText: "\u8FDB\u5165\u80CC\u5305"
-  audioDiaryHint: Play
-  audioDiaryPlayingPreText: Playing
-  audioDiaryReplayPreText: Re-playing
+  audioDiaryHint: "\u64AD\u653E"
+  audioDiaryPlayingPreText: "\u64AD\u653E"
+  audioDiaryReplayPreText: "\u91CD\u64AD"
   audioDiaryPlayingPostText: 
+  moneyText: {fileID: 0}
+  money: 0
 --- !u!1 &1963969612667816
 GameObject:
   m_ObjectHideFlags: 0
@@ -2813,7 +2815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5506814643136091863
 RectTransform:
   m_ObjectHideFlags: 0

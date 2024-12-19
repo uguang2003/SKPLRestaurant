@@ -30,7 +30,7 @@ namespace Whilefun.FPEKit
         [Tooltip("The actual audio clip the diary represents. This is played when the diary is triggered.")]
         public AudioClip audioDiaryClip;
         [Tooltip("The interacton string assigned once the audio diary has started playback. Leave blank to keep the same pre-diary interaction string.")]
-        public string duringPlaybackInteractionString = "Playing...";
+        public string duringPlaybackInteractionString = "播放";
         [Tooltip("The interacton string assigned after the audio diary has finished/been skipped. Leave blank to keep the same pre-diary interaction string.")]
         public string postPlaybackInteractionString = "";
 

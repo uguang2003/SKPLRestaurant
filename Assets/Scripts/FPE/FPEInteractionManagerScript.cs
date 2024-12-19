@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 namespace Whilefun.FPEKit
 {
@@ -47,8 +48,8 @@ namespace Whilefun.FPEKit
         private bool audioDiaryPlaybackIsReplay = false;
         private string currentDiaryTitle = "";
         private GameObject currentAudioDiary = null;
-        
-        private GameObject currentInteractableObject = null;
+
+        public GameObject currentInteractableObject = null;
         public GameObject currentHeldObject = null;
         private GameObject currentPutbackObject = null;
         private GameObject interactionObjectPickupLocation = null;
@@ -124,6 +125,9 @@ namespace Whilefun.FPEKit
         private FPEHUD myHUD = null;
         private FPEHUDData myHUDData = null;
 
+        GameObject emptyObj;
+        GameObject BurgerObj;
+        Transform BurgerPos;
 
 #if UNITY_EDITOR
         [Header("Debug")]
@@ -161,6 +165,7 @@ namespace Whilefun.FPEKit
 
         void Start()
         {
+            BurgerObj = Resources.Load<GameObject>("Pickups/汉堡");
             initialize();
         }
 
@@ -400,6 +405,16 @@ namespace Whilefun.FPEKit
                                 t.gameObject.layer = LayerMask.NameToLayer("FPEPickupObjects");
                             }
 
+                            if (currentHeldObject.tag == "下层面包")
+                            {
+                                emptyObj = new GameObject();
+                                emptyObj.transform.position = currentPutbackObject.transform.position;
+                                emptyObj.transform.rotation = currentPutbackObject.transform.rotation;
+                                emptyObj.transform.parent = currentPutbackObject.transform.parent;
+                                emptyObj.name = "汉堡位置";
+                                emptyObj.tag = "Burger";
+                                currentHeldObject.transform.SetParent(emptyObj.transform);
+                            }
                             currentHeldObject = null;
                             currentPutbackObject = null;
 
@@ -487,6 +502,35 @@ namespace Whilefun.FPEKit
                             else if (currentInteractableObject.GetComponent<FPEInteractableBaseScript>().getInteractionType() == FPEInteractableBaseScript.eInteractionType.PICKUP)
                             {
                                 // Player can only ever hold one thing, regardless of this value.
+                                if (currentInteractableObject.tag == "下层面包" && currentHeldObject.tag == "芝士")
+                                {
+                                    PutBurger();
+                                }
+                                if (currentInteractableObject.tag == "芝士" && currentHeldObject.tag == "番茄")
+                                {
+                                    PutBurger();
+                                }
+                                if (currentInteractableObject.tag == "番茄" && currentHeldObject.tag == "肉饼")
+                                {
+                                    PutBurger();
+                                }
+                                if (currentInteractableObject.tag == "肉饼" && currentHeldObject.tag == "生菜")
+                                {
+                                    PutBurger();
+                                }
+                                if (currentInteractableObject.tag == "生菜" && currentHeldObject.tag == "上层面包")
+                                {
+                                    PutBurger();
+                                }
+                                if (currentInteractableObject.tag == "上层面包" && currentHeldObject.tag == "芝麻")
+                                {
+                                    BurgerPos = GameObject.Find("制作汉堡位置").transform;
+                                    PutBurger();
+                                    Destroy(emptyObj);
+                                    GameObject hanbao = Instantiate(BurgerObj, BurgerPos.parent);
+                                    hanbao.transform.position = BurgerPos.position;
+                                    emptyObj = new GameObject();
+                                }
                             }
                             else if (currentInteractableObject.GetComponent<FPEInteractableBaseScript>().getInteractionType() == FPEInteractableBaseScript.eInteractionType.JOURNAL)
                             {
@@ -1551,6 +1595,32 @@ namespace Whilefun.FPEKit
             go.GetComponent<FPEInteractablePickupScript>().drop();
 
         }
+
+        public void PutBurger()
+        {
+            currentHeldObject.GetComponent<FPEInteractablePickupScript>().doPickupPutdown(true);
+            currentHeldObject.transform.position = new Vector3(currentInteractableObject.transform.position.x, currentInteractableObject.transform.position.y + 0.01f, currentInteractableObject.transform.position.z);
+            currentHeldObject.transform.rotation = currentInteractableObject.transform.rotation;
+            currentHeldObject.transform.parent = emptyObj.transform;
+            //currentHeldObject.GetComponent<Collider>().isTrigger = false;
+            //currentHeldObject.GetComponent<Rigidbody>().isKinematic = false;
+            //currentHeldObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
+            //currentHeldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            //currentHeldObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+            Transform[] objectTransforms = currentHeldObject.GetComponentsInChildren<Transform>();
+
+            foreach (Transform t in objectTransforms)
+            {
+                t.gameObject.layer = LayerMask.NameToLayer("FPEPickupObjects");
+            }
+            //Destroy(currentInteractableObject.GetComponent<FPEInteractablePickupScript>());
+            //给currentHeldObject创建一个空的父物体
+            currentHeldObject = null;
+
+            updateObjectHighlights();
+        }
+
 
 
         /// <summary>

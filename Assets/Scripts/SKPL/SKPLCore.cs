@@ -8,6 +8,7 @@ public class SKPLCore : MonoBehaviour
     public GameObject guestManager;
 
     public GameObject showGroupUI;
+    public GameObject questionGroupUI;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class SKPLCore : MonoBehaviour
         Instantiate(showManager, null);
         Instantiate(guestManager, null);
         Instantiate(showGroupUI, null);
+        Instantiate(questionGroupUI, null);
     }
 
 }

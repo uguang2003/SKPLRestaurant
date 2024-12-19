@@ -30,6 +30,7 @@ public class ShowManager : MonoBehaviour
     private GameObject FPEInputManager;
 
     private GameObject LookItemGroup;
+    private GameObject QuestionGroup;
 
     //private static bool origional = true;
 
@@ -54,6 +55,7 @@ public class ShowManager : MonoBehaviour
         instance = this;
 
         LookItemGroup = GameObject.Find("ShowGroup(Clone)");
+        QuestionGroup = GameObject.Find("QuestionGroup(Clone)");
 
         GameObject[] gameObjects = getDontDestroyOnLoadGameObjects();
 
@@ -119,6 +121,27 @@ public class ShowManager : MonoBehaviour
         Time.timeScale = 1.0f;
         setCursorVisibility(false);
        
+    }
+
+
+    public void LookQuestion()
+    {
+        QuestionGroup.SetActive(true);
+        QuestionGroup.transform.GetChild(1).GetComponent<QuestionUI>().ShowSelectPanel(true);
+        MuseumGroup.SetActive(false);
+        UIManager.SetActive(false);
+        FPEInputManager.SetActive(false);
+    }
+    public void QuesionToGame()
+    {
+        QuestionGroup.SetActive(false);
+        MuseumGroup.SetActive(true);
+        UIManager.SetActive(true);
+        FPEInputManager.SetActive(true);
+
+        Time.timeScale = 1.0f;
+        setCursorVisibility(false);
+
     }
 
     private void setCursorVisibility(bool visible)

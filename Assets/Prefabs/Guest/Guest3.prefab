@@ -1377,6 +1377,7 @@ GameObject:
   - component: {fileID: 5680013708935282439}
   - component: {fileID: 6477508260154385333}
   - component: {fileID: 2998768298111780434}
+  - component: {fileID: -1956469070044432472}
   m_Layer: 0
   m_Name: "\u82F9\u679C"
   m_TagString: Untagged
@@ -1463,6 +1464,28 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!64 &-1956469070044432472
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640698069220356883}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &2646564581772287611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,6 +1843,7 @@ GameObject:
   - component: {fileID: 7736916336774942443}
   - component: {fileID: 3741759969017852273}
   - component: {fileID: 8014875465256849823}
+  - component: {fileID: -7015573675344567021}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1892,6 +1916,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-7015573675344567021
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3594586271709662951}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: 027f00c86c565a44f865fc7c749b99e5, type: 3}
 --- !u!1 &3638985734919692303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,6 +3713,7 @@ GameObject:
   - component: {fileID: 765675917439658080}
   - component: {fileID: 7989706863060435903}
   - component: {fileID: 273902862601207234}
+  - component: {fileID: 3210935781378585047}
   m_Layer: 0
   m_Name: "\u6C49\u5821"
   m_TagString: Untagged
@@ -3753,6 +3800,28 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!64 &3210935781378585047
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675281453952887478}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &8857564613790550739
 GameObject:
   m_ObjectHideFlags: 0

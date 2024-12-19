@@ -9,6 +9,14 @@ TagManager:
   - Guest
   - Apple
   - Burger
+  - "\u829D\u58EB"
+  - "\u756A\u8304"
+  - "\u8089\u997C"
+  - "\u751F\u83DC"
+  - "\u829D\u9EBB"
+  - "\u4E0A\u5C42\u9762\u5305"
+  - "\u4E0B\u5C42\u9762\u5305"
+  - Question
   layers:
   - Default
   - TransparentFX

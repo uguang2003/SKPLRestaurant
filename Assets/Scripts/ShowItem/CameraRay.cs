@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static Whilefun.FPEKit.FPEInteractionManagerScript;
 using Whilefun.FPEKit;
-using UnityEngine.AI;
 using UnityEngine.Video;
 
 public class CameraRay : MonoBehaviour
@@ -18,6 +14,8 @@ public class CameraRay : MonoBehaviour
     private GameObject FPEInterActionManager;
     private GameObject FPEDefaultHUDManager;
     private GameObject currentHeldObject;
+
+    private GameObject tempHeldObject;
 
     float time = 0;
 
@@ -55,6 +53,15 @@ public class CameraRay : MonoBehaviour
                     ShowManager.instance.SelectItemInfo = hitInfo.collider.gameObject.GetComponent<ShowItem>().ItemInfo;
                     ShowManager.instance.LookItem();
                     //GameManager.instance.GMLoadScene();
+                }
+
+                if (hitInfo.transform.gameObject.tag == "Question")
+                {
+                    Cursor.visible = true;
+                    Time.timeScale = 0.0f;
+                    FPEInputManager.Instance.LookSensitivity = Vector2.zero;
+                    setCursorVisibility(true);
+                    ShowManager.instance.LookQuestion();
                 }
             }
         }
@@ -100,8 +107,12 @@ public class CameraRay : MonoBehaviour
                             }
                         }
                         time = 0;
-                    }
+                }
                 //}
+
+                
+
+
                 
             }
         }
